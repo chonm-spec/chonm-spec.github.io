@@ -1,0 +1,377 @@
+/* 폰트: Freesentation 3종만 사용 (Light 300 / SemiBold 600 / ExtraBold 800) */
+@font-face { font-family: "Freesentation"; src: url("../fonts/Freesentation-3Light.woff2") format("woff2"); font-weight: 300; font-display: block; }
+@font-face { font-family: "Freesentation"; src: url("../fonts/Freesentation-6SemiBold.woff2") format("woff2"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Freesentation"; src: url("../fonts/Freesentation-8ExtraBold.woff2") format("woff2"); font-weight: 800; font-display: block; }
+
+/* 색: 흰·검정·회색 + 포인트 블루 1개 (색 규칙 재선정 전 임시) */
+:root {
+  --accent: #60A5FA;
+  --black: #000;
+  --white: #fff;
+  --gray-100: #e5e5e5;
+  --gray-300: #b0b0b0;
+  --gray-500: #7a7a7a;
+  --line: rgba(255, 255, 255, .14);
+  --radius: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: "Freesentation", sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+/* ---------- 상단 메뉴 ---------- */
+.site-header {
+  position: fixed;
+  inset: 16px 12px auto;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+/* 섹션 이름만 담는 박스. 내용 폭에 맞춰 가운데 정렬, 화면이 좁아지면 글자·간격이 함께 줄어 360px에서도 한 줄 */
+.nav {
+  pointer-events: auto;
+  display: flex;
+  max-width: 100%;
+  padding: 4px;
+  background: rgba(10, 10, 10, .8); /* 흰 배경(이력서) 위에서도 메뉴 글자가 보이도록 */
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.nav__link {
+  --pad-x: clamp(7px, 2.4vw, 22px);
+  position: relative;
+  padding: 14px var(--pad-x);
+  font-size: clamp(14px, 3.8vw, 17px);
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--gray-300);
+  transition: color .2s;
+}
+.nav__link[href]:hover { color: var(--white); }
+.nav__link.is-active { color: var(--white); }
+.nav__link.is-active::after {
+  content: "";
+  position: absolute;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  bottom: 8px;
+  height: 2px;
+  background: var(--white);
+}
+.nav__link[aria-disabled="true"] { color: var(--gray-500); cursor: not-allowed; }
+
+/* ---------- 표지 ---------- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 120px 16px 128px; /* 아래: 스크롤 안내 자리 */
+  overflow: hidden;
+  text-align: center;
+}
+.hero__slides,
+.hero__overlay { position: absolute; inset: 0; z-index: -1; }
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  background: center / contain no-repeat; /* 자르지 않고 이미지 전체 표시, 남는 공간은 검정(body 배경) */
+  opacity: 0;
+  animation: cover-fade 24s linear infinite, cover-zoom 24s linear infinite;
+  animation-delay: calc(var(--i) * 4s);
+}
+/* 장당 4초 간격 × 6장 = 24초 주기. 이미지 1장 기준:
+   0~1초 페이드인 → 1~4초 노출 → 4초에 다음 이미지 등장과 함께 1초 페이드아웃.
+   줌은 0초부터 5초까지 멈춤 없이 하나의 감속 곡선으로 100% → 107.5%, 4초에 95%(약 107.1%) 통과.
+   이미지 수가 바뀌면 24s(= 장수 × 4s)와 아래 %(1초 = 100/주기초 %)를 다시 계산 */
+@keyframes cover-fade {
+  0%      { opacity: 0; }
+  4.167%  { opacity: 1; } /* 1초 */
+  16.667% { opacity: 1; } /* 4초 */
+  20.833% { opacity: 0; } /* 5초 */
+  100%    { opacity: 0; }
+}
+@keyframes cover-zoom {
+  0%            { transform: scale(1); animation-timing-function: cubic-bezier(.4, .55, .65, 1); }
+  20.833%, 100% { transform: scale(1.075); } /* 5초 */
+}
+/* 비네팅: 가운데 45%를 반지름 50%까지 유지 → 바깥으로 갈수록 진해져 화면 가장자리는 완전한 검정.
+   이미지 전체 표시(contain)로 생기는 검정 여백과 이미지 사이 경계를 가림 */
+.hero__overlay {
+  background: radial-gradient(ellipse closest-side at 50% 50%, rgba(0, 0, 0, .45) 50%, rgba(0, 0, 0, .7) 85%, #000 100%);
+}
+
+.hero__content {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, .45); /* 옅은 오버레이 위 가독성 */
+}
+.hero__eyebrow {
+  margin: 0 0 20px;
+  padding-left: .3em; /* 자간으로 생긴 오른쪽 여백 보정 */
+  font-weight: 600;
+  font-size: clamp(12px, 1.2vw, 16px);
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+}
+.hero__title { margin: 0; font-weight: 300; letter-spacing: -.02em; }
+.hero__tagline { display: block; font-size: clamp(22px, 4.4vw, 44px); line-height: 1.3; }
+.hero__name { display: block; margin-top: 4px; font-size: clamp(52px, 12vw, 112px); font-weight: 800; line-height: 1.1; }
+.accent { color: var(--accent); font-weight: 800; }
+.hero__lead {
+  margin: 28px 0 0;
+  max-width: 40em;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.7;
+  color: var(--gray-300);
+}
+.hero__lead strong { font-weight: 600; color: var(--white); }
+
+.hero__tags {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.hero__tags li {
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-100);
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.hero__actions {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition: background-color .2s, color .2s;
+}
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn--primary { background: var(--white); color: var(--black); }
+.btn--primary:hover { background: var(--gray-100); }
+.btn--ghost { border-color: rgba(255, 255, 255, .35); }
+.btn--ghost[href]:hover { background: rgba(255, 255, 255, .1); }
+.btn[aria-disabled="true"] { color: var(--gray-500); border-color: rgba(255, 255, 255, .15); cursor: not-allowed; }
+
+/* 스크롤 안내: 마우스 모양 안의 점이 위아래로 오르내림 */
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gray-300);
+}
+.scroll-hint__mouse {
+  position: relative;
+  width: 22px;
+  height: 36px;
+  border: 2px solid var(--gray-500);
+  border-radius: 11px;
+}
+.scroll-hint__mouse::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--white);
+  animation: scroll-dot 1.6s ease-in-out infinite;
+}
+@keyframes scroll-dot { 50% { transform: translateY(10px); } }
+
+.scroll-hint[href]:hover { color: var(--white); }
+
+/* ---------- 이력서 (01_경력기술서.pdf 3쪽 레이아웃, 밝은 배경) ---------- */
+.resume {
+  --ink: #111;
+  --ink-2: #444;
+  --ink-3: #8a8a8a;
+  --rule: rgba(0, 0, 0, .12);
+  --accent: #2563eb; /* 흰 배경에서 읽히도록 포인트 블루(#60A5FA)의 진한 톤 */
+  background: #fff;
+  color: var(--ink);
+  /* 마지막 섹션이어도 위 끝이 화면 맨 위까지 올라가도록 최소 한 화면 높이 (남는 곳은 흰 여백) */
+  min-height: 100vh;
+  min-height: 100svh;
+  position: relative;
+  padding-bottom: 96px; /* 아래 스크롤 안내 자리: 내용이 화면보다 길어도 겹치지 않게 */
+}
+.resume :focus-visible { outline-color: var(--ink); }
+/* 표지와 같은 스크롤 안내를 흰 배경용 색으로 */
+.resume .scroll-hint { color: var(--ink-3); }
+.resume .scroll-hint__mouse { border-color: var(--gray-300); }
+.resume .scroll-hint__mouse::before { background: var(--ink); }
+.resume__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  /* 위: 화면 높이 915px 이상은 132px(메뉴 아래 ~ Scroll 안내 사이 가운데), 879px 이하 노트북은 96px로 줄여 아래가 잘리지 않게. 1279px 이하 폭은 96px 고정 */
+  padding: clamp(96px, calc(100vh - 783px), 132px) 16px 40px;
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 56px;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--accent);
+}
+.section-title::before { content: ""; width: 4px; height: .9em; background: var(--accent); }
+
+.profile {
+  align-self: start; /* 오른쪽 + 더보기를 펼쳐도 패널은 늘어나지 않음 */
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* 접힌 상태에서 오른쪽 칸 아래 끝선과 높이를 맞춤 (1920 기준) */
+  padding: 40px 32px;
+  background: #f5f5f5;
+  border-radius: var(--radius);
+}
+.profile__photo { display: block; width: 100%; height: auto; border-radius: 16px; }
+.profile__info p { margin: 0; font-size: 18px; color: var(--ink-2); }
+.profile__info .profile__name { margin-bottom: 4px; font-size: 22px; font-weight: 600; letter-spacing: .3em; color: var(--ink); }
+.profile__contact { margin: auto 0 0; font-size: 17px; overflow-wrap: anywhere; }
+.profile__contact span { margin-right: 6px; color: var(--accent); }
+
+/* 6열 격자: 위 줄 경력·프로젝트(3+3), 아래 줄 학력·대외활동·수상&자격증(2+2+2) */
+.resume__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: 40px;
+  align-content: start;
+  padding-top: 24px; /* PDF처럼 제목보다 약간 아래에서 시작 */
+}
+.resume__block { grid-column: span 3; container-type: inline-size; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+.resume__block--third { grid-column: span 2; }
+.resume__block h3 { margin: 0 0 14px; font-size: 19px; font-weight: 600; color: var(--accent); }
+.resume__block h3 small { font-size: 13px; font-weight: 300; color: var(--ink-3); }
+
+.career-stats { display: flex; flex-wrap: wrap; row-gap: 12px; margin-bottom: 20px; }
+.career-stats p { display: flex; flex-direction: column; gap: 4px; margin: 0; padding-right: 32px; }
+.career-stats p + p { padding-left: 32px; border-left: 1px solid var(--rule); }
+.career-stats span { font-size: 13px; color: var(--ink-3); }
+.career-stats strong { font-size: clamp(22px, 2vw, 26px); font-weight: 800; }
+
+/* 행 목록: 모든 행이 같은 열 너비를 쓰도록 subgrid */
+.rows {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 10px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.rows--3 { grid-template-columns: max-content max-content minmax(0, 1fr); }
+.rows li { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; row-gap: 2px; }
+.rows b { font-weight: 600; color: var(--ink); }
+.rows small { display: block; margin-top: 2px; font-size: 13px; color: var(--ink-3); } /* 종류·기관 꼬리표는 항목 아래 줄 */
+/* 칸이 좁으면 셋째 열을 둘째 열 아래로 */
+@container (max-width: 460px) {
+  .rows--3 { grid-template-columns: max-content minmax(0, 1fr); }
+  .rows--3 li > :nth-child(3) { grid-column: 2; font-size: 14px; color: var(--ink-3); }
+}
+
+/* 대외활동 · 수상&자격증 + 더보기: 버튼은 소제목 줄 오른쪽 끝, 펼치면 최신 4건 아래로 나머지가 이어짐 */
+.awards { position: relative; }
+.awards__more .rows { margin-top: 10px; } /* 목록 행 간격과 같게 */
+.awards__more summary {
+  position: absolute;
+  top: 18px; /* 블록 위 여백(20px) + 소제목 줄 가운데 맞춤 */
+  right: 0;
+  padding: 4px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, .3);
+  border-radius: 999px;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color .2s;
+}
+.awards__more summary::-webkit-details-marker { display: none; }
+.awards__more summary:hover { background: rgba(0, 0, 0, .05); }
+.awards__more[open] .awards__open,
+.awards__more:not([open]) .awards__close { display: none; }
+
+/* 1279px 이하: 프로필 패널을 위에 가로형으로, 칸은 2열 */
+@media (max-width: 1279px) {
+  .resume__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 96px 16px 40px; }
+  .profile { display: grid; grid-template-columns: 200px minmax(0, 1fr); grid-template-rows: auto auto 1fr auto; gap: 16px 32px; }
+  .profile .section-title { grid-column: 1 / -1; }
+  .profile__photo { grid-row: 2 / 5; }
+  .profile__info,
+  .profile__contact { grid-column: 2; }
+  .resume__grid { padding-top: 0; }
+  .resume__block--third { grid-column: span 3; }
+}
+/* 599px 이하: 한 줄로 쌓기 */
+@media (max-width: 599px) {
+  .profile { grid-template-columns: minmax(0, 1fr); padding: 32px 20px; }
+  .profile__photo { grid-row: auto; max-width: 260px; }
+  .profile__info,
+  .profile__contact { grid-column: auto; }
+  .resume__grid { grid-template-columns: minmax(0, 1fr); }
+  .resume__block,
+  .resume__block--third { grid-column: auto; }
+}
+
+/* 동작 줄이기 설정 시: 줌 없이 페이드만, 스크롤 안내 점 정지 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero__slide { transform: none !important; }
+  .scroll-hint__mouse::before { animation: none; }
+}

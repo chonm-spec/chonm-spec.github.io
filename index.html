@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>장광호 | Game Designer Portfolio</title>
+  <meta name="description" content="재미를 검증하는 기획자 장광호의 게임 기획 포트폴리오">
+  <link rel="preload" href="assets/fonts/Freesentation-3Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <script src="assets/js/main.js?v=1" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <!-- 미제작 섹션: href 없음 + aria-disabled. 섹션 제작 시 href="#id" 추가하고 aria-disabled 제거 -->
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="nav__link is-active" href="#about" aria-current="true">소개</a>
+      <a class="nav__link" href="#resume">이력서</a>
+      <a class="nav__link" aria-disabled="true" title="준비 중">프로젝트&amp;기획서</a>
+      <a class="nav__link" aria-disabled="true" title="준비 중">연락처</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="about" aria-labelledby="hero-title">
+      <div class="hero__slides" aria-hidden="true">
+        <div class="hero__slide" style="--i:0; background-image:url(assets/cover/01.jpg)"></div>
+        <div class="hero__slide" style="--i:1; background-image:url(assets/cover/02.jpg)"></div>
+        <div class="hero__slide" style="--i:2; background-image:url(assets/cover/03.jpg)"></div>
+        <div class="hero__slide" style="--i:3; background-image:url(assets/cover/04.jpg)"></div>
+        <div class="hero__slide" style="--i:4; background-image:url(assets/cover/05.jpg)"></div>
+        <div class="hero__slide" style="--i:5; background-image:url(assets/cover/06.jpg)"></div>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <p class="hero__eyebrow">Game Designer Portfolio</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__tagline"><strong class="accent">재미를 검증</strong>하는 기획자</span>
+          <span class="hero__name">장광호</span>
+        </h1>
+        <p class="hero__lead">
+          <strong>데이터와 피드백</strong>으로 재미를 검증하며 콘텐츠 · 시스템 · 레벨을 설계합니다.<br>
+          기획 의도와 플레이 경험의 차이를 확인하고, 개선 방향을 설계합니다.
+        </p>
+        <ul class="hero__tags" aria-label="담당 분야">
+          <li>#유니티</li>
+          <li>#콘텐츠</li>
+          <li>#시스템</li>
+          <li>#지형공간레벨</li>
+        </ul>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="assets/download/장광호_포트폴리오.zip" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            이력서 다운로드
+          </a>
+          <!-- 연락처 섹션 제작 시 href="#contact" 추가, aria-disabled 제거, 자물쇠 아이콘 삭제 -->
+          <a class="btn btn--ghost" aria-disabled="true" title="준비 중">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            연락처
+          </a>
+        </div>
+      </div>
+
+      <!-- 스크롤 안내: 누르면 이력서 섹션으로 이동 -->
+      <a class="scroll-hint" href="#resume" aria-label="이력서로 이동">
+        <span aria-hidden="true">Scroll</span>
+        <span class="scroll-hint__mouse" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- 이력서: 01_경력기술서.pdf 3쪽(프로필) 레이아웃, 밝은 배경 -->
+    <section class="resume" id="resume" aria-labelledby="resume-title">
+      <div class="resume__inner">
+        <aside class="profile">
+          <h2 class="section-title" id="resume-title">이력서</h2>
+          <img class="profile__photo" src="assets/profile.jpg" alt="장광호 프로필 사진" width="531" height="507" loading="lazy">
+          <div class="profile__info">
+            <p class="profile__name">장광호</p>
+            <p>Kwangho Jang</p>
+            <p>1997. 06. 07 / 만 <span data-birth="1997-06-07">29</span>세</p>
+          </div>
+          <p class="profile__contact"><span>E-mail.</span> <a href="mailto:jkh6621@naver.com">jkh6621@naver.com</a></p>
+        </aside>
+
+        <div class="resume__grid">
+          <section class="resume__block">
+            <h3>경력사항</h3>
+            <div class="career-stats">
+              <p><span>게임 기획(디자인)</span><strong class="accent">1년 01개월</strong></p>
+              <p><span>게임업계 전체</span><strong>5년 01개월</strong></p>
+            </div>
+            <ul class="rows rows--3">
+              <li><span>페퍼게임즈</span><span>Planning Div</span><span>2025.02 ~ 2026.03</span></li>
+              <li><span>핸디커뮤니케이션즈</span><span>QA팀</span><span>2019.02 ~ 2021.10</span></li>
+              <li><span>넥슨네트웍스</span><span>피파온라인 CS팀</span><span>2016.11 ~ 2018.01</span></li>
+            </ul>
+          </section>
+
+          <section class="resume__block">
+            <h3>프로젝트 <small>(담당 직군 – 게임 기획)</small></h3>
+            <ul class="rows rows--3">
+              <li><b>2025</b><span>(MOBILE) 펩 히어로즈</span><span>퀘스트 및 레벨 디자인</span></li>
+              <li><b>2024</b><span>(MOBILE) LG 산학 - 클럽 파이터즈</span><span>기획 전반</span></li>
+              <li><b>2023</b><span>(PC) 타부티</span><span>콘텐츠 / 시스템 / 레벨 디자인</span></li>
+              <li><b>2022</b><span>(MOBILE) KT 산학 - 지니버거</span><span>시스템 및 레벨 디자인</span></li>
+              <li><b></b><span>(BOARD) 누가 닭다리 다 먹었어!</span><span>기획 및 세일즈 전반</span></li>
+            </ul>
+          </section>
+
+          <section class="resume__block resume__block--third">
+            <h3>학력사항</h3>
+            <ul class="rows rows--3">
+              <li><span>(졸업)</span><span>청강문화산업대학교</span><span>(학사) 차세대게임콘텐츠학과</span></li>
+              <li><span>(졸업)</span><span>청강문화산업대학교</span><span>(전문학사) 게임콘텐츠스쿨</span></li>
+              <li><span>(자퇴)</span><span>제주한라대학교</span><span>(전문학사) 디지털콘텐츠과</span></li>
+              <li><span>(졸업)</span><span>제주중앙고등학교</span><span>(특성화고) 문화콘텐츠과</span></li>
+            </ul>
+          </section>
+
+          <!-- 대외활동 · 수상&자격증: 02_이력서.pdf 기준. 최신 4건 먼저 표시, 나머지는 + 더보기를 누르면 이어서 표시 -->
+          <section class="resume__block resume__block--third awards">
+            <h3>대외활동</h3>
+            <ul class="rows">
+              <li><b>2024</b><span>2024 지스타 인디쇼케이스 선정 및 전시 <small>오프라인 전시</small></span></li>
+              <li><b></b><span>인디플어워즈 TOP 16 선정 <small>선정</small></span></li>
+              <li><b></b><span>2024 인디크래프트 챌린저 부문 TOP 20 선정 · GXG x 인디크래프트 오프라인 전시 <small>오프라인 전시</small></span></li>
+              <li><b></b><span>Play X4 인디오락실 선정 · 온라인 전시 활동 우수팀 선정 <small>온/오프라인 전시 · 선정</small></span></li>
+            </ul>
+            <details class="awards__more">
+              <summary><span class="awards__open">+ 더보기</span><span class="awards__close">− 접기</span></summary>
+              <ul class="rows">
+                <li><b></b><span>스토브인디 정식 입점 계약 및 스팀 게임 출시 [타부티] <small>마켓 출시</small></span></li>
+                <li><b>2023</b><span>STOVE INDIE 방과 후 창작생활 활동 우수 1위 <small>선정</small></span></li>
+                <li><b></b><span>부산인디커넥트페스티벌(BIC) 루키 선정 <small>온/오프라인 전시</small></span></li>
+                <li><b></b><span>방구석 인디 게임쇼(BIGS) 2023 <small>온라인 전시</small></span></li>
+                <li><b>2022</b><span>2022 보드게임 페스타 - [누가 닭다리 다 먹었어!] <small>오프라인 전시 · 보드 게임 판매</small></span></li>
+                <li><b></b><span>[누가 닭다리 다 먹었어!] 보드게임 텀블벅 펀딩 <small>펀딩 성공 · 상품 제작 및 유통</small></span></li>
+              </ul>
+            </details>
+          </section>
+
+          <section class="resume__block resume__block--third awards">
+            <h3>수상&amp;자격증</h3>
+            <ul class="rows">
+              <li><b>2025</b><span>학업 우수상 (수석 졸업) <small>우수상 · 청강문화산업대학교</small></span></li>
+              <li><b>2024</b><span>2024 경기 지역 전문대학연합 창업아이디어 경진대회 <small>최우수상 · 경기지방중소벤처기업청장</small></span></li>
+              <li><b></b><span>2024 아이디어 오디션 <small>최우수상 · 청강문화산업대학교</small></span></li>
+              <li><b></b><span>2024 인디크래프트 챌린저 부문 <small>입상 · 한국모바일게임협회</small></span></li>
+            </ul>
+            <details class="awards__more">
+              <summary><span class="awards__open">+ 더보기</span><span class="awards__close">− 접기</span></summary>
+              <ul class="rows">
+                <li><b>2023</b><span>제 9회 2023 수도권/강원권 전문대학연합 창업아이디어 경진대회 <small>혁신상 · 경기창조경제혁신센터</small></span></li>
+                <li><b></b><span>2023 아이디어 오디션 <small>최우수상 · 청강문화산업대학교</small></span></li>
+                <li><b>2022</b><span>제 6회 경기 지역 전문대학연합 창업아이디어 경진대회 <small>우수상 · (재)청년재단</small></span></li>
+                <li><b></b><span>2022 VR/AR 기획 공모전 <small>장려상 · 청강문화산업대학교</small></span></li>
+                <li><b></b><span>보드게임지도사2급 <small>취득 · 매직퀀즈놀이교육연구소</small></span></li>
+                <li><b>2019</b><span>정보처리기능사 <small>취득 · 한국산업인력공단</small></span></li>
+              </ul>
+            </details>
+          </section>
+        </div>
+      </div>
+
+      <!-- 스크롤 안내: 아래 섹션(프로젝트&기획서)이 아직 없어 링크 없이 표시만. 섹션이 생기면 <a href>로 바꿀 것 -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="scroll-hint__mouse"></span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
