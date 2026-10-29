@@ -74,7 +74,6 @@ a { color: inherit; text-decoration: none; }
   height: 2px;
   background: var(--white);
 }
-.nav__link[aria-disabled="true"] { color: var(--gray-500); cursor: not-allowed; }
 
 /* ---------- 표지 ---------- */
 .hero {
@@ -193,7 +192,6 @@ a { color: inherit; text-decoration: none; }
 .btn--primary:hover { background: var(--gray-100); }
 .btn--ghost { border-color: rgba(255, 255, 255, .35); }
 .btn--ghost[href]:hover { background: rgba(255, 255, 255, .1); }
-.btn[aria-disabled="true"] { color: var(--gray-500); border-color: rgba(255, 255, 255, .15); cursor: not-allowed; }
 
 /* 스크롤 안내: 마우스 모양 안의 점이 위아래로 오르내림 */
 .scroll-hint {
@@ -251,6 +249,7 @@ a { color: inherit; text-decoration: none; }
 .resume .scroll-hint { color: var(--ink-3); }
 .resume .scroll-hint__mouse { border-color: var(--gray-300); }
 .resume .scroll-hint__mouse::before { background: var(--ink); }
+.resume .scroll-hint[href]:hover { color: var(--ink); }
 .resume__inner {
   max-width: 1400px;
   margin: 0 auto;
@@ -368,6 +367,133 @@ a { color: inherit; text-decoration: none; }
   .resume__block,
   .resume__block--third { grid-column: auto; }
 }
+
+/* ---------- 프로젝트&기획서 (검정 배경, 카드 + 상세 팝업) ---------- */
+.works {
+  min-height: 100vh;
+  min-height: 100svh; /* 마지막 섹션이어도 위 끝이 화면 맨 위까지 올라가도록 */
+  padding: 132px 16px 120px;
+}
+.works__title { margin: 0; text-align: center; font-size: clamp(32px, 4vw, 48px); font-weight: 800; }
+.works__filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 40px 0 56px; }
+.works__filter {
+  padding: 10px 24px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray-100);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color .2s, color .2s;
+}
+.works__filter:hover { background: rgba(255, 255, 255, .08); }
+.works__filter[aria-pressed="true"] { color: var(--black); background: var(--white); border-color: var(--white); }
+
+/* 한 줄 5개 (화면이 좁아지면 4 → 3 → 2 → 1개). 마지막 줄이 덜 차면 가운데 정렬 */
+.works__grid { --cols: 5; --gap: 20px; max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap); }
+.work {
+  position: relative;
+  flex: 0 1 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  display: flex;
+  flex-direction: column;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color .2s, transform .2s;
+}
+.work:hover { border-color: rgba(255, 255, 255, .3); transform: translateY(-4px); }
+.work[hidden] { display: none; }
+.work__img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #1a1a1a; }
+.work__body { flex: 1; display: flex; flex-direction: column; padding: 20px 22px 18px; }
+.work__cat { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: .06em; color: var(--gray-500); }
+.work__title { margin: 8px 0 0; font-size: 18px; font-weight: 800; line-height: 1.35; }
+/* 설명은 3줄까지만 (카드 높이를 고르게), 전체 내용은 상세 팝업에서 */
+.work__desc { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: var(--gray-300); }
+/* 태그는 한 줄만: 줄넘김될 태그는 높이 밖으로 밀려 안 보임 (태그 높이 = 18 + 위아래 3×2 + 테두리 2 = 26px) */
+.work__tags { display: flex; flex-wrap: wrap; gap: 6px; max-height: 26px; margin: 14px 0 0; padding: 0; overflow: hidden; list-style: none; }
+.work__tags li { padding: 3px 9px; font-size: 12px; line-height: 18px; color: var(--gray-100); background: rgba(255, 255, 255, .04); border: 1px solid rgba(255, 255, 255, .12); border-radius: 6px; }
+.work__more {
+  margin-top: auto;
+  padding: 14px 0 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: var(--white);
+  background: none;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  cursor: pointer;
+}
+.work__tags + .work__more { margin-top: 18px; }
+.work__more::after { content: ""; position: absolute; inset: 0; } /* 카드 전체를 누를 수 있게 */
+@media (max-width: 1439px) { .works__grid { --cols: 4; } }
+@media (max-width: 1023px) { .works__grid { --cols: 3; } }
+@media (max-width: 767px) { .works__grid { --cols: 2; --gap: 14px; } }
+@media (max-width: 519px) { .works__grid { --cols: 1; } }
+
+/* 상세 팝업 */
+body:has(.modal[open]) { overflow: hidden; }
+.modal {
+  width: min(960px, calc(100% - 32px));
+  max-height: calc(100svh - 48px);
+  padding: 0;
+  color: var(--white);
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 16px;
+  overflow: auto;
+}
+.modal::backdrop { background: rgba(0, 0, 0, .75); }
+.modal__close { position: absolute; top: 12px; right: 12px; z-index: 1; width: 40px; height: 40px; font-size: 22px; color: var(--white); background: rgba(0, 0, 0, .6); border: 0; border-radius: 50%; cursor: pointer; }
+.modal__media { aspect-ratio: 16 / 9; background: var(--black); }
+.modal__media iframe,
+.modal__media img { display: block; width: 100%; height: 100%; border: 0; object-fit: contain; }
+.modal__body { padding: 32px 40px 40px; }
+.modal__title { margin: 8px 0; font-size: 28px; font-weight: 800; }
+.modal__intro { margin: 0; color: var(--gray-300); }
+.modal__meta {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr) max-content minmax(0, 1fr);
+  gap: 8px 20px;
+  margin: 24px 0 0;
+  padding: 20px 0;
+  font-size: 15px;
+  border-block: 1px solid rgba(255, 255, 255, .1);
+}
+.modal__meta dt { font-weight: 600; color: var(--accent); }
+.modal__meta dd { margin: 0; }
+.modal__sec h4 { margin: 28px 0 8px; font-size: 17px; font-weight: 600; color: var(--accent); }
+.modal__sec p,
+.modal__sec ul { margin: 0; font-size: 16px; line-height: 1.75; color: var(--gray-300); }
+.modal__sec ul { padding-left: 1.2em; }
+.modal__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+@media (max-width: 599px) {
+  .modal__meta { grid-template-columns: max-content minmax(0, 1fr); }
+  .modal__body { padding: 24px 20px 28px; }
+  .modal__title { font-size: 24px; }
+}
+
+/* ---------- 연락처 (검정 배경, 마지막 섹션: 한 화면 높이 + 맨 아래 꼬리말) ---------- */
+.contact { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; padding: 0 16px; text-align: center; }
+.contact__main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 132px 0 64px; }
+.contact__eyebrow { margin: 0 0 20px; padding-left: .3em; font-size: clamp(12px, 1.2vw, 16px); font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--gray-300); }
+.contact__title { margin: 0; font-weight: 300; letter-spacing: -.02em; }
+.contact__tagline { display: block; font-size: clamp(20px, 3vw, 32px); line-height: 1.3; }
+.contact__name { display: block; margin-top: 8px; font-size: clamp(44px, 8vw, 88px); line-height: 1.15; }
+.contact__name strong { font-weight: 800; }
+.contact__list { display: grid; gap: 12px; width: min(520px, 100%); margin: 48px 0 0; padding: 0; list-style: none; }
+.contact__item { display: flex; align-items: center; gap: 16px; padding: 18px 20px 18px 24px; text-align: left; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .14); border-radius: var(--radius); }
+.contact__label { flex: none; width: 56px; font-size: 14px; font-weight: 600; color: var(--gray-300); }
+.contact__value { flex: 1; min-width: 0; font-size: clamp(16px, 2vw, 19px); font-weight: 600; overflow-wrap: anywhere; }
+.contact__copy { flex: none; padding: 6px 14px; font: inherit; font-size: 13px; font-weight: 600; color: inherit; background: transparent; border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px; cursor: pointer; }
+.contact__copy:hover { background: rgba(255, 255, 255, .1); }
+.contact__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+.footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; width: 100%; max-width: 1400px; margin: 0 auto; padding: 24px 0 32px; font-size: 13px; color: var(--gray-500); border-top: 1px solid var(--line); }
+.footer a:hover { color: var(--white); }
 
 /* 동작 줄이기 설정 시: 줌 없이 페이드만, 스크롤 안내 점 정지 */
 @media (prefers-reduced-motion: reduce) {
