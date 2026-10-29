@@ -374,8 +374,7 @@ a { color: inherit; text-decoration: none; }
   min-height: 100svh; /* 마지막 섹션이어도 위 끝이 화면 맨 위까지 올라가도록 */
   padding: 132px 16px 120px;
 }
-.works__title { margin: 0; text-align: center; font-size: clamp(32px, 4vw, 48px); font-weight: 800; }
-.works__filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 40px 0 56px; }
+.works__filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 0 0 56px; }
 .works__filter {
   padding: 10px 24px;
   font: inherit;
