@@ -9,17 +9,16 @@
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=2">
-  <script src="assets/js/main.js?v=1" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
+  <script src="assets/js/main.js?v=4" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <!-- 미제작 섹션: href 없음 + aria-disabled. 섹션 제작 시 href="#id" 추가하고 aria-disabled 제거 -->
     <nav class="nav" aria-label="주요 메뉴">
       <a class="nav__link is-active" href="#about" aria-current="true">소개</a>
       <a class="nav__link" href="#resume">이력서</a>
-      <a class="nav__link" aria-disabled="true" title="준비 중">프로젝트&amp;기획서</a>
-      <a class="nav__link" aria-disabled="true" title="준비 중">연락처</a>
+      <a class="nav__link" href="#works">프로젝트&amp;기획서</a>
+      <a class="nav__link" href="#contact">연락처</a>
     </nav>
   </header>
 
@@ -56,9 +55,8 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
             이력서 다운로드
           </a>
-          <!-- 연락처 섹션 제작 시 href="#contact" 추가, aria-disabled 제거, 자물쇠 아이콘 삭제 -->
-          <a class="btn btn--ghost" aria-disabled="true" title="준비 중">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <a class="btn btn--ghost" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             연락처
           </a>
         </div>
@@ -165,12 +163,354 @@
         </div>
       </div>
 
-      <!-- 스크롤 안내: 아래 섹션(프로젝트&기획서)이 아직 없어 링크 없이 표시만. 섹션이 생기면 <a href>로 바꿀 것 -->
-      <div class="scroll-hint" aria-hidden="true">
-        <span>Scroll</span>
-        <span class="scroll-hint__mouse"></span>
+      <!-- 스크롤 안내: 누르면 프로젝트&기획서 섹션으로 이동 -->
+      <a class="scroll-hint" href="#works" aria-label="프로젝트&amp;기획서로 이동">
+        <span aria-hidden="true">Scroll</span>
+        <span class="scroll-hint__mouse" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- 프로젝트&기획서: 01_경력기술서.pdf(5~14쪽) · 각 기획서 PDF 기준.
+         카드 안 <template>이 상세 팝업 내용. 카드를 추가하면 같은 구조로 복사 -->
+    <section class="works" id="works" aria-labelledby="works-title">
+      <h2 class="works__title" id="works-title">프로젝트&amp;기획서</h2>
+      <div class="works__filters" role="group" aria-label="분류">
+        <button class="works__filter" type="button" data-filter="all" aria-pressed="true">전체</button>
+        <button class="works__filter" type="button" data-filter="p" aria-pressed="false">프로젝트</button>
+        <button class="works__filter" type="button" data-filter="d" aria-pressed="false">기획서</button>
+      </div>
+
+      <div class="works__grid">
+        <article class="work" data-kind="p">
+          <img class="work__img" src="assets/works/p-pep.jpg" alt="" loading="lazy">
+          <div class="work__body">
+            <p class="work__cat">프로젝트 · 모바일 · 2025</p>
+            <h3 class="work__title">펩 히어로즈</h3>
+            <p class="work__desc">보물을 찾아 떠나는 여정, 영웅들을 수집 및 조합하여 활용하는 캐주얼 MORPG. 멕시코 → 캐나다 순차 소프트런칭.</p>
+            <ul class="work__tags"><li>유니티</li><li>퀘스트</li><li>레벨</li></ul>
+            <button class="work__more" type="button">상세 정보 &amp; 영상 보기 <span aria-hidden="true">↗</span></button>
+          </div>
+          <template>
+            <div class="modal__media"><iframe src="https://www.youtube-nocookie.com/embed/DFqSL1ahViA?start=12" title="펩 히어로즈 플레이 영상" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+            <div class="modal__body">
+              <p class="modal__intro">컴투스 퍼블리싱 프로젝트 (개발 인력: 총 33명 중, 게임 디자이너 5명)</p>
+              <dl class="modal__meta">
+                <dt>플랫폼</dt><dd>모바일 (AOS / iOS)</dd>
+                <dt>사용 엔진</dt><dd>유니티</dd>
+                <dt>메인 담당</dt><dd>퀘스트 및 레벨 디자인</dd>
+                <dt>참여 기간</dt><dd>2025.02 ~ 2026.03 (13개월)</dd>
+              </dl>
+              <section class="modal__sec">
+                <h4>성과 및 결과</h4>
+                <ul><li>멕시코 → 캐나다 순차 소프트런칭</li><li>동선 최적화로 D+1 리텐션 약 28%p 상승</li><li>로컬라이징 프로세스 간소화로 작업 시간 62% 단축</li></ul>
+              </section>
+              <section class="modal__sec">
+                <h4>기여도 · 전체 기획 28%</h4>
+                <ul><li>월드맵 6개 중 3개 담당</li><li>퀘스트 기획 및 세팅</li><li>반복 던전 기획 및 세팅</li><li>로컬라이징 데이터 관리</li><li>몬스터 컨셉 및 패턴 기획</li></ul>
+              </section>
+              <section class="modal__sec">
+                <h4>개요</h4>
+                <p>게임 디자이너로 입사해 처음으로 담당하게 된 상용화 프로젝트입니다. 퀘스트 디자인을 시작으로 레벨 및 몬스터 컨셉 기획 등 다양한 업무를 수행했습니다. 인력 공백 상황에서는 게임 내 데이터 테이블 구조를 관리하며, 신규 입사자의 업무 적응을 도왔습니다. 추가로 퍼블리셔(컴투스)와 소통하며 로컬라이징 데이터의 업데이트 일정을 조율하고, 인게임 반영 방안을 논의했습니다.</p>
+              </section>
+              <div class="modal__actions">
+                <a class="btn btn--ghost" href="https://www.youtube.com/watch?v=DFqSL1ahViA" target="_blank" rel="noopener">YouTube에서 보기 ↗</a>
+              </div>
+            </div>
+          </template>
+        </article>
+
+        <article class="work" data-kind="p">
+          <img class="work__img" src="assets/works/p-club.jpg" alt="" loading="lazy">
+          <div class="work__body">
+            <p class="work__cat">프로젝트 · 모바일 · 2024</p>
+            <h3 class="work__title">클럽 파이터즈</h3>
+            <p class="work__desc">LG 산학 협력으로 개발한 캐릭터 수집형 액션 격투 게임. 납품 완료.</p>
+            <ul class="work__tags"><li>유니티</li><li>컨셉</li><li>콘텐츠</li><li>시스템</li></ul>
+            <button class="work__more" type="button">상세 정보 보기 <span aria-hidden="true">↗</span></button>
+          </div>
+          <template>
+            <div class="modal__media"><img src="assets/works/p-club.jpg" alt=""></div>
+            <div class="modal__body">
+              <dl class="modal__meta">
+                <dt>플랫폼</dt><dd>모바일</dd>
+                <dt>사용 엔진</dt><dd>유니티</dd>
+                <dt>메인 담당</dt><dd>컨셉 / 콘텐츠 / 시스템 디자인 - 기획 전반</dd>
+                <dt>참여 기간</dt><dd>2024.03 ~ 2024.07</dd>
+                <dt>장르</dt><dd>캐릭터 수집형 액션 격투</dd>
+              </dl>
+              <section class="modal__sec">
+                <h4>성과 및 결과</h4>
+                <ul><li>LG 산학 – 납품 완료</li></ul>
+              </section>
+            </div>
+          </template>
+        </article>
+
+        <article class="work" data-kind="p">
+          <img class="work__img" src="assets/works/p-tavuti.jpg" alt="" loading="lazy">
+          <div class="work__body">
+            <p class="work__cat">프로젝트 · PC · 2023</p>
+            <h3 class="work__title">타부티</h3>
+            <p class="work__desc">고래신을 찾아 떠나는 '타부티'의 이야기, 퍼즐을 해결하며 숲을 탐험하는 3D 플랫폼 어드벤처. 스팀 · 스토브 인디 런칭.</p>
+            <ul class="work__tags"><li>유니티</li><li>콘텐츠</li><li>시스템</li><li>레벨</li></ul>
+            <button class="work__more" type="button">상세 정보 &amp; 영상 보기 <span aria-hidden="true">↗</span></button>
+          </div>
+          <template>
+            <div class="modal__media"><iframe src="https://www.youtube-nocookie.com/embed/-FRp-NJjTd0" title="타부티 공식 트레일러" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+            <div class="modal__body">
+              <p class="modal__intro">청강문화산업대학교 졸업 작품 (개발 인력: 총 17명 중, 게임 디자이너 2명)</p>
+              <dl class="modal__meta">
+                <dt>플랫폼</dt><dd>PC (스팀 / 스토브 인디)</dd>
+                <dt>사용 엔진</dt><dd>유니티</dd>
+                <dt>메인 담당</dt><dd>콘텐츠 / 시스템 / 레벨 디자인</dd>
+                <dt>참여 기간</dt><dd>2023.03 ~ 2024.12 (22개월)</dd>
+              </dl>
+              <section class="modal__sec">
+                <h4>성과 및 결과</h4>
+                <ul><li>스팀, 스토브 인디 마켓 런칭</li><li>지스타, PlayX4 등 국내 전시 5회 참가</li><li>공모전 및 전시회 6회 수상</li><li>마켓 무료 다운로드 약 35,000회 달성 (2024년 12월 집계 기준)</li></ul>
+              </section>
+              <section class="modal__sec">
+                <h4>기여도 · 전체 기획 75%</h4>
+                <ul><li>5개의 씬 전체 레벨 디자인</li><li>보스 / 일반 몬스터 기획</li><li>퍼즐 / 시스템 기획</li><li>마켓 및 이벤트 일정 관리</li></ul>
+              </section>
+              <section class="modal__sec">
+                <h4>개요</h4>
+                <p>대학교 졸업 작품으로 시작해 스팀과 스토브 인디에 정식 런칭한 프로젝트입니다. 시스템 기획과 3D 월드 맵 전체 지형 디자인을 담당했으며, 외부 행사 및 플랫폼 담당자와의 커뮤니케이션을 병행했습니다. 처음 설계해 보는 3D 월드 맵이었지만, 단순히 공간을 만드는 것이 아닌 유저의 플레이 템포에 맞춰 긴장과 이완을 고려했습니다. 학기 종료 후에도 꾸준히 유지보수를 진행한 결과, 지스타, 플레이엑스포, BIC 등 주요 게임 행사에 초청되어 전시를 진행했고 6회 수상 성과를 거두었습니다.</p>
+              </section>
+              <section class="modal__sec">
+                <h4>레벨 디자인 기획서 · 뒤틀린 절벽</h4>
+                <ul><li>게임 개요</li><li>기믹 설명</li><li>기믹 배치 및 레벨 의도</li><li>스테이지 구조</li><li>플레이 시나리오</li></ul>
+              </section>
+              <div class="modal__actions">
+                <a class="btn btn--primary" href="assets/docs/06_레벨_타부티_레벨디자인.pdf" target="_blank" rel="noopener">레벨 디자인 기획서 PDF 보기</a>
+                <a class="btn btn--ghost" href="https://www.youtube.com/watch?v=-FRp-NJjTd0" target="_blank" rel="noopener">YouTube에서 보기 ↗</a>
+              </div>
+            </div>
+          </template>
+        </article>
+
+        <article class="work" data-kind="p">
+          <img class="work__img" src="assets/works/p-genie.jpg" alt="" loading="lazy">
+          <div class="work__body">
+            <p class="work__cat">프로젝트 · 모바일 · 2022</p>
+            <h3 class="work__title">지니버거</h3>
+            <p class="work__desc">KT 메타버스 '지니어스' 탑재용 미니 게임, 음식을 던져 하이스코어를 노리는 하이퍼 캐주얼 게임. KT 산학 프로젝트 3개 팀 중 1등.</p>
+            <ul class="work__tags"><li>유니티</li><li>시스템</li><li>레벨</li></ul>
+            <button class="work__more" type="button">상세 정보 &amp; 영상 보기 <span aria-hidden="true">↗</span></button>
+          </div>
+          <template>
+            <div class="modal__media"><iframe src="https://www.youtube-nocookie.com/embed/lBN4wTGP29U" title="지니버거 플레이 영상" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+            <div class="modal__body">
+              <p class="modal__intro">KT 산학 협력 프로젝트 (개발 인력: 총 7명 중, 게임 디자이너 2명)</p>
+              <dl class="modal__meta">
+                <dt>플랫폼</dt><dd>모바일 (AOS)</dd>
+                <dt>사용 엔진</dt><dd>유니티</dd>
+                <dt>메인 담당</dt><dd>시스템 및 레벨 디자인</dd>
+                <dt>참여 기간</dt><dd>2022.09 ~ 2022.12 (4개월)</dd>
+              </dl>
+              <section class="modal__sec">
+                <h4>성과 및 결과</h4>
+                <ul><li>KT 산학 협력 프로젝트 3개 팀 중 1등</li><li>동일 학년 16개 팀 중 상호평가 3등</li><li>프로젝트 완성도를 인정받아 비졸업 학년임에도 예외적으로 졸업 작품 전시회 출품</li></ul>
+              </section>
+              <section class="modal__sec">
+                <h4>기여도 · 전체 기획 40%</h4>
+                <ul><li>3D 공간 레벨 디자인</li><li>라운드별 난이도 밸런싱</li><li>전체 시스템 기획</li><li>모바일 기기 테스트</li></ul>
+              </section>
+              <section class="modal__sec">
+                <h4>개요</h4>
+                <p>KT 산학 협력을 통해 메타버스 플랫폼 '지니어스'에 탑재될 미니 게임을 개발한 프로젝트입니다. 유저 간 점수 경쟁을 유도하는 하이퍼 캐주얼 게임을 목표로, 맵 지형 디자인과 전체 시스템 기획을 수행했습니다. 몰입도를 높이기 위해 시간 경과에 따른 난이도 상승 곡선을 데이터 테이블로 직접 설계하고 반복 테스트를 거쳐 밸런스를 조정했습니다. 그 결과 좋은 성적을 거두어 비졸업 학년임에도 교내 졸업 전시회에 출품했습니다.</p>
+              </section>
+              <div class="modal__actions">
+                <a class="btn btn--ghost" href="https://www.youtube.com/watch?v=lBN4wTGP29U" target="_blank" rel="noopener">YouTube에서 보기 ↗</a>
+              </div>
+            </div>
+          </template>
+        </article>
+
+        <article class="work" data-kind="p">
+          <img class="work__img" src="assets/works/p-chicken.jpg" alt="" loading="lazy">
+          <div class="work__body">
+            <p class="work__cat">프로젝트 · 보드 게임 · 2022</p>
+            <h3 class="work__title">누가 닭다리 다 먹었어!</h3>
+            <p class="work__desc">남들 몰래 더 많은 치킨 카드를 모아 점수를 획득하는 파티 보드 게임. 텀블벅 펀딩 성공 및 실물 제품 출시.</p>
+            <ul class="work__tags"><li>기획 전반</li><li>카드 밸런싱</li><li>세일즈</li></ul>
+            <button class="work__more" type="button">상세 정보 보기 <span aria-hidden="true">↗</span></button>
+          </div>
+          <template>
+            <div class="modal__media"><img src="assets/works/p-chicken.jpg" alt=""></div>
+            <div class="modal__body">
+              <p class="modal__intro">대학 강의를 통해 결성된 팀에서 실물 보드 게임 출품 (개발 인력: 총 4명 중 게임 디자이너 1명)</p>
+              <dl class="modal__meta">
+                <dt>플랫폼</dt><dd>보드 게임</dd>
+                <dt>장르</dt><dd>파티 보드 게임</dd>
+                <dt>메인 담당</dt><dd>기획 및 세일즈 전반</dd>
+                <dt>참여 기간</dt><dd>2022.07 ~ 2022.10 (4개월)</dd>
+              </dl>
+              <section class="modal__sec">
+                <h4>성과 및 결과</h4>
+                <ul><li>텀블벅 펀딩 성공, 실물 제품 출시</li><li>보드 게임 페스타 전시 및 판매</li><li>경기 전문대학 창업 아이디어 대회 우수상</li></ul>
+              </section>
+              <section class="modal__sec">
+                <h4>기여도 · 전체 기획 80%</h4>
+                <ul><li>기획 전반 / 컨셉 기획</li><li>각 카드별 밸런싱</li><li>텀블벅 페이지 관리</li><li>제작 업체 선정 및 관리</li></ul>
+              </section>
+              <section class="modal__sec">
+                <h4>개요</h4>
+                <p>대학 과제로 시작해 크라우드 펀딩(텀블벅) 성공과 실물 제품 출시까지 이끌어낸 보드 게임 프로젝트입니다. 대중적인 '치킨' 소재와 밈(Meme)을 활용해, 상대의 패를 예측하고 맞추는 캐주얼 추리 파티 게임을 기획했습니다. 펀딩 성공 직후 국제 정세(러시아-우크라이나 전쟁)로 인해 제작 견적 상승으로 예산이 부족해졌습니다. 후원자와의 약속을 지키기 위해 창업 지원금 및 외부 공모전을 통해 추가 자금을 확보했습니다. 이를 통해 예산 부족 문제를 주도적으로 해결하고 실물 게임을 출시할 수 있었습니다.</p>
+              </section>
+              <div class="modal__actions">
+                <a class="btn btn--ghost" href="https://tumblbug.com/twodrumsticks/story" target="_blank" rel="noopener">텀블벅 페이지 ↗</a>
+              </div>
+            </div>
+          </template>
+        </article>
+
+        <article class="work" data-kind="d">
+          <img class="work__img" src="assets/works/d-event.jpg" alt="" loading="lazy">
+          <div class="work__body">
+            <p class="work__cat">기획서 · 콘텐츠</p>
+            <h3 class="work__title">아스트라에 오라티오<br>이벤트 기획서</h3>
+            <p class="work__desc">행동력을 소모하지 않는 미니게임으로 신규 · 복귀 유저도 같은 조건에서 참여하고, 늦게 합류해도 완주할 수 있게 설계한 14일 이벤트.</p>
+            <ul class="work__tags"><li>이벤트</li><li>미니게임</li><li>데이터 설계</li></ul>
+            <button class="work__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
+          </div>
+          <template>
+            <div class="modal__media"><img src="assets/works/d-event.jpg" alt=""></div>
+            <div class="modal__body">
+              <section class="modal__sec">
+                <h4>기획 의도</h4>
+                <p>일반적인 이벤트는 행동력을 소모해 재화를 모으는 구조라, 성장 격차에 따라 보상이 달라집니다. 행동력을 소모하지 않는 미니게임으로 신규 · 복귀 유저도 동일한 조건에서 참여하도록 설계했습니다. 또한 하루 1개씩 스테이지를 개방하고 이벤트 기간을 14일로 설정해, 늦게 합류해도 완주할 수 있도록 설계했습니다.</p>
+              </section>
+              <section class="modal__sec">
+                <h4>배운 점</h4>
+                <p>데이터를 한 번만 쓰고 끝내지 않도록 효율화를 고민했습니다. 개방 조건과 미션 조건을 종류와 값 칼럼으로 분할해, 다른 이벤트에서도 재사용할 수 있도록 설계했습니다. 미션 조건으로 다시 도전할 이유를 만드는 것이 중요하다는 것을 배웠습니다.</p>
+              </section>
+              <div class="modal__actions">
+                <a class="btn btn--primary" href="assets/docs/02_콘텐츠_아스트라에오라티오_이벤트기획서.pdf" target="_blank" rel="noopener">기획서 PDF 보기</a>
+              </div>
+            </div>
+          </template>
+        </article>
+
+        <article class="work" data-kind="d">
+          <img class="work__img" src="assets/works/d-qte.jpg" alt="" loading="lazy">
+          <div class="work__body">
+            <p class="work__cat">기획서 · 시스템</p>
+            <h3 class="work__title">턴제 장르 게임<br>QTE 스킬 강화 시스템 기획서</h3>
+            <p class="work__desc">턴제 전투의 연출 대기 시간에 플레이어가 직접 개입할 수 있도록 QTE를 추가해 전투 몰입감을 높이는 시스템 제안서.</p>
+            <ul class="work__tags"><li>턴제 전투</li><li>QTE</li><li>피로도</li></ul>
+            <button class="work__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
+          </div>
+          <template>
+            <div class="modal__media"><img src="assets/works/d-qte.jpg" alt=""></div>
+            <div class="modal__body">
+              <section class="modal__sec">
+                <h4>기획 의도</h4>
+                <p>턴제 전투에서 행동을 선택한 뒤 연출이 끝날 때까지 대기 시간이 발생합니다. 해당 대기 시간에 플레이어가 직접 개입할 수 있는 방법을 추가해 전투 몰입감을 높이고자 했습니다. 또한 QTE 패턴을 다양화해 이를 전략적으로 활용하도록 유도하고자 했습니다.</p>
+              </section>
+              <section class="modal__sec">
+                <h4>배운 점</h4>
+                <p>결과만 기다리면 되던 구간에 터치 입력이 추가되면서 오히려 피로도가 높아질 수 있다는 점을 파악했습니다. 이때 피로도를 낮추기 위해 콘텐츠 별로 QTE를 차등하게 적용하거나 상성을 통해 보완하는 등의 방어책이 필요하다고 판단했습니다. 단순하게 콘텐츠를 추가하는 것보다 이에 대한 피로도 증가를 고려하는 것도 중요하다는 것을 느끼게 되었습니다.</p>
+              </section>
+              <div class="modal__actions">
+                <a class="btn btn--primary" href="assets/docs/03_시스템_모바일턴제장르_QTE스킬강화시스템.pdf" target="_blank" rel="noopener">기획서 PDF 보기</a>
+              </div>
+            </div>
+          </template>
+        </article>
+
+        <article class="work" data-kind="d">
+          <img class="work__img" src="assets/works/d-weapon.jpg" alt="" loading="lazy">
+          <div class="work__body">
+            <p class="work__cat">기획서 · 전투</p>
+            <h3 class="work__title">호라이즌 스틸 프론티어스<br>신규 근접 무기 제안서</h3>
+            <p class="work__desc">원거리 무기 중심의 호라이즌 시리즈에 근접 무기를 추가해, MMORPG 파티 플레이에서 포지션별 역할을 수행하도록 제안.</p>
+            <ul class="work__tags"><li>전투 콘텐츠</li><li>무기 설계</li><li>포지션 역할</li></ul>
+            <button class="work__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
+          </div>
+          <template>
+            <div class="modal__media"><img src="assets/works/d-weapon.jpg" alt=""></div>
+            <div class="modal__body">
+              <section class="modal__sec">
+                <h4>기획 의도</h4>
+                <p>원거리 무기 중심으로 설계된 호라이즌 시리즈에 근접 무기를 추가해 전투에서 다양한 전투 상황이 발생하도록 유도하고자 했습니다. 또한 MMORPG의 파티 플레이에서는 포지션별 역할이 필요하기 때문에, 다양한 역할을 수행할 수 있는 무기가 필요하다고 판단했습니다.</p>
+              </section>
+              <section class="modal__sec">
+                <h4>배운 점</h4>
+                <p>무기는 단순히 종류를 늘리는 것이 아니라 그 무기가 수행할 역할부터 정의해야 한다는 것을 배웠습니다. 역할을 어떻게 수행하는지, 다른 무기 대신 이 무기를 선택했을 때 어떤 이점이 있는지까지 함께 고민해야 합니다.</p>
+              </section>
+              <div class="modal__actions">
+                <a class="btn btn--primary" href="assets/docs/04_전투_호라이즌스틸프론티어스_신규근접무기제안서.pdf" target="_blank" rel="noopener">기획서 PDF 보기</a>
+              </div>
+            </div>
+          </template>
+        </article>
+
+        <article class="work" data-kind="d">
+          <img class="work__img" src="assets/works/d-ai.jpg" alt="" loading="lazy">
+          <div class="work__body">
+            <p class="work__cat">기획서 · AI 활용</p>
+            <h3 class="work__title">AI 활용 보고서</h3>
+            <p class="work__desc">초안은 빠르게, 검토는 깊게. 기획 · 개발 문서 초안 작성과 데이터 구조화에 AI 어시스턴트를 활용한 과정과 배운 점.</p>
+            <ul class="work__tags"><li>ChatGPT</li><li>Gemini</li><li>Claude Code</li></ul>
+            <button class="work__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
+          </div>
+          <template>
+            <div class="modal__media"><img src="assets/works/d-ai.jpg" alt=""></div>
+            <div class="modal__body">
+              <section class="modal__sec">
+                <h4>활용 목적</h4>
+                <ul><li>기획 및 개발 문서의 빠른 초안 작성을 통해 초기 작업 시간 단축</li><li>기능 구현에 필요한 정보 및 데이터 컬럼 분류를 통한 구조화</li><li>디버깅을 통해 데이터 이슈의 원인을 파악하고 해결</li></ul>
+              </section>
+              <section class="modal__sec">
+                <h4>배운 점</h4>
+                <p>AI 산출물을 활용하되, 검증 절차를 통해 잘못된 자료와 실수를 방지해야 합니다. 의도한 결과를 얻기 위해 규칙과 요청사항을 명확히 기재하고, 확정된 작업 기준을 MD 파일로 문서화해 세션을 다시 시작해도 같은 맥락이 유지되게 했습니다. 단순한 에러 해결을 묻기보다 '원하는 최종 결과값과 목적'을 질문하는 것이 퀄리티 향상에 도움이 됩니다.</p>
+              </section>
+              <div class="modal__actions">
+                <a class="btn btn--primary" href="assets/docs/07_AI활용보고서.pdf" target="_blank" rel="noopener">기획서 PDF 보기</a>
+              </div>
+            </div>
+          </template>
+        </article>
       </div>
     </section>
+
+    <!-- 연락처: 01_경력기술서.pdf 16쪽(마지막 장) 기준 -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact__main">
+        <p class="contact__eyebrow">Contact</p>
+        <h2 class="contact__title" id="contact-title">
+          <span class="contact__tagline"><strong class="accent">재미를 검증</strong>하는 기획자</span>
+          <span class="contact__name"><strong>장광호</strong> 입니다.</span>
+        </h2>
+        <ul class="contact__list">
+          <li class="contact__item">
+            <span class="contact__label">E-mail</span>
+            <a class="contact__value" href="mailto:jkh6621@naver.com">jkh6621@naver.com</a>
+            <button class="contact__copy" type="button" data-copy="jkh6621@naver.com">복사</button>
+          </li>
+          <li class="contact__item">
+            <span class="contact__label">Tel</span>
+            <a class="contact__value" href="tel:01030889845">010.3088.9845</a>
+            <button class="contact__copy" type="button" data-copy="010-3088-9845">복사</button>
+          </li>
+        </ul>
+        <div class="contact__actions">
+          <a class="btn btn--primary" href="mailto:jkh6621@naver.com">메일 보내기</a>
+          <a class="btn btn--ghost" href="assets/download/장광호_포트폴리오.zip" download>이력서 다운로드</a>
+        </div>
+      </div>
+      <footer class="footer">
+        <span>© 2026 장광호 · Kwangho Jang</span>
+        <a href="#about">맨 위로 ↑</a>
+      </footer>
+    </section>
   </main>
+
+  <!-- 프로젝트&기획서 상세 팝업: 누른 카드의 <template> 내용으로 채움 -->
+  <dialog class="modal" aria-labelledby="modal-title">
+    <button class="modal__close" type="button" aria-label="닫기">×</button>
+    <div class="modal__content"></div>
+  </dialog>
 </body>
 </html>
