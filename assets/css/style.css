@@ -280,11 +280,11 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: 96px; /* 아래 스크롤 안내 자리: 내용이 화면보다 길어도 겹치지 않게 */
 }
 .resume :focus-visible { outline-color: var(--ink); }
-/* 표지와 같은 스크롤 안내를 흰 배경용 색으로 */
-.resume .scroll-hint { color: var(--ink-3); }
-.resume .scroll-hint__mouse { border-color: var(--gray-300); }
-.resume .scroll-hint__mouse::before { background: var(--ink); }
-.resume .scroll-hint[href]:hover { color: var(--ink); }
+/* 표지와 같은 스크롤 안내를 흰 배경용 색으로 (이력서 · 플레이경험) */
+.resume .scroll-hint, .play .scroll-hint { color: var(--ink-3); }
+.resume .scroll-hint__mouse, .play .scroll-hint__mouse { border-color: var(--gray-300); }
+.resume .scroll-hint__mouse::before, .play .scroll-hint__mouse::before { background: var(--ink); }
+.resume .scroll-hint[href]:hover, .play .scroll-hint[href]:hover { color: var(--ink); }
 .resume__inner {
   max-width: 1400px;
   margin: 0 auto;
@@ -405,9 +405,10 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- 프로젝트&기획서 (검정 배경, 카드 + 상세 팝업) ---------- */
 .works {
+  position: relative; /* 아래 스크롤 안내 기준 */
   min-height: 100vh;
   min-height: 100svh; /* 마지막 섹션이어도 위 끝이 화면 맨 위까지 올라가도록 */
-  padding: 132px 16px 120px;
+  padding: 132px 16px 160px; /* 아래: 스크롤 안내 자리 */
 }
 .works__filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 0 0 56px; }
 .works__filter {
@@ -549,11 +550,12 @@ body:has(.modal[open]) { overflow: hidden; }
   --ink-2: #444;
   --ink-3: #8a8a8a;
   --accent: #2563eb;
+  position: relative; /* 아래 스크롤 안내 기준 */
   min-height: 100vh;
   min-height: 100svh;
   display: grid;
   place-items: center;
-  padding: 132px 16px 120px;
+  padding: 132px 16px 160px; /* 아래: 스크롤 안내 자리 */
   color: var(--ink);
   background: #fff;
 }

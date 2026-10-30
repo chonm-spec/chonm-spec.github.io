@@ -5,12 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>장광호 | Game Designer Portfolio</title>
   <meta name="description" content="재미를 검증하는 기획자 장광호의 게임 기획 포트폴리오">
+  <!-- 링크 공유 미리보기 (카카오톡 · 슬랙 · 메일 등): 제목 · 소개 · 대표 이미지(표지 첫 화면 1200×630) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chonm-spec.github.io/">
+  <meta property="og:title" content="장광호 | Game Designer Portfolio">
+  <meta property="og:description" content="재미를 검증하는 기획자 장광호의 게임 기획 포트폴리오">
+  <meta property="og:image" content="https://chonm-spec.github.io/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- 탭 아이콘 · 휴대폰 홈 화면 아이콘 (검정 바탕 + 포인트 블루 "장", Freesentation ExtraBold) -->
+  <link rel="icon" href="assets/icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="preload" href="assets/cover/01.jpg" as="image"><!-- 첫 화면 표지 1장 먼저 -->
   <link rel="preload" href="assets/fonts/Freesentation-3Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=14">
-  <script src="assets/js/main.js?v=6" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=15">
+  <script src="assets/js/main.js?v=7" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -614,6 +628,10 @@
           </template>
         </article>
       </div>
+      <a class="scroll-hint" href="#play" aria-label="플레이경험으로 이동">
+        <span aria-hidden="true">Scroll</span>
+        <span class="scroll-hint__mouse" aria-hidden="true"></span>
+      </a>
     </section>
 
     <!-- 플레이경험: 01_경력기술서.pdf 15쪽. 게임 아이콘은 PDF 이미지 그대로 (게임 이름은 PDF에 글자로 없어 표시 안 함) -->
@@ -651,6 +669,10 @@
           </ul>
         </div>
       </div>
+      <a class="scroll-hint" href="#contact" aria-label="연락처로 이동">
+        <span aria-hidden="true">Scroll</span>
+        <span class="scroll-hint__mouse" aria-hidden="true"></span>
+      </a>
     </section>
 
     <!-- 연락처: 01_경력기술서.pdf 16쪽(마지막 장) 기준 -->
