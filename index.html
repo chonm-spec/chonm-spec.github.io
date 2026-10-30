@@ -9,8 +9,8 @@
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=11">
-  <script src="assets/js/main.js?v=5" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=14">
+  <script src="assets/js/main.js?v=6" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -18,12 +18,15 @@
       <a class="nav__link is-active" href="#about" aria-current="true">소개</a>
       <a class="nav__link" href="#resume">이력서</a>
       <a class="nav__link" href="#works">프로젝트&amp;기획서</a>
+      <a class="nav__link" href="#play">플레이경험</a>
       <a class="nav__link" href="#contact">연락처</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero" id="about" aria-labelledby="hero-title">
+    <!-- 소개 = 표지 + 강점. #about이 둘을 감싸서 메뉴 "소개"가 둘 다에서 강조됨 -->
+    <div id="about">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="hero__slides" aria-hidden="true">
         <div class="hero__slide" style="--i:0; background-image:url(assets/cover/01.jpg)"></div>
         <div class="hero__slide" style="--i:1; background-image:url(assets/cover/02.jpg)"></div>
@@ -62,12 +65,73 @@
         </div>
       </div>
 
-      <!-- 스크롤 안내: 누르면 이력서 섹션으로 이동 -->
+      <!-- 스크롤 안내: 누르면 아래 강점으로 이동 -->
+      <a class="scroll-hint" href="#strength" aria-label="강점 소개로 이동">
+        <span aria-hidden="true">Scroll</span>
+        <span class="scroll-hint__mouse" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- 강점: 01_경력기술서.pdf 2쪽(제목·소개) · 4쪽(자기소개) + 이력서 경력사항. 표지와 같은 검정 배경 -->
+    <section class="strength" id="strength" aria-labelledby="strength-title">
+      <div class="strength__inner">
+        <p class="strength__eyebrow">About Me</p>
+        <h2 class="strength__title" id="strength-title"><strong>검증</strong>을 통해 <strong>완성도</strong>를 높이는 기획자</h2>
+        <p class="strength__lead">게임 CS를 시작으로 QA와 기획 업무를 맡으며 <b>유저 대응, 품질 검증, 게임 설계</b> 경험을 쌓았습니다.<br>이를 통해 유저가 어떻게 플레이하고 무엇을 느낄지 고려해 설계하는 것이 중요하다는 점을 배웠습니다.</p>
+        <ol class="path" aria-label="경력 흐름">
+          <li><span class="path__when">2016.11 ~ 2018.01</span><b class="path__role">게임 CS</b><span class="path__where">넥슨네트웍스 · 피파온라인 CS팀</span><span class="path__got">유저 대응</span></li>
+          <li><span class="path__when">2019.02 ~ 2021.10</span><b class="path__role">게임 QA</b><span class="path__where">핸디커뮤니케이션즈 · QA팀</span><span class="path__got">품질 검증</span></li>
+          <li><span class="path__when">2025 수석 졸업</span><b class="path__role">게임 개발 학습</b><span class="path__where">청강문화산업대학교 · 차세대게임콘텐츠학과</span><span class="path__got">체계적인 게임 개발</span></li>
+          <li><span class="path__when">2025.02 ~ 2026.03</span><b class="path__role">게임 기획</b><span class="path__where">페퍼게임즈 · Planning Div</span><span class="path__got">게임 설계</span></li>
+        </ol>
+        <div class="traits">
+          <article class="trait">
+            <div class="trait__imgs">
+              <figure><img src="assets/about/lg.jpg" alt="" width="361" height="246" loading="lazy"><figcaption>2016년 지스타 LG 부스 취재 요청</figcaption></figure>
+              <figure><img src="assets/about/neople-intro.jpg" alt="" width="274" height="195" loading="lazy"><figcaption>네오플 공식 블로그 – 소개 이미지</figcaption></figure>
+            </div>
+            <h3>생각을 전하는 글쓰기</h3>
+            <p class="trait__sum">생각을 쉽게 표현할 수 있는 방법에 대한 고민</p>
+            <ul>
+              <li>블로그 리뷰가 포털에서 '사이퍼즈' 검색 시 <b>글이 상위권에 노출</b></li>
+              <li>2016년 <b>LG전자 지스타 부스 유료 취재</b> 의뢰</li>
+              <li>네오플 공식 블로그 <b>게임 행사 취재</b> 의뢰</li>
+            </ul>
+          </article>
+          <article class="trait">
+            <div class="trait__imgs">
+              <figure><img src="assets/about/neople-mention.jpg" alt="" width="274" height="195" loading="lazy"><figcaption>네오플 공식 블로그 – 언급된 내용 일부</figcaption></figure>
+              <figure><img src="assets/about/graduation.jpg" alt="" width="274" height="185" loading="lazy"><figcaption>대학교 수석 졸업</figcaption></figure>
+            </div>
+            <h3>배움을 통한 지속적 성장</h3>
+            <p class="trait__sum">필요한 지식을 스스로 학습, 지속적인 성장</p>
+            <ul>
+              <li>취업 박람회에서 <b>개발사 담당자와 면담</b>, 피드백으로 포트폴리오 개선</li>
+              <li>20살에 게임 CS로 커리어 시작, 이후 대학 진학</li>
+              <li><b>AI를 활용한 자동화 툴</b> 제작, 데이터 병합 · 검수 <b>8시간 → 3시간</b></li>
+            </ul>
+          </article>
+          <article class="trait">
+            <div class="trait__imgs">
+              <figure><img src="assets/about/guide.jpg" alt="" width="357" height="183" loading="lazy"><figcaption>업무 중 제작했던 가이드 문서</figcaption></figure>
+              <figure><img src="assets/about/lecture.jpg" alt="" width="365" height="229" loading="lazy"><figcaption>대학 / 고등학교 특강 문서</figcaption></figure>
+            </div>
+            <h3>공유로 개선점 파악</h3>
+            <p class="trait__sum">공유를 통한 부족한 점 파악 및 개선</p>
+            <ul>
+              <li>QA <b>테스트 기법 및 문서 작성법을 가이드로 제작</b></li>
+              <li>신입 교육 시간 <b>6시간 → 약 2시간</b>, 타 부서 파견 인원도 바로 업무 투입</li>
+              <li>후배들에게 <b>개발 경험을 정리해 공유</b></li>
+            </ul>
+          </article>
+        </div>
+      </div>
       <a class="scroll-hint" href="#resume" aria-label="이력서로 이동">
         <span aria-hidden="true">Scroll</span>
         <span class="scroll-hint__mouse" aria-hidden="true"></span>
       </a>
     </section>
+    </div>
 
     <!-- 이력서: 01_경력기술서.pdf 3쪽(프로필) 레이아웃, 밝은 배경 -->
     <section class="resume" id="resume" aria-labelledby="resume-title">
@@ -549,6 +613,43 @@
             </div>
           </template>
         </article>
+      </div>
+    </section>
+
+    <!-- 플레이경험: 01_경력기술서.pdf 15쪽. 게임 아이콘은 PDF 이미지 그대로 (게임 이름은 PDF에 글자로 없어 표시 안 함) -->
+    <section class="play" id="play" aria-labelledby="play-title">
+      <div class="play__inner">
+        <div>
+          <p class="play__eyebrow">Play Experience</p>
+          <h2 class="play__title" id="play-title">플레이 경험을 통한<br><strong>트렌드</strong> 파악</h2>
+          <ol class="play__points">
+            <li><b>01</b><span>시장에서 성과를 거둔 게임을 장르와 플랫폼에 관계없이 직접 플레이하며, <strong>현재 시장의 트렌드</strong>를 파악하려고 노력하고 있습니다.</span></li>
+            <li><b>02</b><span>단순히 게임을 즐기는 데서 그치지 않고, <strong>왜 이렇게 구현했는지, 어떤 부분이 재미있었는지</strong> 파악하고 이를 개발에 어떻게 활용할지 고민합니다.</span></li>
+          </ol>
+        </div>
+        <div class="play__games">
+          <p class="play__when">최근 6개월 이내 플레이 게임 – 2026.09 작성</p>
+          <ul class="play__grid">
+            <li><img src="assets/play/g01.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g02.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g03.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g04.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g05.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g06.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g07.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g08.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g09.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g10.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g11.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g12.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g13.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <li><img src="assets/play/g14.jpg" alt="" width="200" height="200" loading="lazy"></li>
+            <!-- + more로 펼치는 게임: 구글 플레이 공식 앱 아이콘 (2026-10-30 사용자 요청) -->
+            <li class="play__extra" hidden><img src="assets/play/g15.jpg" alt="트릭컬 리바이브" width="256" height="256" loading="lazy"></li>
+            <li class="play__extra" hidden><img src="assets/play/g16.jpg" alt="명일방주" width="256" height="256" loading="lazy"></li>
+            <li><button class="play__more" type="button" aria-expanded="false">+ more</button></li>
+          </ul>
+        </div>
       </div>
     </section>
 
