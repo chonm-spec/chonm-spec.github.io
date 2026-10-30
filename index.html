@@ -9,7 +9,7 @@
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=5">
+  <link rel="stylesheet" href="assets/css/style.css?v=8">
   <script src="assets/js/main.js?v=4" defer></script>
 </head>
 <body>
@@ -199,17 +199,38 @@
                 <dt>메인 담당</dt><dd>퀘스트 및 레벨 디자인</dd>
                 <dt>참여 기간</dt><dd>2025.02 ~ 2026.03 (13개월)</dd>
               </dl>
-              <section class="modal__sec">
-                <h4>성과 및 결과</h4>
-                <ul><li>멕시코 → 캐나다 순차 소프트런칭</li><li>동선 최적화로 D+1 리텐션 약 28%p 상승</li><li>로컬라이징 프로세스 간소화로 작업 시간 62% 단축</li></ul>
-              </section>
-              <section class="modal__sec">
-                <h4>기여도 · 전체 기획 28%</h4>
-                <ul><li>월드맵 6개 중 3개 담당</li><li>퀘스트 기획 및 세팅</li><li>반복 던전 기획 및 세팅</li><li>로컬라이징 데이터 관리</li><li>몬스터 컨셉 및 패턴 기획</li></ul>
-              </section>
+              <div class="modal__stats">
+                <section class="modal__sec modal__card">
+                  <h4>기여도</h4>
+                  <div class="modal__contrib">
+                    <div class="donut" style="--p: 28" role="img" aria-label="전체 기획 기여도 28%"><span>전체 기획<b>28<small>%</small></b></span></div>
+                    <ul><li>월드맵 6개 중 3개 담당</li><li>퀘스트 기획 및 세팅</li><li>반복 던전 기획 및 세팅</li><li>로컬라이징 데이터 관리</li><li>몬스터 컨셉 및 패턴 기획</li></ul>
+                  </div>
+                </section>
+                <section class="modal__sec modal__card">
+                  <h4>성과 및 결과</h4>
+                  <ul><li>멕시코 → 캐나다 순차 소프트런칭</li><li>동선 최적화로 D+1 리텐션 약 28%p 상승</li><li>로컬라이징 프로세스 간소화로 작업 시간 62% 단축</li></ul>
+                </section>
+              </div>
               <section class="modal__sec">
                 <h4>개요</h4>
                 <p>게임 디자이너로 입사해 처음으로 담당하게 된 상용화 프로젝트입니다. 퀘스트 디자인을 시작으로 레벨 및 몬스터 컨셉 기획 등 다양한 업무를 수행했습니다. 인력 공백 상황에서는 게임 내 데이터 테이블 구조를 관리하며, 신규 입사자의 업무 적응을 도왔습니다. 추가로 퍼블리셔(컴투스)와 소통하며 로컬라이징 데이터의 업데이트 일정을 조율하고, 인게임 반영 방안을 논의했습니다.</p>
+              </section>
+              <figure class="modal__fig">
+                <img src="assets/works/p-pep-shots.jpg" alt="펩 히어로즈 인게임 스크린샷 3장" width="867" height="407" loading="lazy">
+                <figcaption>[펩 히어로즈] 인게임 스크린샷</figcaption>
+              </figure>
+              <section class="modal__sec">
+                <h4>퀘스트 동선 재설계 (캐나다 소프트런칭 D+1 리텐션 약 28%p 상승)</h4>
+                <p>멕시코 소프트런칭 데이터를 분석한 결과, 메인 퀘스트 진행 중 반복 이동 동선에서 이탈이 집중되는 것을 확인했습니다. 백트래킹 최소화를 중심으로 퀘스트 복잡도를 완화하고 몬스터 배치 간격을 조절해 전체 동선을 개편했습니다. 그 결과 캐나다 소프트런칭에서 D+1 리텐션 지표가 약 28%p 향상되었습니다. 감으로 고치기보다 이탈 지점을 데이터로 먼저 찾아 분류, 분석한 뒤 수정 범위를 정하는 방식으로 작업을 진행했습니다.</p>
+              </section>
+              <figure class="modal__fig">
+                <img src="assets/works/p-pep-vba.jpg" alt="로컬라이징 자동화 툴 화면과 검수 VBA 코드" width="869" height="371" loading="lazy">
+                <figcaption>업무 효율화를 위해 직접 제작한 로컬라이징 자동화 툴 및 검수 VBA<small>*포트폴리오용으로 재제작한 툴과 VBA 이미지입니다.</small></figcaption>
+              </figure>
+              <section class="modal__sec">
+                <h4>다국어 데이터 관리 자동화 툴 구축 (작업 시간 약 62% 단축)</h4>
+                <p>8개 국어 로컬라이징 데이터를 수기로 적용하며 발생하는 비효율을 개선하고자, AI를 활용해 VBA 기반의 자동화 툴을 직접 제작했습니다. 데이터 병합 및 검수 과정을 자동화하여 기존 8시간이 소요되던 작업을 3시간으로 단축했습니다. 이 경험을 통해 단순 반복 업무를 시스템화하여 효율을 높이는 중요성을 배웠으며, 실무 문제 해결을 위해 AI를 적극적으로 활용하는 역량을 길렀습니다.</p>
               </section>
               <div class="modal__actions">
                 <a class="btn btn--ghost" href="https://www.youtube.com/watch?v=DFqSL1ahViA" target="_blank" rel="noopener">YouTube에서 보기 ↗</a>
@@ -237,10 +258,12 @@
                 <dt>참여 기간</dt><dd>2024.03 ~ 2024.07</dd>
                 <dt>장르</dt><dd>캐릭터 수집형 액션 격투</dd>
               </dl>
-              <section class="modal__sec">
-                <h4>성과 및 결과</h4>
-                <ul><li>LG 산학 – 납품 완료</li></ul>
-              </section>
+              <div class="modal__stats">
+                <section class="modal__sec modal__card">
+                  <h4>성과 및 결과</h4>
+                  <ul><li>LG 산학 – 납품 완료</li></ul>
+                </section>
+              </div>
             </div>
           </template>
         </article>
@@ -264,17 +287,46 @@
                 <dt>메인 담당</dt><dd>콘텐츠 / 시스템 / 레벨 디자인</dd>
                 <dt>참여 기간</dt><dd>2023.03 ~ 2024.12 (22개월)</dd>
               </dl>
-              <section class="modal__sec">
-                <h4>성과 및 결과</h4>
-                <ul><li>스팀, 스토브 인디 마켓 런칭</li><li>지스타, PlayX4 등 국내 전시 5회 참가</li><li>공모전 및 전시회 6회 수상</li><li>마켓 무료 다운로드 약 35,000회 달성 (2024년 12월 집계 기준)</li></ul>
-              </section>
-              <section class="modal__sec">
-                <h4>기여도 · 전체 기획 75%</h4>
-                <ul><li>5개의 씬 전체 레벨 디자인</li><li>보스 / 일반 몬스터 기획</li><li>퍼즐 / 시스템 기획</li><li>마켓 및 이벤트 일정 관리</li></ul>
-              </section>
+              <div class="modal__stats">
+                <section class="modal__sec modal__card">
+                  <h4>기여도</h4>
+                  <div class="modal__contrib">
+                    <div class="donut" style="--p: 75" role="img" aria-label="전체 기획 기여도 75%"><span>전체 기획<b>75<small>%</small></b></span></div>
+                    <ul><li>5개의 씬 전체 레벨 디자인</li><li>보스 / 일반 몬스터 기획</li><li>퍼즐 / 시스템 기획</li><li>마켓 및 이벤트 일정 관리</li></ul>
+                  </div>
+                </section>
+                <section class="modal__sec modal__card">
+                  <h4>성과 및 결과</h4>
+                  <ul><li>스팀, 스토브 인디 마켓 런칭</li><li>지스타, PlayX4 등 국내 전시 5회 참가</li><li>공모전 및 전시회 6회 수상</li><li>마켓 무료 다운로드 약 35,000회 달성 (2024년 12월 집계 기준)</li></ul>
+                </section>
+              </div>
               <section class="modal__sec">
                 <h4>개요</h4>
                 <p>대학교 졸업 작품으로 시작해 스팀과 스토브 인디에 정식 런칭한 프로젝트입니다. 시스템 기획과 3D 월드 맵 전체 지형 디자인을 담당했으며, 외부 행사 및 플랫폼 담당자와의 커뮤니케이션을 병행했습니다. 처음 설계해 보는 3D 월드 맵이었지만, 단순히 공간을 만드는 것이 아닌 유저의 플레이 템포에 맞춰 긴장과 이완을 고려했습니다. 학기 종료 후에도 꾸준히 유지보수를 진행한 결과, 지스타, 플레이엑스포, BIC 등 주요 게임 행사에 초청되어 전시를 진행했고 6회 수상 성과를 거두었습니다.</p>
+              </section>
+              <figure class="modal__fig">
+                <img src="assets/works/p-tavuti-level.jpg" alt="타부티 유니티 엔진 그레이박싱 화면과 레벨 디자인 기획서" width="1216" height="398" loading="lazy">
+                <figcaption>유니티 엔진 그레이박싱 · 레벨 디자인 기획서</figcaption>
+              </figure>
+              <section class="modal__sec">
+                <h4>그레이박싱 기반 3D 레벨 디자인 및 시야 설계</h4>
+                <p>3D 맵 구조와 동선 전체를 설계하며 그레이박싱으로 조작감을 사전 검증했습니다. 아트 팀과 협업해 프랍을 모듈화해 직접 배치했습니다. 오브젝트로 시야를 가려 아이템을 숨기고 발견했을 때 성취감을 느끼게 하거나, 길을 숨겨 이를 찾기 위해 맵을 탐험하게 유도하는 등의 배치를 시도했습니다.</p>
+              </section>
+              <figure class="modal__fig">
+                <img src="assets/works/p-tavuti-gimmick.jpg" alt="타부티 기믹 컨셉 및 시스템 기획서 일부" width="364" height="398" loading="lazy">
+                <figcaption>기믹 컨셉 및 시스템 기획서</figcaption>
+              </figure>
+              <section class="modal__sec">
+                <h4>사용자 경험(UX) 중심의 기믹 및 보조 시스템 기획</h4>
+                <p>플랫포머 기믹 기획 및 기믹 끼임·동선 이탈 등 예외 상황 방지 업무를 수행했습니다. 실패 스트레스를 줄이기 위해 체크포인트 시스템을 도입하고 난이도를 낮췄습니다. 이를 통해 유저의 이탈 포인트를 보완하게 되었고 그 결과 전시 현장에서 해당 구간을 포기하는 유저가 줄었습니다.</p>
+              </section>
+              <figure class="modal__fig">
+                <img src="assets/works/p-tavuti-collab.jpg" alt="타부티 외주 작업자 및 내부 팀원 협업 요청 내역서 일부" width="822" height="398" loading="lazy">
+                <figcaption>외주 작업자 및 내부 팀원 협업 요청 내역서</figcaption>
+              </figure>
+              <section class="modal__sec">
+                <h4>협업 프로세스 표준화를 통한 팀 개발 효율성 향상</h4>
+                <p>내·외부 작업자 간 파일 유실 및 협업 혼선 리스크를 방지하는 역할을 맡았습니다. 리소스 네이밍 규칙과 브랜치 관리 가이드를 정립 및 배포하여 팀 생산성을 높였습니다. 이를 통해 다직군 협업 리스크를 차단하는 프로세스 구축 및 소통 역량을 길렀습니다.</p>
               </section>
               <section class="modal__sec">
                 <h4>레벨 디자인 기획서 · 뒤틀린 절벽</h4>
@@ -307,14 +359,19 @@
                 <dt>메인 담당</dt><dd>시스템 및 레벨 디자인</dd>
                 <dt>참여 기간</dt><dd>2022.09 ~ 2022.12 (4개월)</dd>
               </dl>
-              <section class="modal__sec">
-                <h4>성과 및 결과</h4>
-                <ul><li>KT 산학 협력 프로젝트 3개 팀 중 1등</li><li>동일 학년 16개 팀 중 상호평가 3등</li><li>프로젝트 완성도를 인정받아 비졸업 학년임에도 예외적으로 졸업 작품 전시회 출품</li></ul>
-              </section>
-              <section class="modal__sec">
-                <h4>기여도 · 전체 기획 40%</h4>
-                <ul><li>3D 공간 레벨 디자인</li><li>라운드별 난이도 밸런싱</li><li>전체 시스템 기획</li><li>모바일 기기 테스트</li></ul>
-              </section>
+              <div class="modal__stats">
+                <section class="modal__sec modal__card">
+                  <h4>기여도</h4>
+                  <div class="modal__contrib">
+                    <div class="donut" style="--p: 40" role="img" aria-label="전체 기획 기여도 40%"><span>전체 기획<b>40<small>%</small></b></span></div>
+                    <ul><li>3D 공간 레벨 디자인</li><li>라운드별 난이도 밸런싱</li><li>전체 시스템 기획</li><li>모바일 기기 테스트</li></ul>
+                  </div>
+                </section>
+                <section class="modal__sec modal__card">
+                  <h4>성과 및 결과</h4>
+                  <ul><li>KT 산학 협력 프로젝트 3개 팀 중 1등</li><li>동일 학년 16개 팀 중 상호평가 3등</li><li>프로젝트 완성도를 인정받아 비졸업 학년임에도 예외적으로 졸업 작품 전시회 출품</li></ul>
+                </section>
+              </div>
               <section class="modal__sec">
                 <h4>개요</h4>
                 <p>KT 산학 협력을 통해 메타버스 플랫폼 '지니어스'에 탑재될 미니 게임을 개발한 프로젝트입니다. 유저 간 점수 경쟁을 유도하는 하이퍼 캐주얼 게임을 목표로, 맵 지형 디자인과 전체 시스템 기획을 수행했습니다. 몰입도를 높이기 위해 시간 경과에 따른 난이도 상승 곡선을 데이터 테이블로 직접 설계하고 반복 테스트를 거쳐 밸런스를 조정했습니다. 그 결과 좋은 성적을 거두어 비졸업 학년임에도 교내 졸업 전시회에 출품했습니다.</p>
@@ -345,14 +402,19 @@
                 <dt>메인 담당</dt><dd>기획 및 세일즈 전반</dd>
                 <dt>참여 기간</dt><dd>2022.07 ~ 2022.10 (4개월)</dd>
               </dl>
-              <section class="modal__sec">
-                <h4>성과 및 결과</h4>
-                <ul><li>텀블벅 펀딩 성공, 실물 제품 출시</li><li>보드 게임 페스타 전시 및 판매</li><li>경기 전문대학 창업 아이디어 대회 우수상</li></ul>
-              </section>
-              <section class="modal__sec">
-                <h4>기여도 · 전체 기획 80%</h4>
-                <ul><li>기획 전반 / 컨셉 기획</li><li>각 카드별 밸런싱</li><li>텀블벅 페이지 관리</li><li>제작 업체 선정 및 관리</li></ul>
-              </section>
+              <div class="modal__stats">
+                <section class="modal__sec modal__card">
+                  <h4>기여도</h4>
+                  <div class="modal__contrib">
+                    <div class="donut" style="--p: 80" role="img" aria-label="전체 기획 기여도 80%"><span>전체 기획<b>80<small>%</small></b></span></div>
+                    <ul><li>기획 전반 / 컨셉 기획</li><li>각 카드별 밸런싱</li><li>텀블벅 페이지 관리</li><li>제작 업체 선정 및 관리</li></ul>
+                  </div>
+                </section>
+                <section class="modal__sec modal__card">
+                  <h4>성과 및 결과</h4>
+                  <ul><li>텀블벅 펀딩 성공, 실물 제품 출시</li><li>보드 게임 페스타 전시 및 판매</li><li>경기 전문대학 창업 아이디어 대회 우수상</li></ul>
+                </section>
+              </div>
               <section class="modal__sec">
                 <h4>개요</h4>
                 <p>대학 과제로 시작해 크라우드 펀딩(텀블벅) 성공과 실물 제품 출시까지 이끌어낸 보드 게임 프로젝트입니다. 대중적인 '치킨' 소재와 밈(Meme)을 활용해, 상대의 패를 예측하고 맞추는 캐주얼 추리 파티 게임을 기획했습니다. 펀딩 성공 직후 국제 정세(러시아-우크라이나 전쟁)로 인해 제작 견적 상승으로 예산이 부족해졌습니다. 후원자와의 약속을 지키기 위해 창업 지원금 및 외부 공모전을 통해 추가 자금을 확보했습니다. 이를 통해 예산 부족 문제를 주도적으로 해결하고 실물 게임을 출시할 수 있었습니다.</p>
