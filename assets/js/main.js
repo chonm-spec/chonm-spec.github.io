@@ -82,6 +82,29 @@ modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }
 // Esc 키. close 이벤트는 늦게 올 수 있어, 그사이 다른 카드를 열었으면 비우지 않음
 modal.addEventListener('close', () => { if (!modal.open) modalContent.replaceChildren(); });
 
+// 기획서 다운로드: download 속성을 무시하고 PDF를 미리 보기로 여는 브라우저가 있어,
+// 파일을 받아 "내려받기 전용" 형식으로 바꾼 뒤 저장. 실패하면 원래 링크로 이동
+modalContent.addEventListener('click', async (e) => {
+  const a = e.target.closest('a[download]');
+  if (!a || a.protocol === 'blob:') return; // 아래에서 만든 임시 링크는 그대로 저장
+  e.preventDefault();
+  const label = a.lastChild.textContent;
+  a.lastChild.textContent = ' 다운로드 중…';
+  try {
+    const res = await fetch(a.href);
+    if (!res.ok) throw new Error(res.status);
+    const url = URL.createObjectURL(new Blob([await res.blob()], { type: 'application/octet-stream' }));
+    const link = Object.assign(document.createElement('a'), { href: url, download: decodeURIComponent(a.pathname.split('/').pop()) });
+    modalContent.append(link); // 팝업 밖(비활성 영역)에 두면 클릭이 막힐 수 있어 팝업 안에서 클릭
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  } catch {
+    location.href = a.href;
+  }
+  a.lastChild.textContent = label;
+});
+
 // 플레이경험: + more를 누르면 숨겨 둔 게임 아이콘 표시, 다시 누르면 접기
 const playMore = document.querySelector('.play__more');
 const playExtras = [...document.querySelectorAll('.play__extra')];
