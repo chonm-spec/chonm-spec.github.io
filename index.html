@@ -23,7 +23,7 @@
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=15">
+  <link rel="stylesheet" href="assets/css/style.css?v=16">
   <script src="assets/js/main.js?v=7" defer></script>
 </head>
 <body>
@@ -648,16 +648,17 @@
         <div class="play__games">
           <p class="play__when">최근 6개월 이내 플레이 게임 – 2026.09 작성</p>
           <ul class="play__grid">
+            <!-- 1행: 깊게 플레이한 게임 (왼쪽 위 노란 별). 2026-10-30 사용자 지정 순서 -->
+            <li class="play__top"><img src="assets/play/g02.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
+            <li class="play__top"><img src="assets/play/g03.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
+            <li class="play__top"><img src="assets/play/g06.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
+            <li class="play__top"><img src="assets/play/g07.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
+            <li class="play__top"><img src="assets/play/g10.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
             <li><img src="assets/play/g01.jpg" alt="" width="200" height="200" loading="lazy"></li>
-            <li><img src="assets/play/g02.jpg" alt="" width="200" height="200" loading="lazy"></li>
-            <li><img src="assets/play/g03.jpg" alt="" width="200" height="200" loading="lazy"></li>
             <li><img src="assets/play/g04.jpg" alt="" width="200" height="200" loading="lazy"></li>
             <li><img src="assets/play/g05.jpg" alt="" width="200" height="200" loading="lazy"></li>
-            <li><img src="assets/play/g06.jpg" alt="" width="200" height="200" loading="lazy"></li>
-            <li><img src="assets/play/g07.jpg" alt="" width="200" height="200" loading="lazy"></li>
             <li><img src="assets/play/g08.jpg" alt="" width="200" height="200" loading="lazy"></li>
             <li><img src="assets/play/g09.jpg" alt="" width="200" height="200" loading="lazy"></li>
-            <li><img src="assets/play/g10.jpg" alt="" width="200" height="200" loading="lazy"></li>
             <li><img src="assets/play/g11.jpg" alt="" width="200" height="200" loading="lazy"></li>
             <li><img src="assets/play/g12.jpg" alt="" width="200" height="200" loading="lazy"></li>
             <li><img src="assets/play/g13.jpg" alt="" width="200" height="200" loading="lazy"></li>
@@ -667,6 +668,7 @@
             <li class="play__extra" hidden><img src="assets/play/g16.jpg" alt="명일방주" width="256" height="256" loading="lazy"></li>
             <li><button class="play__more" type="button" aria-expanded="false">+ more</button></li>
           </ul>
+          <p class="play__legend"><svg class="play__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg><b>깊게 플레이한 게임</b><span class="play__criteria">과금 · 상위 랭킹 · 도전 과제 80% 이상 등</span></p>
         </div>
       </div>
       <a class="scroll-hint" href="#contact" aria-label="연락처로 이동">
