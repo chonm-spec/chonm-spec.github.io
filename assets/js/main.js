@@ -82,6 +82,16 @@ modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }
 // Esc 키. close 이벤트는 늦게 올 수 있어, 그사이 다른 카드를 열었으면 비우지 않음
 modal.addEventListener('close', () => { if (!modal.open) modalContent.replaceChildren(); });
 
+// 플레이경험: + more를 누르면 숨겨 둔 게임 아이콘 표시, 다시 누르면 접기
+const playMore = document.querySelector('.play__more');
+const playExtras = [...document.querySelectorAll('.play__extra')];
+playMore.addEventListener('click', () => {
+  const open = playMore.getAttribute('aria-expanded') !== 'true';
+  playMore.setAttribute('aria-expanded', open);
+  playMore.textContent = open ? '접기' : '+ more';
+  playExtras.forEach((li) => { li.hidden = !open; });
+});
+
 // 연락처 복사 버튼: 누르면 잠깐 "복사됨"
 document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = '복사됨'; }
