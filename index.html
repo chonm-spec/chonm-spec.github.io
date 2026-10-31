@@ -23,8 +23,8 @@
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=16">
-  <script src="assets/js/main.js?v=7" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=20">
+  <script src="assets/js/main.js?v=9" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -649,11 +649,12 @@
           <p class="play__when">최근 6개월 이내 플레이 게임 – 2026.09 작성</p>
           <ul class="play__grid">
             <!-- 1행: 깊게 플레이한 게임 (왼쪽 위 노란 별). 2026-10-30 사용자 지정 순서 -->
-            <li class="play__top"><img src="assets/play/g02.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
-            <li class="play__top"><img src="assets/play/g03.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
-            <li class="play__top"><img src="assets/play/g06.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
-            <li class="play__top"><img src="assets/play/g07.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
-            <li class="play__top"><img src="assets/play/g10.jpg" alt="" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
+            <!-- data-game이 있는 아이콘만 정보 팝업 (2026-11-01 사용자 제공 값). 나머지는 팝업 없음. data-max = 만렙(레벨 옆 MAX 배지) -->
+            <li class="play__top" tabindex="0" data-game="블루 아카이브" data-level-name="계정 레벨" data-level="90" data-max data-time="약 300시간" data-note="출시 학생 약 260명 중 218명 보유"><img src="assets/play/g02.jpg" alt="블루 아카이브" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
+            <li class="play__top" tabindex="0" data-game="명조: 워더링 웨이브" data-level-name="연각 레벨" data-level="80" data-max data-time="약 100시간"><img src="assets/play/g03.jpg" alt="명조: 워더링 웨이브" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
+            <li class="play__top" tabindex="0" data-game="클레르 옵스퀴르: 33 원정대" data-level-name="캐릭터 레벨" data-level="전 캐릭터 99" data-time="40시간" data-note="도전 과제 80% 달성 · 2회차 플레이"><img src="assets/play/g06.jpg" alt="클레르 옵스퀴르: 33 원정대" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
+            <li class="play__top" tabindex="0" data-game="프래그마타" data-level-name="진행도" data-level="1회차 엔딩 확인" data-time="25시간" data-note="도전 과제 80% 달성"><img src="assets/play/g07.jpg" alt="프래그마타" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
+            <li class="play__top" tabindex="0" data-game="쿠키런: 모험의 탑" data-level-name="계정 레벨" data-level="105" data-time="약 200시간" data-note="출시 쿠키 50종 모두 보유 · 48종 5성"><img src="assets/play/g10.jpg" alt="쿠키런: 모험의 탑" width="200" height="200" loading="lazy"><svg class="play__star" viewBox="0 0 24 24" role="img" aria-label="깊게 플레이한 게임"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg></li>
             <li><img src="assets/play/g01.jpg" alt="" width="200" height="200" loading="lazy"></li>
             <li><img src="assets/play/g04.jpg" alt="" width="200" height="200" loading="lazy"></li>
             <li><img src="assets/play/g05.jpg" alt="" width="200" height="200" loading="lazy"></li>
@@ -669,6 +670,7 @@
             <li><button class="play__more" type="button" aria-expanded="false">+ more</button></li>
           </ul>
           <p class="play__legend"><svg class="play__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.2l-6.1 3.6 1.6-6.8-5.2-4.6 6.9-.6z"/></svg><b>깊게 플레이한 게임</b><span class="play__criteria">과금 · 상위 랭킹 · 도전 과제 80% 이상 등</span></p>
+          <div class="play__tip" id="play-tip" role="tooltip" hidden></div>
         </div>
       </div>
       <a class="scroll-hint" href="#contact" aria-label="연락처로 이동">

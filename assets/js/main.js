@@ -115,6 +115,44 @@ playMore.addEventListener('click', () => {
   playExtras.forEach((li) => { li.hidden = !open; });
 });
 
+// 플레이경험 게임 정보 팝업 (data-game이 있는 아이콘만): 마우스 올리면 표시 · 빼면 닫힘 / 터치하면 표시 · 3초 뒤 닫힘 / Tab 포커스 시 표시
+const playBox = document.querySelector('.play__games');
+const playTip = playBox.querySelector('.play__tip');
+let playTimer;
+const tipCell = (label, value, wide) => `<div class="play__tip-box${wide ? ' play__tip-box--wide' : ''}"><span>${label}</span><b>${value}</b></div>`;
+const hideTip = () => { playTip.hidden = true; clearTimeout(playTimer); };
+const showTip = (li, autoClose) => {
+  const { game, levelName, level, time, note } = li.dataset;
+  playTip.innerHTML = `<p class="play__tip-name">${game}</p><div class="play__tip-boxes">` +
+    tipCell(levelName, level + ('max' in li.dataset ? '<span class="play__tip-max">MAX</span>' : '')) + tipCell('플레이 타임', time) + (note ? tipCell('특이사항', note, true) : '') + '</div>';
+  playTip.hidden = false;
+  // 아이콘 가운데 위에 놓되, 칸 양끝을 넘지 않게
+  const b = playBox.getBoundingClientRect(), r = li.getBoundingClientRect();
+  const center = r.left - b.left + r.width / 2;
+  const left = Math.min(Math.max(center - playTip.offsetWidth / 2, 8), b.width - playTip.offsetWidth - 8);
+  playTip.style.left = `${left}px`;
+  playTip.style.top = `${r.top - b.top - 10}px`;
+  playTip.style.setProperty('--arrow', `${center - left}px`);
+  li.setAttribute('aria-describedby', 'play-tip');
+  clearTimeout(playTimer);
+  if (autoClose) playTimer = setTimeout(hideTip, 3000);
+};
+playBox.addEventListener('pointerover', (e) => {
+  const li = e.target.closest('li[data-game]');
+  if (li) showTip(li, e.pointerType !== 'mouse');
+});
+playBox.addEventListener('pointerout', (e) => {
+  const li = e.target.closest('li[data-game]');
+  if (e.pointerType === 'mouse' && li && !li.contains(e.relatedTarget)) hideTip();
+});
+// 키보드로 이동했을 때만. 터치로 생긴 포커스는 무시해야 3초 자동 닫힘이 유지됨
+playBox.addEventListener('focusin', (e) => {
+  const li = e.target.closest('li[data-game]');
+  if (li && li.matches(':focus-visible')) showTip(li, false);
+});
+playBox.addEventListener('focusout', hideTip);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideTip(); });
+
 // 연락처 복사 버튼: 누르면 잠깐 "복사됨"
 document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = '복사됨'; }
