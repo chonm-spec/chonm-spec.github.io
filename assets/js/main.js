@@ -24,6 +24,21 @@ document.querySelectorAll('[data-birth]').forEach((el) => {
   el.textContent = now.getFullYear() - y - (beforeBirthday ? 1 : 0);
 });
 
+// 이력서 대외활동 · 수상: 접기 · 펼치기(CSS)에 맞춰 연도는 보이는 줄 중 그 해 첫 줄에만
+document.querySelectorAll('.awards').forEach((box) => {
+  const items = [...box.querySelectorAll('.rows li')];
+  const setYears = () => {
+    let prev;
+    items.forEach((li) => {
+      if (!li.getClientRects().length) return; // 숨은 줄은 건너뜀
+      li.firstElementChild.textContent = li.dataset.year === prev ? '' : li.dataset.year;
+      prev = li.dataset.year;
+    });
+  };
+  box.querySelector('.awards__more').addEventListener('toggle', setYears);
+  setYears();
+});
+
 // 프로젝트&기획서: 분류 필터 (전체 / 프로젝트 / 기획서)
 const filters = [...document.querySelectorAll('.works__filter')];
 const works = [...document.querySelectorAll('.work')];

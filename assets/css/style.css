@@ -367,9 +367,10 @@ a { color: inherit; text-decoration: none; }
   .rows--3 li > :nth-child(3) { grid-column: 2; font-size: 14px; color: var(--ink-3); }
 }
 
-/* 대외활동 · 수상&자격증 + 더보기: 버튼은 소제목 줄 오른쪽 끝, 펼치면 최신 4건 아래로 나머지가 이어짐 */
+/* 대외활동 · 수상&자격증 + 더보기: 버튼은 소제목 줄 오른쪽 끝.
+   접힌 동안은 고른 항목(data-pick)만, 펼치면 전체가 날짜순 (연도 칸은 main.js가 채움) */
 .awards { position: relative; }
-.awards__more .rows { margin-top: 10px; } /* 목록 행 간격과 같게 */
+.awards:has(.awards__more:not([open])) .rows li:not([data-pick]) { display: none; }
 .awards__more summary {
   position: absolute;
   top: 18px; /* 블록 위 여백(20px) + 소제목 줄 가운데 맞춤 */
