@@ -169,9 +169,11 @@ playBox.addEventListener('focusin', (e) => {
 playBox.addEventListener('focusout', hideTip);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideTip(); });
 
-// 연락처 복사 버튼: 누르면 잠깐 "복사됨"
+// 소개의 메일 · 전화 복사 버튼(아이콘): 누르면 복사하고 1.5초 동안 체크 표시 (화면낭독용 이름도 "복사됨")
 document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = '복사됨'; }
-  catch { b.textContent = '복사 실패'; }
-  setTimeout(() => { b.textContent = '복사'; }, 1500);
+  const label = b.getAttribute('aria-label');
+  try { await navigator.clipboard.writeText(b.dataset.copy); } catch { return; }
+  b.classList.add('is-done');
+  b.setAttribute('aria-label', '복사됨');
+  setTimeout(() => { b.classList.remove('is-done'); b.setAttribute('aria-label', label); }, 1500);
 }));
