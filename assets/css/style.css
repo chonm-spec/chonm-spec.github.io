@@ -111,7 +111,7 @@ a { color: inherit; text-decoration: none; }
   min-height: 100svh;
   display: grid;
   align-items: center;
-  padding: clamp(84px, 11vh, 116px) clamp(16px, 5vw, 96px) clamp(20px, 4vh, 44px);
+  padding: clamp(84px, 11vh, 116px) clamp(16px, 5vw, 96px) 104px; /* 아래: Scroll 안내 자리 */
   color: var(--ink);
   background:
     radial-gradient(1100px 760px at 76% 46%, rgba(37, 99, 235, .3), transparent 65%),
@@ -158,21 +158,23 @@ a { color: inherit; text-decoration: none; }
    __visual = 정사각형 칸(오른쪽 칸보다 4%씩 양옆으로 넓음), 고리가 칸을 꽉 채움.
    __stack = 카드 묶음(가로 : 세로 1.2 : 1)을 칸 폭의 88%로 가운데에 → 카드 둘레로 고리가 보임.
    카드 위치 · 크기는 __stack 기준 %라 묶음 크기를 바꿔도 카드끼리 겹치는 모양은 그대로 */
-.intro__visual { position: relative; justify-self: center; width: min(108%, 76vh, 720px); aspect-ratio: 1; }
+.intro__visual { position: relative; justify-self: center; width: min(108%, 76vh, calc(100vh - 200px), 720px); aspect-ratio: 1; }
 .intro__halo { position: absolute; inset: 0; border: 1px dashed rgba(147, 197, 253, .45); border-radius: 50%; }
 .intro__halo::before { content: ""; position: absolute; inset: 3.5%; border-radius: 50%; background: repeating-conic-gradient(rgba(147, 197, 253, .65) 0 .5deg, transparent .5deg 5deg);
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 9px), #000 calc(100% - 8px)); mask: radial-gradient(farthest-side, transparent calc(100% - 9px), #000 calc(100% - 8px)); }
 .intro__halo::after { content: ""; position: absolute; inset: 9%; border: 2px solid rgba(96, 165, 250, .28); border-radius: 50%; background: radial-gradient(closest-side, rgba(37, 99, 235, .28), transparent); }
 .intro__stack { position: absolute; left: 50%; top: 50%; width: 88%; aspect-ratio: 1.2; transform: translate(-50%, -50%); }
-.intro__card { position: absolute; width: 62%; max-width: 460px; margin: 0; padding: 8px; background: #fff; border-radius: 20px; box-shadow: 0 28px 60px rgba(0, 0, 0, .55), 0 0 44px rgba(37, 99, 235, .35);
-  transform: rotate(var(--r)); animation: intro-float 6s ease-in-out infinite; }
+/* 카드 = 버튼: 누르면 같은 프로젝트의 상세 팝업 (main.js). 마우스를 올리면 흔들림을 멈추고 파란 테두리 */
+.intro__card { position: absolute; width: 62%; max-width: 460px; margin: 0; padding: 8px; font: inherit; text-align: left; color: inherit; background: #fff; border: 0; border-radius: 20px; cursor: pointer;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, .55), 0 0 44px rgba(37, 99, 235, .35); transform: rotate(var(--r)); animation: intro-float 6s ease-in-out infinite; transition: box-shadow .2s; }
+.intro__card:hover,
+.intro__card:focus-visible { z-index: 3; animation-play-state: paused; outline: 0; box-shadow: 0 28px 60px rgba(0, 0, 0, .55), 0 0 0 3px var(--accent), 0 0 56px rgba(96, 165, 250, .6); }
 .intro__card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 14px; }
-/* 카드 장식: 이미지 안쪽 얇은 흰 테두리 + 오른쪽 아래 사선 줄무늬 */
+/* 카드 장식: 이미지 안쪽 얇은 흰 테두리 */
 .intro__card::after { content: ""; position: absolute; inset: 13px; border: 1px solid rgba(255, 255, 255, .6); border-radius: 10px; pointer-events: none; }
-.intro__card::before { content: ""; position: absolute; right: 22px; bottom: 22px; z-index: 1; width: 40px; height: 7px; background: repeating-linear-gradient(-60deg, #fff 0 3px, transparent 3px 7px); }
 /* 이름표: 이미지 위 왼쪽 위, 파란 사선 꼬리표 */
-.intro__card figcaption { position: absolute; left: 8px; top: 22px; padding: 5px 18px 5px 14px; font-size: 13px; font-weight: 800; line-height: 1.5; white-space: nowrap; color: #fff; background: var(--deep); clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
-.intro__card figcaption span { margin-left: 4px; font-weight: 300; color: #cfe1ff; }
+.intro__tag { position: absolute; left: 8px; top: 22px; padding: 5px 18px 5px 14px; font-size: 13px; font-weight: 800; line-height: 1.5; white-space: nowrap; color: #fff; background: var(--deep); clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+.intro__tag span { margin-left: 4px; font-weight: 300; color: #cfe1ff; }
 /* 겹침 순서: 1번째 = 맨 뒤(왼쪽 위) → 2번째 = 중간(오른쪽) → 3번째 = 맨 앞(아래 가운데) */
 .intro__card:nth-child(1) { left: 0; top: 1%; --r: -6deg; }
 .intro__card:nth-child(2) { right: 0; top: 19%; z-index: 1; --r: 5deg; animation-delay: -2s; }
@@ -199,8 +201,8 @@ a { color: inherit; text-decoration: none; }
   .intro__eyebrow { font-size: 12px; letter-spacing: .14em; } /* 360px에서도 한 줄 */
   .intro__lead br { display: none; } /* 두 문장을 줄바꿈 없이 이어서 */
   .intro__stack { width: 100%; } /* 카드가 너무 작아지지 않게 */
-  .intro__card figcaption { top: 18px; font-size: 12px; }
-  .intro__card figcaption span { display: none; }
+  .intro__tag { top: 18px; font-size: 12px; }
+  .intro__tag span { display: none; }
   .intro__visual i:nth-of-type(n) { --s: 16px; } /* nth-of-type(n): 위 별마다 정한 크기보다 우선하도록 같은 무게로 */
   .intro__actions { flex-direction: column; align-items: flex-start; }
   .intro__actions .btn { width: min(280px, 100%); }

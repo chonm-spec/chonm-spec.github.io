@@ -22,8 +22,8 @@
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=26">
-  <script src="assets/js/main.js?v=12" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=27">
+  <script src="assets/js/main.js?v=13" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -38,7 +38,8 @@
   <main>
     <!-- 소개: 표지 + About Me를 한 화면으로 합침 (2026-11-13 개편. 표지는 어두운 버전만 사용).
          왼쪽 = 작은 줄 "GAME DESIGNER / PORTFOLIO / 2026" → 큰 문구 "재미를 검증하는 기획자"(한 줄) → 소개 2문장 → NAME · E-MAIL · TEL(값은 이력서 PDF와 같음, 복사 버튼) → 다운로드 버튼 2개
-         오른쪽 = 떠다니는 프로젝트 카드 3장 (맨 앞 타부티 → 중간 펩 히어로즈 → 맨 뒤 클럽 파이터즈) + 뒤 고리 + 반짝임. 장식이라 화면낭독에서는 숨김
+         오른쪽 = 떠다니는 프로젝트 카드 3장 (맨 앞 타부티 → 중간 펩 히어로즈 → 맨 뒤 클럽 파이터즈) + 뒤 고리 + 반짝임(장식, 화면낭독에서 숨김).
+                  카드 = 버튼. 누르면 아래 프로젝트&기획서의 같은 프로젝트 상세 팝업이 열림 (data-work = 그 카드의 id, main.js)
          &nbsp; = 휴대폰 · 1024px에서 낱말 하나만 줄 끝에 남지 않게 묶음. 연락처 섹션은 삭제하고 이 화면의 E-MAIL · TEL로 대신함 -->
     <section class="intro" id="about" aria-labelledby="intro-title">
       <div class="intro__inner">
@@ -64,16 +65,20 @@
           </div>
         </div>
 
-        <div class="intro__visual" aria-hidden="true">
-          <div class="intro__halo"></div>
+        <div class="intro__visual">
+          <div class="intro__halo" aria-hidden="true"></div>
           <div class="intro__stack">
-            <figure class="intro__card"><img src="assets/works/p-club.jpg" alt="" width="419" height="236"><figcaption>클럽 파이터즈 <span>모바일 · 2024</span></figcaption></figure>
-            <figure class="intro__card"><img src="assets/cover/04.jpg" alt="" width="875" height="492"><figcaption>펩 히어로즈 <span>모바일 · 2025</span></figcaption></figure>
-            <figure class="intro__card"><img src="assets/works/p-tavuti.jpg" alt="" width="457" height="257"><figcaption>타부티 <span>PC · 2023</span></figcaption></figure>
+            <button class="intro__card" type="button" data-work="work-club" aria-label="클럽 파이터즈 상세 정보 보기"><img src="assets/works/p-club.jpg" alt="" width="419" height="236"><span class="intro__tag">클럽 파이터즈 <span>모바일 · 2024</span></span></button>
+            <button class="intro__card" type="button" data-work="work-pep" aria-label="펩 히어로즈 상세 정보 보기"><img src="assets/works/p-pep-key.jpg" alt="" width="875" height="492"><span class="intro__tag">펩 히어로즈 <span>모바일 · 2025</span></span></button>
+            <button class="intro__card" type="button" data-work="work-tavuti" aria-label="타부티 상세 정보 보기"><img src="assets/works/p-tavuti.jpg" alt="" width="457" height="257"><span class="intro__tag">타부티 <span>PC · 2023</span></span></button>
           </div>
-          <i></i><i></i><i></i><i></i><i></i><i></i>
+          <span aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
         </div>
       </div>
+      <a class="scroll-hint" href="#resume" aria-label="이력서로 이동">
+        <span aria-hidden="true">Scroll</span>
+        <span class="scroll-hint__mouse" aria-hidden="true"></span>
+      </a>
     </section>
 
     <!-- 이력서: 01_경력기술서.pdf 3쪽(프로필) 레이아웃, 밝은 배경 -->
@@ -186,7 +191,7 @@
       </div>
 
       <div class="works__grid">
-        <article class="work" data-kind="p">
+        <article class="work" data-kind="p" id="work-pep">
           <img class="work__img" src="assets/works/p-pep.jpg" alt="" loading="lazy">
           <div class="work__body">
             <p class="work__cat">프로젝트 · 모바일 · 2025</p>
@@ -245,7 +250,7 @@
           </template>
         </article>
 
-        <article class="work" data-kind="p">
+        <article class="work" data-kind="p" id="work-tavuti">
           <img class="work__img" src="assets/works/p-tavuti.jpg" alt="" loading="lazy">
           <div class="work__body">
             <p class="work__cat">프로젝트 · PC · 2023</p>
@@ -317,7 +322,7 @@
           </template>
         </article>
 
-        <article class="work" data-kind="p">
+        <article class="work" data-kind="p" id="work-club">
           <img class="work__img" src="assets/works/p-club.jpg" alt="" loading="lazy">
           <div class="work__body">
             <p class="work__cat">프로젝트 · 모바일 · 2024</p>
