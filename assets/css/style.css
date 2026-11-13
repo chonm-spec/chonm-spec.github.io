@@ -129,15 +129,13 @@ a { color: inherit; text-decoration: none; }
 .intro::after { background: radial-gradient(rgba(148, 163, 184, .13) 1px, transparent 1px) 0 0 / 24px 24px; }
 .intro__inner { width: 100%; max-width: 1408px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 4vw, 64px); }
 
-/* 글: 영문 직무(한 줄) → [간격] 한 줄 정체성 + 소개 → [간격] 이름 · 메일 · 전화 → [간격] 버튼.
-   "Content Designer" 너비 = 글자 크기의 6.93배 → 왼쪽 칸(화면 폭의 약 43%)에 한 줄로 들어가게 6vw */
+/* 글: 작은 줄(직무 · 연도) → 큰 문구 "재미를 검증하는 기획자"(한 줄) → 소개 → [간격] 이름 · 메일 · 전화 → [간격] 버튼.
+   큰 문구 너비 = 글자 크기의 7.81배 → 왼쪽 칸(화면 폭의 약 43%)에 한 줄로 들어가게 5.3vw */
 .intro__eyebrow { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .26em; color: var(--accent); }
-.intro__role { margin: clamp(14px, 2.6vh, 24px) 0 0; font-size: clamp(44px, min(6vw, 13vh), 96px); font-weight: 800; line-height: 1.1; letter-spacing: -.045em; white-space: nowrap; }
-.intro__role span { color: transparent; background: linear-gradient(95deg, var(--accent) 10%, var(--sky) 90%); -webkit-background-clip: text; background-clip: text; }
-.intro__idea { margin: clamp(24px, 4.6vh, 52px) 0 0; font-size: clamp(20px, 1.7vw, 27px); font-weight: 800; line-height: 1.4; letter-spacing: -.01em; }
-/* "재미를 검증" = 하늘색 + 형광펜 밑줄 */
-.intro__idea em { margin: 0 -.05em; padding: 0 .05em; font-style: normal; color: var(--accent); background: linear-gradient(transparent 66%, rgba(96, 165, 250, .34) 66% 92%, transparent 92%); }
-.intro__lead { margin: clamp(8px, 1.4vh, 14px) 0 0; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.75; color: var(--sub); }
+.intro__title { margin: clamp(14px, 2.6vh, 24px) 0 0; font-size: clamp(34px, min(5.3vw, 12vh), 84px); font-weight: 800; line-height: 1.2; letter-spacing: -.03em; white-space: nowrap; }
+/* "재미를 검증" = 파랑 → 하늘색 그라데이션 */
+.intro__title span { color: transparent; background: linear-gradient(95deg, var(--accent) 10%, var(--sky) 90%); -webkit-background-clip: text; background-clip: text; }
+.intro__lead { margin: clamp(14px, 2.6vh, 26px) 0 0; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.75; color: var(--sub); }
 /* 이름 · 메일 · 전화: 한 줄에 하나씩, 소개보다 작은 글씨. 왼쪽 작은 영문 이름표 + 값, 메일 · 전화 옆에 복사 버튼 */
 .intro__info { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: 6px 20px; margin: clamp(24px, 4.6vh, 52px) 0 0; font-size: clamp(14px, 1vw, 16px); }
 .intro__info dt { font-size: 11px; font-weight: 800; letter-spacing: .2em; color: var(--accent); }
@@ -194,10 +192,11 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 1023px) {
   .intro { align-items: start; }
   .intro__inner { grid-template-columns: minmax(0, 1fr); }
-  .intro__role { font-size: min(12.4vw, 104px); } /* 화면 폭 90%에 한 줄 */
+  .intro__title { font-size: min(11vw, 84px); } /* 화면 폭 86%에 한 줄 */
   .intro__visual { width: min(100%, 480px); margin-top: 8px; }
 }
 @media (max-width: 599px) {
+  .intro__eyebrow { font-size: 12px; letter-spacing: .14em; } /* 360px에서도 한 줄 */
   .intro__lead br { display: none; } /* 두 문장을 줄바꿈 없이 이어서 */
   .intro__stack { width: 100%; } /* 카드가 너무 작아지지 않게 */
   .intro__card figcaption { top: 18px; font-size: 12px; }

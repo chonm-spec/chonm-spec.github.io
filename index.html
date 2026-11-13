@@ -22,7 +22,7 @@
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=25">
+  <link rel="stylesheet" href="assets/css/style.css?v=26">
   <script src="assets/js/main.js?v=12" defer></script>
 </head>
 <body>
@@ -37,16 +37,15 @@
 
   <main>
     <!-- 소개: 표지 + About Me를 한 화면으로 합침 (2026-11-13 개편. 표지는 어두운 버전만 사용).
-         왼쪽 = 영문 직무(한 줄) → "재미를 검증하는 기획자" + 소개 2문장 → NAME · E-MAIL · TEL(값은 이력서 PDF와 같음, 복사 버튼) → 다운로드 버튼 2개
+         왼쪽 = 작은 줄 "GAME DESIGNER / PORTFOLIO / 2026" → 큰 문구 "재미를 검증하는 기획자"(한 줄) → 소개 2문장 → NAME · E-MAIL · TEL(값은 이력서 PDF와 같음, 복사 버튼) → 다운로드 버튼 2개
          오른쪽 = 떠다니는 프로젝트 카드 3장 (맨 앞 타부티 → 중간 펩 히어로즈 → 맨 뒤 클럽 파이터즈) + 뒤 고리 + 반짝임. 장식이라 화면낭독에서는 숨김
-         &nbsp; = 휴대폰에서 낱말 하나만 줄 끝에 남지 않게 묶음. 연락처 섹션은 삭제하고 이 화면의 E-MAIL · TEL로 대신함 -->
+         &nbsp; = 휴대폰 · 1024px에서 낱말 하나만 줄 끝에 남지 않게 묶음. 연락처 섹션은 삭제하고 이 화면의 E-MAIL · TEL로 대신함 -->
     <section class="intro" id="about" aria-labelledby="intro-title">
       <div class="intro__inner">
         <div class="intro__text">
-          <p class="intro__eyebrow">PORTFOLIO / 2026</p>
-          <h1 class="intro__role" id="intro-title">Content <span>Designer</span></h1>
-          <p class="intro__idea"><em>재미를 검증</em>하는 기획자</p>
-          <p class="intro__lead">유저가 어떻게 플레이하고 무엇을 느낄지 고민합니다. <br>기획한&nbsp;내용이 실제로는 다르게 전달될 수 있기에, 데이터와 피드백을 받아 콘텐츠를 다듬습니다.</p>
+          <p class="intro__eyebrow">GAME DESIGNER / PORTFOLIO / 2026</p>
+          <h1 class="intro__title" id="intro-title"><span>재미를 검증</span>하는 기획자</h1>
+          <p class="intro__lead">유저가 어떻게 플레이하고 무엇을 느낄지 고민합니다. <br>기획한&nbsp;내용이 실제로는 다르게 전달될 수 있기에, 데이터와 피드백을 받아 콘텐츠를&nbsp;다듬습니다.</p>
           <dl class="intro__info">
             <dt>NAME</dt><dd>장광호</dd>
             <dt>E-MAIL</dt><dd><a href="mailto:jkh6621@naver.com">jkh6621@naver.com</a><button class="intro__copy" type="button" data-copy="jkh6621@naver.com" aria-label="메일 주소 복사"><svg class="intro__copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="intro__copy-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></button></dd>
