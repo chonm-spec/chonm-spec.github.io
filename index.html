@@ -18,12 +18,13 @@
   <!-- 탭 아이콘 · 휴대폰 홈 화면 아이콘 (검정 바탕 + 포인트 블루 "장", Freesentation ExtraBold) -->
   <link rel="icon" href="assets/icon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="preload" href="assets/cover/01.jpg" as="image"><!-- 첫 화면 표지 1장 먼저 -->
   <link rel="preload" href="assets/fonts/Freesentation-3Light.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=27">
-  <script src="assets/js/main.js?v=13" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=28">
+  <script src="assets/js/main.js?v=14" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -36,45 +37,50 @@
   </header>
 
   <main>
-    <!-- 소개: 표지 + About Me를 한 화면으로 합침 (2026-11-13 개편. 표지는 어두운 버전만 사용).
-         왼쪽 = 작은 줄 "GAME DESIGNER / PORTFOLIO / 2026" → 큰 문구 "재미를 검증하는 기획자"(한 줄) → 소개 2문장 → NAME · E-MAIL · TEL(값은 이력서 PDF와 같음, 복사 버튼) → 다운로드 버튼 2개
-         오른쪽 = 떠다니는 프로젝트 카드 3장 (맨 앞 타부티 → 중간 펩 히어로즈 → 맨 뒤 클럽 파이터즈) + 뒤 고리 + 반짝임(장식, 화면낭독에서 숨김).
-                  카드 = 버튼. 누르면 아래 프로젝트&기획서의 같은 프로젝트 상세 팝업이 열림 (data-work = 그 카드의 id, main.js)
-         &nbsp; = 휴대폰 · 1024px에서 낱말 하나만 줄 끝에 남지 않게 묶음. 연락처 섹션은 삭제하고 이 화면의 E-MAIL · TEL로 대신함 -->
-    <section class="intro" id="about" aria-labelledby="intro-title">
-      <div class="intro__inner">
-        <div class="intro__text">
-          <p class="intro__eyebrow">GAME DESIGNER / PORTFOLIO / 2026</p>
-          <h1 class="intro__title" id="intro-title"><span>재미를 검증</span>하는 기획자</h1>
-          <p class="intro__lead">유저가 어떻게 플레이하고 무엇을 느낄지 고민합니다. <br>기획한&nbsp;내용이 실제로는 다르게 전달될 수 있기에, 데이터와 피드백을 받아 콘텐츠를&nbsp;다듬습니다.</p>
-          <dl class="intro__info">
-            <dt>NAME</dt><dd>장광호</dd>
-            <dt>E-MAIL</dt><dd><a href="mailto:jkh6621@naver.com">jkh6621@naver.com</a><button class="intro__copy" type="button" data-copy="jkh6621@naver.com" aria-label="메일 주소 복사"><svg class="intro__copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="intro__copy-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></button></dd>
-            <dt>TEL</dt><dd><a href="tel:01030889845">010.3088.9845</a><button class="intro__copy" type="button" data-copy="010-3088-9845" aria-label="전화번호 복사"><svg class="intro__copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="intro__copy-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></button></dd>
-          </dl>
-          <div class="intro__actions">
-            <!-- 이력서 = PDF 1개, 포트폴리오 = 경력기술서 · 이력서 · 기획서 전체 zip -->
-            <a class="btn intro__btn" href="assets/download/이력서_장광호.pdf" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-              이력서 다운로드
-            </a>
-            <a class="btn intro__btn" href="assets/download/장광호_포트폴리오.zip" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-              포트폴리오 다운로드
-            </a>
-          </div>
-        </div>
+    <!-- 소개 표지: 2026-11-14 옛 가운데 정렬 표지(커밋 742da6e)로 되돌림 (사용자 요청).
+         옛 표지와 다른 점 = 설명 문구는 개편 때 다듬은 지금 문장, "연락처" 버튼 없음(연락처 섹션 삭제), E-MAIL · TEL은 보류,
+         About Me(강점) 섹션은 계속 없음 → 아래 Scroll 안내는 이력서로 이동.
+         배경 = 프로젝트 이미지 6장 슬라이드(밝기 낮춘 assets/cover/01~06) + 원형 비네팅 -->
+    <section class="hero" id="about" aria-labelledby="hero-title">
+      <div class="hero__slides" aria-hidden="true">
+        <div class="hero__slide" style="--i:0; background-image:url(assets/cover/01.jpg)"></div>
+        <div class="hero__slide" style="--i:1; background-image:url(assets/cover/02.jpg)"></div>
+        <div class="hero__slide" style="--i:2; background-image:url(assets/cover/03.jpg)"></div>
+        <div class="hero__slide" style="--i:3; background-image:url(assets/cover/04.jpg)"></div>
+        <div class="hero__slide" style="--i:4; background-image:url(assets/cover/05.jpg)"></div>
+        <div class="hero__slide" style="--i:5; background-image:url(assets/cover/06.jpg)"></div>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
 
-        <div class="intro__visual">
-          <div class="intro__halo" aria-hidden="true"></div>
-          <div class="intro__stack">
-            <button class="intro__card" type="button" data-work="work-club" aria-label="클럽 파이터즈 상세 정보 보기"><img src="assets/works/p-club.jpg" alt="" width="419" height="236"><span class="intro__tag">클럽 파이터즈 <span>모바일 · 2024</span></span></button>
-            <button class="intro__card" type="button" data-work="work-pep" aria-label="펩 히어로즈 상세 정보 보기"><img src="assets/works/p-pep-key.jpg" alt="" width="875" height="492"><span class="intro__tag">펩 히어로즈 <span>모바일 · 2025</span></span></button>
-            <button class="intro__card" type="button" data-work="work-tavuti" aria-label="타부티 상세 정보 보기"><img src="assets/works/p-tavuti.jpg" alt="" width="457" height="257"><span class="intro__tag">타부티 <span>PC · 2023</span></span></button>
-          </div>
-          <span aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <div class="hero__content">
+        <p class="hero__eyebrow">Game Designer Portfolio</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__tagline"><strong class="accent">재미를 검증</strong>하는 기획자</span>
+          <span class="hero__name">장광호</span>
+        </h1>
+        <p class="hero__lead">
+          유저가 어떻게 플레이하고 무엇을 느낄지 고민합니다.<br>
+          기획한 내용이 실제로는 다르게 전달될 수 있기에, 데이터와 피드백을 받아 콘텐츠를&nbsp;다듬습니다.
+        </p>
+        <ul class="hero__tags" aria-label="담당 분야">
+          <li>#유니티</li>
+          <li>#콘텐츠</li>
+          <li>#시스템</li>
+          <li>#지형공간레벨</li>
+        </ul>
+        <div class="hero__actions">
+          <!-- 이력서 = PDF 1개, 포트폴리오 = 경력기술서 · 이력서 · 기획서 전체 zip -->
+          <a class="btn btn--primary" href="assets/download/이력서_장광호.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            이력서 다운로드
+          </a>
+          <a class="btn btn--primary" href="assets/download/장광호_포트폴리오.zip" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            포트폴리오 다운로드
+          </a>
         </div>
       </div>
+
       <a class="scroll-hint" href="#resume" aria-label="이력서로 이동">
         <span aria-hidden="true">Scroll</span>
         <span class="scroll-hint__mouse" aria-hidden="true"></span>
@@ -191,7 +197,7 @@
       </div>
 
       <div class="works__grid">
-        <article class="work" data-kind="p" id="work-pep">
+        <article class="work" data-kind="p">
           <img class="work__img" src="assets/works/p-pep.jpg" alt="" loading="lazy">
           <div class="work__body">
             <p class="work__cat">프로젝트 · 모바일 · 2025</p>
@@ -250,7 +256,7 @@
           </template>
         </article>
 
-        <article class="work" data-kind="p" id="work-tavuti">
+        <article class="work" data-kind="p">
           <img class="work__img" src="assets/works/p-tavuti.jpg" alt="" loading="lazy">
           <div class="work__body">
             <p class="work__cat">프로젝트 · PC · 2023</p>
@@ -322,7 +328,7 @@
           </template>
         </article>
 
-        <article class="work" data-kind="p" id="work-club">
+        <article class="work" data-kind="p">
           <img class="work__img" src="assets/works/p-club.jpg" alt="" loading="lazy">
           <div class="work__body">
             <p class="work__cat">프로젝트 · 모바일 · 2024</p>
