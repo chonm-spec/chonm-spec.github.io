@@ -96,7 +96,7 @@ a { color: inherit; text-decoration: none; }
 .btn--ghost { border-color: rgba(255, 255, 255, .35); }
 .btn--ghost[href]:hover { background: rgba(255, 255, 255, .1); }
 
-/* ---------- 표지 (2026-11-14 옛 가운데 정렬 표지로 되돌림, 커밋 742da6e와 같음) ---------- */
+/* ---------- 표지 ---------- */
 .hero {
   position: relative;
   isolation: isolate;
@@ -412,6 +412,11 @@ a { color: inherit; text-decoration: none; }
 .tile__role span { margin-right: 8px; font-weight: 300; color: rgba(255, 255, 255, .55); }
 .tile__desc { margin: 4px 0 0; max-width: 40em; font-size: clamp(14px, 1.05vw, 16px); line-height: 1.55; color: #d6d6d6;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+/* 오른쪽 세 칸 설명은 항상 한 줄 (넘치면 끝을 …). 왼쪽 큰 칸은 좁은 화면에서 2줄까지 */
+.tile:not(.tile--big) .tile__desc { -webkit-line-clamp: 1; }
+/* 요약 배지: 칸 왼쪽 위 검정 칩(오른쪽 위 화살표와 같은 높이). 누르면 칸 버튼이 눌리도록 pointer-events: none */
+.tile__badge { position: absolute; top: 12px; left: 12px; z-index: 2; max-width: calc(100% - 74px); margin: 0; padding: 6px 11px; font-size: 13px; font-weight: 600; line-height: 1.35; text-shadow: none;
+  background: rgba(0, 0, 0, .72); border: 1px solid rgba(255, 255, 255, .14); border-radius: 8px; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); pointer-events: none; }
 /* 칸 전체가 상세 팝업 버튼 (버튼의 ::after를 칸 크기로). 오른쪽 위 화살표 = 누를 수 있다는 표시 */
 .tile__more { padding: 0; background: none; border: 0; cursor: pointer; }
 .tile__more::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: var(--radius); }
@@ -422,14 +427,14 @@ a { color: inherit; text-decoration: none; }
 .tile:hover, .tile:focus-within { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 36px rgba(96, 165, 250, .3); }
 .tile:hover .tile__in > img, .tile:focus-within .tile__in > img { transform: scale(1.05); }
 .tile:hover .tile__go, .tile:focus-within .tile__go { color: var(--black); background: var(--accent); border-color: var(--accent); }
-/* 가로로 긴 칸(가로:세로 2.5:1 이상): 글을 왼쪽 세로 가운데로, 어둡게도 왼쪽에서 오른쪽으로 → 오른쪽 이미지는 그대로 */
+/* 가로로 긴 칸(가로:세로 2.5:1 이상): 어둡게를 왼쪽에서 오른쪽으로 → 오른쪽 그림은 밝게. 글은 다른 칸처럼 아래쪽,
+   설명 한 줄이 다 들어가게 글 폭 78% */
 @container (min-aspect-ratio: 5 / 2) and (min-width: 420px) {
-  .tile__in { align-items: center; }
-  .tile__in::before { background: linear-gradient(to right, rgba(0, 0, 0, .9) 0%, rgba(0, 0, 0, .72) 38%, rgba(0, 0, 0, 0) 72%); }
-  .tile__text { width: 62%; }
+  .tile__in::before { background: linear-gradient(to right, rgba(0, 0, 0, .9) 0%, rgba(0, 0, 0, .72) 45%, rgba(0, 0, 0, 0) 85%); }
+  .tile__text { width: 78%; }
 }
-/* 낮은 칸: 설명 2줄 → 1줄 → 숨김 (이름 · 담당은 항상 보임) */
-@container (max-height: 150px) { .tile__desc { -webkit-line-clamp: 1; } }
+/* 낮은 칸(1280×720 오른쪽 칸 · 360×640 큰 칸 등): 왼쪽 위 배지 자리를 위해 설명 숨김 (이름 · 분류 · 담당은 항상 보임) */
+@container (max-height: 150px) { .tile__desc { display: none; } }
 @container (max-height: 124px) { .tile__desc { display: none; } .tile__go { display: none; } }
 /* 휴대폰 작은 칸: 이름 · 분류 · 담당만 */
 @container (max-width: 260px) {
@@ -440,9 +445,10 @@ a { color: inherit; text-decoration: none; }
   .tile__role span { margin-right: 6px; }
   .tile__go { top: 8px; right: 8px; width: 30px; height: 30px; }
   .tile__go svg { width: 15px; height: 15px; }
+  .tile__badge { top: 8px; left: 8px; max-width: calc(100% - 48px); padding: 4px 7px; font-size: 11px; border-radius: 6px; }
 }
-/* 아주 작은 칸(360×640 휴대폰 등): 분류(플랫폼 · 연도)도 숨겨 이름 · 담당만 */
-@container (max-width: 260px) and (max-height: 124px) { .tile__meta { display: none; } }
+/* 아주 작은 칸(360×640 휴대폰 등): 분류(플랫폼 · 연도) · 배지도 숨겨 이름 · 담당만 */
+@container (max-width: 260px) and (max-height: 124px) { .tile__meta, .tile__badge { display: none; } }
 /* 휴대폰(767px 이하): 펩 히어로즈 한 줄 크게 + 나머지 4개 2 × 2 */
 @media (max-width: 767px) {
   .projects { padding: 88px 16px 100px; }
@@ -607,7 +613,7 @@ body:has(.modal[open]) { overflow: hidden; }
 .play__points b { font-weight: 800; color: var(--accent); }
 .play__points strong { font-weight: 600; color: var(--accent); }
 /* 아이콘 5 × 3 (PDF 순서 그대로, 마지막 칸 + more) */
-.play__games { padding: 28px; background: #f5f5f5; border-radius: var(--radius); }
+.play__games { position: relative; padding: 28px; background: #f5f5f5; border-radius: var(--radius); }
 .play__when { margin: 0 0 16px; font-size: 14px; color: var(--ink-3); }
 .play__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
 .play__grid img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 16px; box-shadow: 0 2px 8px rgba(0, 0, 0, .12); }
@@ -615,7 +621,6 @@ body:has(.modal[open]) { overflow: hidden; }
 .play__more:hover { background: #eff4ff; }
 /* 게임 정보 팝업: 아이콘 바로 위 말풍선, 칸 밖으로 안 나가게 가로 위치 보정 (--arrow: 꼬리 위치)
    게임 이름 / [레벨 | 플레이 타임] / 특이사항은 있을 때만 아래 한 줄 */
-.play__games { position: relative; }
 .play__grid li[tabindex] { cursor: pointer; border-radius: 16px; }
 .play__tip { position: absolute; z-index: 2; width: 300px; max-width: calc(100% - 16px); padding: 14px; color: var(--ink); background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, .18), 0 2px 6px rgba(0, 0, 0, .08); transform: translateY(-100%); pointer-events: none; }
 .play__tip::after { content: ""; position: absolute; top: 100%; left: var(--arrow, 50%); margin-left: -7px; border: 7px solid transparent; border-top-color: #fff; }
