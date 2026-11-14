@@ -39,13 +39,8 @@ document.querySelectorAll('.awards').forEach((box) => {
   setYears();
 });
 
-// 프로젝트&기획서: 분류 필터 (전체 / 프로젝트 / 기획서)
-const filters = [...document.querySelectorAll('.works__filter')];
+// 프로젝트 칸 · 포트폴리오 카드 (누르면 상세 팝업)
 const works = [...document.querySelectorAll('.work')];
-filters.forEach((f) => f.addEventListener('click', () => {
-  filters.forEach((x) => x.setAttribute('aria-pressed', x === f));
-  works.forEach((w) => { w.hidden = f.dataset.filter !== 'all' && w.dataset.kind !== f.dataset.filter; });
-}));
 
 // 기획서 크게 보기: 전체 쪽을 위아래로 이어서, 누른 쪽부터 보여 줌
 const viewer = document.querySelector('.viewer');
@@ -87,7 +82,9 @@ works.forEach((w) => w.querySelector('.work__more').addEventListener('click', ()
   title.id = 'modal-title';
   title.querySelectorAll('br').forEach((br) => br.replaceWith(' ')); // 팝업에서는 한 줄 (넘치면 자연스럽게 줄바꿈)
   detail.querySelectorAll('.doc').forEach(fillDoc);
-  detail.querySelector('.modal__body').prepend(w.querySelector('.work__cat').cloneNode(true), title);
+  const cat = w.querySelector('.work__cat').cloneNode(true);
+  cat.className = 'work__cat'; // 칸 · 카드용 꾸밈 클래스는 빼고 팝업 기본 모양으로
+  detail.querySelector('.modal__body').prepend(cat, title);
   modalContent.replaceChildren(detail);
   modal.showModal();
   modal.scrollTop = 0;

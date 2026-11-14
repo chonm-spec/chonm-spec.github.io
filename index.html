@@ -23,15 +23,16 @@
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=29">
-  <script src="assets/js/main.js?v=15" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=30">
+  <script src="assets/js/main.js?v=16" defer></script>
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="주요 메뉴">
       <a class="nav__link is-active" href="#about" aria-current="true">소개</a>
       <a class="nav__link" href="#resume">이력서</a>
-      <a class="nav__link" href="#works">프로젝트&amp;기획서</a>
+      <a class="nav__link" href="#projects">프로젝트</a>
+      <a class="nav__link" href="#portfolio">포트폴리오</a>
       <a class="nav__link" href="#play">플레이경험</a>
       <a class="nav__link" href="#contact">연락처</a>
     </nav>
@@ -185,31 +186,34 @@
         </div>
       </div>
 
-      <!-- 스크롤 안내: 누르면 프로젝트&기획서 섹션으로 이동 -->
-      <a class="scroll-hint" href="#works" aria-label="프로젝트&amp;기획서로 이동">
+      <!-- 스크롤 안내: 누르면 프로젝트 섹션으로 이동 -->
+      <a class="scroll-hint" href="#projects" aria-label="프로젝트로 이동">
         <span aria-hidden="true">Scroll</span>
         <span class="scroll-hint__mouse" aria-hidden="true"></span>
       </a>
     </section>
 
-    <!-- 프로젝트&기획서: 01_경력기술서.pdf(5~14쪽) · 각 기획서 PDF 기준.
-         카드 안 <template>이 상세 팝업 내용. 카드를 추가하면 같은 구조로 복사 -->
-    <section class="works" id="works" aria-label="프로젝트&amp;기획서">
-      <div class="works__filters" role="group" aria-label="분류">
-        <button class="works__filter" type="button" data-filter="all" aria-pressed="true">전체</button>
-        <button class="works__filter" type="button" data-filter="p" aria-pressed="false">프로젝트</button>
-        <button class="works__filter" type="button" data-filter="d" aria-pressed="false">기획서</button>
+    <!-- 프로젝트: 01_경력기술서.pdf(5~14쪽) 기준. 검정 배경, 정확히 한 화면 (2026-11-15 프로젝트&기획서에서 나눔).
+         배열 = 왼쪽 큰 칸 2(펩 히어로즈 · 타부티) + 오른쪽 가로로 긴 칸 3. 칸 = 이미지 + 이름 · 분류(플랫폼 · 연도) · 담당 · 설명.
+         칸 아무 곳이나 누르면 칸 안 <template> 내용으로 상세 팝업 (main.js). 칸 모양에 따라 글이 아래쪽 / 왼쪽 (style.css 컨테이너 쿼리) -->
+    <section class="projects" id="projects" aria-labelledby="projects-title">
+      <div class="sec-head">
+        <p class="sec-head__eyebrow">Projects</p>
+        <h2 class="sec-head__title" id="projects-title">프로젝트</h2>
       </div>
-
-      <div class="works__grid">
-        <article class="work" data-kind="p">
-          <img class="work__img" src="assets/works/p-pep.jpg" alt="" loading="lazy">
-          <div class="work__body">
-            <p class="work__cat">프로젝트 · 모바일 · 2025</p>
-            <h3 class="work__title">펩 히어로즈</h3>
-            <p class="work__desc">보물을 찾아 떠나는 여정. 세계 곳곳을 여행하며 새로운 영웅들을 만나고 파티를 구성하는 캐릭터 수집형 RPG.</p>
-            <ul class="work__tags"><li>유니티</li><li>퀘스트</li><li>레벨</li></ul>
-            <button class="work__more" type="button">상세 정보 &amp; 영상 보기 <span aria-hidden="true">↗</span></button>
+      <div class="bento">
+        <article class="work tile tile--big">
+          <div class="tile__in">
+            <img src="assets/works/p-pep-key.jpg" alt="" width="875" height="492" loading="lazy" style="object-position: 20% 15%">
+            <div class="tile__text">
+              <div class="tile__head">
+                <h3 class="work__title tile__name">펩 히어로즈</h3>
+                <p class="work__cat tile__meta">모바일 · 2025</p>
+              </div>
+              <p class="tile__role"><span>담당</span>퀘스트 및 레벨 디자인</p>
+              <p class="tile__desc">보물을 찾아 떠나는 여정. 세계 곳곳을 여행하며 새로운 영웅들을 만나고 파티를 구성하는 캐릭터 수집형 RPG.</p>
+            </div>
+            <button class="work__more tile__more" type="button" aria-label="펩 히어로즈 상세 정보 &amp; 영상 보기"><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span></button>
           </div>
           <template>
             <div class="modal__media"><iframe src="https://www.youtube-nocookie.com/embed/DFqSL1ahViA?start=12" title="펩 히어로즈 플레이 영상" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
@@ -260,15 +264,18 @@
             </div>
           </template>
         </article>
-
-        <article class="work" data-kind="p">
-          <img class="work__img" src="assets/works/p-tavuti.jpg" alt="" loading="lazy">
-          <div class="work__body">
-            <p class="work__cat">프로젝트 · PC · 2023</p>
-            <h3 class="work__title">타부티</h3>
-            <p class="work__desc">고래신을 찾아 떠나는 '타부티'의 이야기, 퍼즐을 해결하며 숲을 탐험하는 3D 플랫폼 어드벤처.</p>
-            <ul class="work__tags"><li>유니티</li><li>콘텐츠</li><li>시스템</li><li>레벨</li></ul>
-            <button class="work__more" type="button">상세 정보 &amp; 영상 보기 <span aria-hidden="true">↗</span></button>
+        <article class="work tile tile--big">
+          <div class="tile__in">
+            <img src="assets/works/p-tavuti-key.jpg" alt="" width="1088" height="612" loading="lazy" style="object-position: 50% 55%">
+            <div class="tile__text">
+              <div class="tile__head">
+                <h3 class="work__title tile__name">타부티</h3>
+                <p class="work__cat tile__meta">PC · 2023</p>
+              </div>
+              <p class="tile__role"><span>담당</span>콘텐츠 / 시스템 / 레벨 디자인</p>
+              <p class="tile__desc">고래신을 찾아 떠나는 '타부티'의 이야기, 퍼즐을 해결하며 숲을 탐험하는 3D 플랫폼 어드벤처.</p>
+            </div>
+            <button class="work__more tile__more" type="button" aria-label="타부티 상세 정보 &amp; 영상 보기"><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span></button>
           </div>
           <template>
             <div class="modal__media"><iframe src="https://www.youtube-nocookie.com/embed/-FRp-NJjTd0" title="타부티 공식 트레일러" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
@@ -332,18 +339,21 @@
             </div>
           </template>
         </article>
-
-        <article class="work" data-kind="p">
-          <img class="work__img" src="assets/works/p-club.jpg" alt="" loading="lazy">
-          <div class="work__body">
-            <p class="work__cat">프로젝트 · 모바일 · 2024</p>
-            <h3 class="work__title">클럽 파이터즈</h3>
-            <p class="work__desc">[LG 산학 협력] 전자제품을 촬영해 나만의 캐릭터로 육성. 캐릭터를 수집하고 강화해 다른 유저와 겨루는 캐릭터 수집형 난투 대전 게임.</p>
-            <ul class="work__tags"><li>유니티</li><li>컨셉</li><li>콘텐츠</li><li>시스템</li></ul>
-            <button class="work__more" type="button">상세 정보 보기 <span aria-hidden="true">↗</span></button>
+        <article class="work tile">
+          <div class="tile__in">
+            <img src="assets/works/p-club-key.jpg" alt="" width="1600" height="900" loading="lazy" style="object-position: 70% 30%">
+            <div class="tile__text">
+              <div class="tile__head">
+                <h3 class="work__title tile__name">클럽 파이터즈</h3>
+                <p class="work__cat tile__meta">모바일 · 2024</p>
+              </div>
+              <p class="tile__role"><span>담당</span>컨셉 / 콘텐츠 / 시스템 디자인 - 기획 전반</p>
+              <p class="tile__desc">[LG 산학 협력] 전자제품을 촬영해 나만의 캐릭터로 육성. 캐릭터를 수집하고 강화해 다른 유저와 겨루는 캐릭터 수집형 난투 대전 게임.</p>
+            </div>
+            <button class="work__more tile__more" type="button" aria-label="클럽 파이터즈 상세 정보 보기"><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span></button>
           </div>
           <template>
-            <div class="modal__media"><img src="assets/works/p-club.jpg" alt=""></div>
+            <div class="modal__media"><img src="assets/works/p-club-key.jpg" alt=""></div>
             <div class="modal__body">
               <p class="modal__intro">LG 산학 협력 프로젝트 (개발 인력: 총 16명 중, 게임 디자이너 1명)</p>
               <dl class="modal__meta">
@@ -372,15 +382,18 @@
             </div>
           </template>
         </article>
-
-        <article class="work" data-kind="p">
-          <img class="work__img" src="assets/works/p-genie.jpg" alt="" loading="lazy">
-          <div class="work__body">
-            <p class="work__cat">프로젝트 · 모바일 · 2022</p>
-            <h3 class="work__title">지니버거</h3>
-            <p class="work__desc">KT 메타버스 '지니어스' 탑재용 미니 게임, 음식을 던져 하이스코어를 노리는 하이퍼 캐주얼 게임.</p>
-            <ul class="work__tags"><li>유니티</li><li>시스템</li><li>레벨</li></ul>
-            <button class="work__more" type="button">상세 정보 &amp; 영상 보기 <span aria-hidden="true">↗</span></button>
+        <article class="work tile">
+          <div class="tile__in">
+            <img src="assets/works/p-genie.jpg" alt="" width="457" height="257" loading="lazy" style="object-position: 50% 5%">
+            <div class="tile__text">
+              <div class="tile__head">
+                <h3 class="work__title tile__name">지니버거</h3>
+                <p class="work__cat tile__meta">모바일 · 2022</p>
+              </div>
+              <p class="tile__role"><span>담당</span>시스템 및 레벨 디자인</p>
+              <p class="tile__desc">KT 메타버스 '지니어스' 탑재용 미니 게임, 음식을 던져 하이스코어를 노리는 하이퍼 캐주얼 게임.</p>
+            </div>
+            <button class="work__more tile__more" type="button" aria-label="지니버거 상세 정보 &amp; 영상 보기"><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span></button>
           </div>
           <template>
             <div class="modal__media"><iframe src="https://www.youtube-nocookie.com/embed/lBN4wTGP29U" title="지니버거 플레이 영상" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
@@ -415,15 +428,18 @@
             </div>
           </template>
         </article>
-
-        <article class="work" data-kind="p">
-          <img class="work__img" src="assets/works/p-chicken.jpg" alt="" loading="lazy">
-          <div class="work__body">
-            <p class="work__cat">프로젝트 · 보드 게임 · 2022</p>
-            <h3 class="work__title">누가 닭다리 다 먹었어!</h3>
-            <p class="work__desc">남들 몰래 더 많은 치킨 카드를 모아 점수를 획득하는 파티 보드 게임. 텀블벅 펀딩 성공 및 실물 제품 출시.</p>
-            <ul class="work__tags"><li>기획 전반</li><li>카드 밸런싱</li><li>세일즈</li></ul>
-            <button class="work__more" type="button">상세 정보 보기 <span aria-hidden="true">↗</span></button>
+        <article class="work tile">
+          <div class="tile__in">
+            <img src="assets/works/p-chicken.jpg" alt="" width="457" height="257" loading="lazy" style="object-position: 50% 50%">
+            <div class="tile__text">
+              <div class="tile__head">
+                <h3 class="work__title tile__name">누가 닭다리 다 먹었어!</h3>
+                <p class="work__cat tile__meta">보드 게임 · 2022</p>
+              </div>
+              <p class="tile__role"><span>담당</span>기획 및 세일즈 전반</p>
+              <p class="tile__desc">남들 몰래 더 많은 치킨 카드를 모아 점수를 획득하는 파티 보드 게임. 텀블벅 펀딩 성공 및 실물 제품 출시.</p>
+            </div>
+            <button class="work__more tile__more" type="button" aria-label="누가 닭다리 다 먹었어! 상세 정보 보기"><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span></button>
           </div>
           <template>
             <div class="modal__media"><img src="assets/works/p-chicken.jpg" alt=""></div>
@@ -458,16 +474,28 @@
             </div>
           </template>
         </article>
+      </div>
+      <a class="scroll-hint" href="#portfolio" aria-label="포트폴리오로 이동">
+        <span aria-hidden="true">Scroll</span>
+        <span class="scroll-hint__mouse" aria-hidden="true"></span>
+      </a>
+    </section>
 
-        <article class="work" data-kind="d">
-          <img class="work__img" src="assets/works/d-event.jpg" alt="" loading="lazy">
-          <div class="work__body">
-            <p class="work__cat">기획서 · 콘텐츠</p>
-            <h3 class="work__title">아스트라에 오라티오<br>이벤트 기획서</h3>
-            <p class="work__desc">행동력을 소모하지 않는 미니게임으로 신규 · 복귀 유저도 같은 조건에서 참여하고, 늦게 합류해도 완주할 수 있게 설계한 14일 이벤트.</p>
-            <ul class="work__tags"><li>이벤트</li><li>미니게임</li><li>데이터 설계</li></ul>
-            <button class="work__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
-          </div>
+    <!-- 포트폴리오: 기획서 4편 (각 기획서 PDF 기준). 밝은 배경, PC는 정확히 한 화면 (2026-11-15 B 문서카드형).
+         카드 위 = 표지 뒤로 2 · 3쪽이 겹친 종이 묶음(마우스를 올리면 펼쳐짐). 카드를 누르면 <template> 내용으로 상세 팝업 -->
+    <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="sec-head">
+        <p class="sec-head__eyebrow">Portfolio</p>
+        <h2 class="sec-head__title" id="portfolio-title">포트폴리오</h2>
+      </div>
+      <div class="docs">
+        <article class="work doc-card">
+          <div class="doc-card__stack" aria-hidden="true"><img src="assets/docs/02/t03.jpg" alt="" width="480" height="270" loading="lazy"><img src="assets/docs/02/t02.jpg" alt="" width="480" height="270" loading="lazy"><img src="assets/works/d-event.jpg" alt="" width="800" height="450" loading="lazy"></div>
+          <p class="work__cat doc-card__cat">기획서 · 콘텐츠</p>
+          <h3 class="work__title doc-card__title">아스트라에 오라티오<br>이벤트 기획서</h3>
+          <p class="doc-card__desc">행동력을 소모하지 않는 미니게임으로 신규 · 복귀 유저도 같은 조건에서 참여하고, 늦게 합류해도 완주할 수 있게 설계한 14일 이벤트.</p>
+          <ul class="doc-card__tags"><li>이벤트</li><li>미니게임</li><li>데이터 설계</li></ul>
+          <button class="work__more doc-card__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
           <template>
             <div class="modal__media"><img src="assets/works/d-event.jpg" alt=""></div>
             <div class="modal__body">
@@ -489,16 +517,13 @@
             </div>
           </template>
         </article>
-
-        <article class="work" data-kind="d">
-          <img class="work__img" src="assets/works/d-qte.jpg" alt="" loading="lazy">
-          <div class="work__body">
-            <p class="work__cat">기획서 · 시스템</p>
-            <h3 class="work__title">턴제 장르 게임<br>QTE 스킬 강화 시스템 기획서</h3>
-            <p class="work__desc">턴제 전투의 연출 대기 시간에 플레이어가 직접 개입할 수 있도록 QTE를 추가해 전투 몰입감을 높이는 시스템 제안서.</p>
-            <ul class="work__tags"><li>턴제 전투</li><li>QTE</li><li>피로도</li></ul>
-            <button class="work__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
-          </div>
+        <article class="work doc-card">
+          <div class="doc-card__stack" aria-hidden="true"><img src="assets/docs/03/t03.jpg" alt="" width="480" height="270" loading="lazy"><img src="assets/docs/03/t02.jpg" alt="" width="480" height="270" loading="lazy"><img src="assets/works/d-qte.jpg" alt="" width="800" height="450" loading="lazy"></div>
+          <p class="work__cat doc-card__cat">기획서 · 시스템</p>
+          <h3 class="work__title doc-card__title">턴제 장르 게임<br>QTE 스킬 강화 시스템 기획서</h3>
+          <p class="doc-card__desc">턴제 전투의 연출 대기 시간에 플레이어가 직접 개입할 수 있도록 QTE를 추가해 전투 몰입감을 높이는 시스템 제안서.</p>
+          <ul class="doc-card__tags"><li>턴제 전투</li><li>QTE</li><li>피로도</li></ul>
+          <button class="work__more doc-card__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
           <template>
             <div class="modal__media"><img src="assets/works/d-qte.jpg" alt=""></div>
             <div class="modal__body">
@@ -520,16 +545,13 @@
             </div>
           </template>
         </article>
-
-        <article class="work" data-kind="d">
-          <img class="work__img" src="assets/works/d-weapon.jpg" alt="" loading="lazy">
-          <div class="work__body">
-            <p class="work__cat">기획서 · 전투</p>
-            <h3 class="work__title">호라이즌 스틸 프론티어스<br>신규 근접 무기 제안서</h3>
-            <p class="work__desc">원거리 무기 중심의 호라이즌 시리즈에 근접 무기를 추가해, MMORPG 파티 플레이에서 포지션별 역할을 수행하도록 제안.</p>
-            <ul class="work__tags"><li>전투 콘텐츠</li><li>무기 설계</li><li>포지션 역할</li></ul>
-            <button class="work__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
-          </div>
+        <article class="work doc-card">
+          <div class="doc-card__stack" aria-hidden="true"><img src="assets/docs/04/t03.jpg" alt="" width="480" height="270" loading="lazy"><img src="assets/docs/04/t02.jpg" alt="" width="480" height="270" loading="lazy"><img src="assets/works/d-weapon.jpg" alt="" width="800" height="450" loading="lazy"></div>
+          <p class="work__cat doc-card__cat">기획서 · 전투</p>
+          <h3 class="work__title doc-card__title">호라이즌 스틸 프론티어스<br>신규 근접 무기 제안서</h3>
+          <p class="doc-card__desc">원거리 무기 중심의 호라이즌 시리즈에 근접 무기를 추가해, MMORPG 파티 플레이에서 포지션별 역할을 수행하도록 제안.</p>
+          <ul class="doc-card__tags"><li>전투 콘텐츠</li><li>무기 설계</li><li>포지션 역할</li></ul>
+          <button class="work__more doc-card__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
           <template>
             <div class="modal__media"><img src="assets/works/d-weapon.jpg" alt=""></div>
             <div class="modal__body">
@@ -551,16 +573,13 @@
             </div>
           </template>
         </article>
-
-        <article class="work" data-kind="d">
-          <img class="work__img" src="assets/works/d-ai.jpg" alt="" loading="lazy">
-          <div class="work__body">
-            <p class="work__cat">기획서 · AI 활용</p>
-            <h3 class="work__title">AI 활용 보고서</h3>
-            <p class="work__desc">초안은 빠르게, 검토는 깊게. 기획 · 개발 문서 초안 작성과 데이터 구조화에 AI 어시스턴트를 활용한 과정과 배운 점.</p>
-            <ul class="work__tags"><li>ChatGPT</li><li>Gemini</li><li>Claude Code</li></ul>
-            <button class="work__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
-          </div>
+        <article class="work doc-card">
+          <div class="doc-card__stack" aria-hidden="true"><img src="assets/docs/07/t03.jpg" alt="" width="480" height="270" loading="lazy"><img src="assets/docs/07/t02.jpg" alt="" width="480" height="270" loading="lazy"><img src="assets/works/d-ai.jpg" alt="" width="800" height="450" loading="lazy"></div>
+          <p class="work__cat doc-card__cat">기획서 · AI 활용</p>
+          <h3 class="work__title doc-card__title">AI 활용 보고서</h3>
+          <p class="doc-card__desc">초안은 빠르게, 검토는 깊게. 기획 · 개발 문서 초안 작성과 데이터 구조화에 AI 어시스턴트를 활용한 과정과 배운 점.</p>
+          <ul class="doc-card__tags"><li>ChatGPT</li><li>Gemini</li><li>Claude Code</li></ul>
+          <button class="work__more doc-card__more" type="button">기획서 상세 보기 <span aria-hidden="true">↗</span></button>
           <template>
             <div class="modal__media"><img src="assets/works/d-ai.jpg" alt=""></div>
             <div class="modal__body">
@@ -583,7 +602,7 @@
           </template>
         </article>
       </div>
-      <a class="scroll-hint" href="#play" aria-label="플레이경험으로 이동">
+      <a class="scroll-hint" href="#play" aria-label="플레이경험로 이동">
         <span aria-hidden="true">Scroll</span>
         <span class="scroll-hint__mouse" aria-hidden="true"></span>
       </a>
@@ -664,7 +683,7 @@
     </section>
   </main>
 
-  <!-- 프로젝트&기획서 상세 팝업: 누른 카드의 <template> 내용으로 채움 -->
+  <!-- 프로젝트 · 포트폴리오 상세 팝업: 누른 칸 · 카드의 <template> 내용으로 채움 -->
   <dialog class="modal" aria-labelledby="modal-title">
     <button class="modal__close" type="button" aria-label="닫기">×</button>
     <div class="modal__content"></div>
