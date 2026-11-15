@@ -652,6 +652,15 @@ body:has(.modal[open]) { overflow: hidden; }
 .doc__page:hover img { transform: scale(1.05); }
 .doc__page[data-more]::after { content: attr(data-more); position: absolute; inset: 0; display: grid; place-items: center; font-size: 18px; font-weight: 600; color: var(--white); background: rgba(0, 0, 0, .6); }
 @media (max-width: 599px) { .doc__thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* 전시 · 수상 사진 (타부티): 4장 한 줄(휴대폰 2 × 2), 4:3으로 잘라 보이고 누르면 원본 비율 그대로 크게 (main.js) */
+.photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.photos__item { margin: 0; }
+.photos__btn { display: block; width: 100%; padding: 0; overflow: hidden; background: var(--black); border: 1px solid rgba(255, 255, 255, .1); border-radius: 8px; cursor: zoom-in; }
+.photos__btn img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .2s; }
+.photos__btn:hover img { transform: scale(1.05); }
+.photos__btn:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+.photos__item figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; text-align: center; color: var(--gray-300); }
+@media (max-width: 599px) { .photos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px; } }
 
 /* 기획서 크게 보기 (화면 전체) */
 .viewer { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; color: var(--white); background: var(--black); border: 0; overflow: auto; }
@@ -661,6 +670,7 @@ body:has(.modal[open]) { overflow: hidden; }
 .viewer__close { position: static; flex: none; margin: 0; }
 .viewer__pages { display: grid; justify-items: center; gap: 16px; padding: 8px 16px 48px; }
 .viewer__pages img { width: 100%; max-width: 1400px; height: auto; background: var(--white); border-radius: 4px; scroll-margin-top: 72px; }
+.viewer__pages img.is-photo { width: auto; max-width: min(100%, 1400px); max-height: calc(100svh - 96px); background: none; object-fit: contain; } /* 사진 1장: 화면 안에 다 들어오게 */
 @media (max-width: 599px) {
   .modal__body { padding: 24px 20px 28px; }
   .modal__title { font-size: 24px; }
@@ -742,5 +752,5 @@ body:has(.modal[open]) { overflow: hidden; }
   html { scroll-behavior: auto; }
   .hero__slide { transform: none !important; }
   .scroll-hint__mouse::before { animation: none; }
-  .tile__in > img, .doc-card__stack img, .modal__play-icon, .modal__nav button, .modal__nav img { transition: none; }
+  .tile__in > img, .doc-card__stack img, .modal__play-icon, .modal__nav button, .modal__nav img, .photos__btn img { transition: none; }
 }

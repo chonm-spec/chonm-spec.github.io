@@ -127,6 +127,15 @@ modalContent.addEventListener('click', (e) => {
   b.parentElement.replaceChildren(f);
   f.focus(); // 누른 버튼이 사라지므로 키보드 위치를 영상으로
 });
+// 전시 · 수상 사진: 누르면 기획서 크게 보기 화면에 사진 1장 (원본 비율)
+modalContent.addEventListener('click', (e) => {
+  const b = e.target.closest('.photos__btn');
+  if (!b) return;
+  const cap = b.nextElementSibling.textContent;
+  viewer.querySelector('.viewer__title').textContent = cap;
+  viewerPages.replaceChildren(Object.assign(new Image(), { src: b.dataset.full, alt: cap, className: 'is-photo' }));
+  viewer.showModal();
+});
 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); // 바깥 어두운 곳
 // Esc 키. close 이벤트는 늦게 올 수 있어, 그사이 다른 카드를 열었으면 비우지 않음
 modal.addEventListener('close', () => { if (!modal.open) modalContent.replaceChildren(); });
