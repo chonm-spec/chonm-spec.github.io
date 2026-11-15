@@ -71,7 +71,7 @@ const fillDoc = (doc) => {
   }));
 };
 
-// 상세 팝업: 누른 카드의 분류·제목 + <template> 내용. 닫을 때 비워서 영상도 정지
+// 상세 팝업: 누른 칸 · 카드의 분류 · 요약 배지 · 제목 + <template> 내용. 닫을 때 비워서 영상도 정지
 const modal = document.querySelector('.modal');
 const modalContent = modal.querySelector('.modal__content');
 const closeModal = () => { modalContent.replaceChildren(); modal.close(); };
@@ -82,9 +82,13 @@ works.forEach((w) => w.querySelector('.work__more').addEventListener('click', ()
   title.id = 'modal-title';
   title.querySelectorAll('br').forEach((br) => br.replaceWith(' ')); // 팝업에서는 한 줄 (넘치면 자연스럽게 줄바꿈)
   detail.querySelectorAll('.doc').forEach(fillDoc);
+  const top = Object.assign(document.createElement('div'), { className: 'modal__top' });
   const cat = w.querySelector('.work__cat').cloneNode(true);
   cat.className = 'work__cat'; // 칸 · 카드용 꾸밈 클래스는 빼고 팝업 기본 모양으로
-  detail.querySelector('.modal__body').prepend(cat, title);
+  top.append(cat);
+  const badge = w.querySelector('.tile__badge'); // 프로젝트 칸만
+  if (badge) top.append(Object.assign(badge.cloneNode(true), { className: 'modal__badge' }));
+  detail.querySelector('.modal__info, .modal__body').prepend(top, title); // 프로젝트 = 위쪽 요약 칸, 기획서 = 본문
   modalContent.replaceChildren(detail);
   modal.showModal();
   modal.scrollTop = 0;

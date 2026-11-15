@@ -532,45 +532,79 @@ body:has(.modal[open]) { overflow: hidden; }
   overflow: auto;
 }
 .modal::backdrop { background: rgba(0, 0, 0, .75); }
-.modal__close { position: absolute; top: 12px; right: 12px; z-index: 1; width: 40px; height: 40px; font-size: 22px; color: var(--white); background: rgba(0, 0, 0, .6); border: 0; border-radius: 50%; cursor: pointer; }
+.modal__close { position: sticky; top: 12px; float: right; z-index: 1; width: 40px; height: 40px; margin: 12px 12px -52px 0; font-size: 22px; color: var(--white); background: rgba(0, 0, 0, .6); border: 0; border-radius: 50%; cursor: pointer; } /* 스크롤해도 오른쪽 위에 고정, 자리는 차지 안 함 */
 .modal__media { aspect-ratio: 16 / 9; background: var(--black); }
-.modal__media iframe,
-.modal__media img { display: block; width: 100%; height: 100%; border: 0; object-fit: cover; } /* 이미지는 16:9 칸을 꽉 채움 (비율이 다르면 위아래를 잘라 양옆 검은 띠 없음) */
+.modal__media img { display: block; width: 100%; height: 100%; object-fit: cover; } /* 칸을 꽉 채움 (비율이 다르면 잘려서 검은 띠 없음) */
 .modal__body { padding: 32px 40px 40px; }
 .modal__title { margin: 8px 0; font-size: 28px; font-weight: 800; }
-.modal__intro { margin: 0; color: var(--gray-300); }
-.modal__meta {
-  display: grid;
-  grid-template-columns: max-content minmax(0, 1fr) max-content minmax(0, 1fr);
-  gap: 8px 20px;
-  margin: 24px 0 0;
-  padding: 20px 0;
-  font-size: 15px;
-  border-block: 1px solid rgba(255, 255, 255, .1);
-}
-.modal__meta dt { font-weight: 600; color: var(--accent); }
-.modal__meta dd { margin: 0; }
 .modal__sec h4 { margin: 28px 0 8px; font-size: 17px; font-weight: 600; color: var(--accent); }
 .modal__sec p,
 .modal__sec ul { margin: 0; font-size: 16px; line-height: 1.75; color: var(--gray-300); }
 .modal__sec ul { padding-left: 1.2em; }
 .modal__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-/* 기여도 | 성과 및 결과 한 줄. 기여도 %는 도넛 그래프 (style="--p: 숫자") */
-.modal__stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 28px; }
-.modal__card { padding: 20px 24px 24px; background: #1a1a1a; border: 1px solid rgba(255, 255, 255, .1); border-radius: var(--radius); }
-.modal__card h4 { margin-top: 0; }
+/* 프로젝트 팝업 (2026-11-15 확정 목업): 1200px, 위쪽 2단 = [대표 이미지 | 요약]. 이미지는 요약 높이에 맞춰 잘림 */
+.modal:has(.modal__head) { width: min(1200px, calc(100% - 32px)); padding-bottom: 48px; }
+.modal__head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(380px, 1fr); background: #0a0a0a; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.modal__head .modal__media { position: relative; min-height: 240px; aspect-ratio: auto; }
+.modal__head .modal__media img { position: absolute; inset: 0; }
+.modal__info { padding: 24px 28px 26px; }
+.modal__top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-right: 44px; } /* 분류 · 요약 배지 (닫기 버튼 자리 비움) */
+.modal__badge { margin: 0; padding: 4px 10px; font-size: 13px; font-weight: 600; line-height: 1.35; color: var(--accent); background: rgba(96, 165, 250, .14); border: 1px solid rgba(96, 165, 250, .3); border-radius: 8px; }
+.modal__info .modal__title { margin: 6px 0 0; font-size: clamp(26px, 2.4vw, 34px); line-height: 1.25; letter-spacing: -.02em; }
+.modal__intro { margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: var(--gray-300); }
+/* 정보 2 × 2: 작은 이름 위 · 굵은 값 아래, 오른쪽 칸 앞 세로줄 */
+.modal__meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 0; margin: 16px 0 0; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .1); }
+.modal__meta div { padding-right: 12px; }
+.modal__meta div:nth-child(even) { padding: 0 0 0 16px; border-left: 1px solid rgba(255, 255, 255, .12); }
+.modal__meta dt { font-size: 12px; font-weight: 600; color: var(--gray-500); }
+.modal__meta dd { margin: 2px 0 0; font-size: 15px; font-weight: 600; line-height: 1.4; }
+.modal__info .modal__actions { gap: 8px; margin-top: 18px; }
+.modal__info .btn { min-height: 44px; padding: 0 20px; font-size: 15px; }
+/* 기여도 | 성과 및 결과. 기여도 %는 도넛 그래프 (style="--p: 숫자"), 성과는 체크 + 숫자 굵은 파랑 */
+.modal__stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px; padding: 28px 32px 0; }
+.modal__card { padding: 22px 24px; background: #181818; border: 1px solid rgba(255, 255, 255, .08); border-radius: var(--radius); }
+.modal__card h4 { margin: 0 0 14px; font-size: 16px; font-weight: 600; color: var(--accent); }
 .modal__contrib { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
-.modal__contrib ul { flex: 1 1 160px; }
-.donut { flex: none; display: grid; place-items: center; width: 132px; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(var(--accent) calc(var(--p) * 1%), rgba(255, 255, 255, .1) 0); }
-.donut span { display: grid; place-content: center; width: 74%; aspect-ratio: 1; font-size: 13px; line-height: 1.3; text-align: center; color: var(--gray-300); background: #1a1a1a; border-radius: 50%; }
+.modal__card ul { flex: 1 1 160px; margin: 0; padding: 0; list-style: none; font-size: 15px; line-height: 1.7; color: var(--gray-300); }
+.modal__card li { position: relative; padding-left: 16px; }
+.modal__card li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 6px; background: var(--gray-500); border-radius: 50%; }
+.modal__card--result li { padding-left: 24px; color: #e5e5e5; }
+.modal__card--result li + li { margin-top: 6px; }
+.modal__card--result li::before { top: .45em; width: 14px; height: 14px; background: rgba(96, 165, 250, .18) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2360a5fa' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E") center / 10px no-repeat; }
+.modal__num { font-weight: 800; color: var(--accent); }
+.donut { flex: none; display: grid; place-items: center; width: 120px; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(var(--accent) calc(var(--p) * 1%), rgba(255, 255, 255, .1) 0); }
+.donut span { display: grid; place-content: center; width: 74%; aspect-ratio: 1; font-size: 13px; line-height: 1.3; text-align: center; color: var(--gray-300); background: #181818; border-radius: 50%; }
 .donut b { font-size: 32px; font-weight: 800; color: var(--white); }
 .donut small { font-size: 16px; }
-/* 경력기술서 글 → 이미지(+ 설명) 묶음 */
-.modal__fig { margin: 20px 0 0; text-align: center; }
-.modal__fig + .modal__sec { margin-top: 48px; } /* 이미지 다음 묶음은 넓게 띄움 */
-.modal__fig img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 8px; }
-.modal__fig figcaption { margin-top: 10px; font-size: 14px; color: var(--gray-500); }
-.modal__fig small { display: block; font-size: 13px; }
+/* 게임 영상 · 개요 · 주요 작업 · 기획서: 왼쪽 작은 제목 + 오른쪽 내용 */
+.modal__row { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; margin: 36px 32px 0; padding-top: 28px; border-top: 1px solid rgba(255, 255, 255, .08); }
+.modal__head + .modal__row { margin-top: 28px; padding-top: 0; border-top: 0; } /* 위쪽 바로 아래(게임 영상)는 줄 없이 */
+.modal__label { margin: 0; font-size: 15px; font-weight: 600; color: var(--accent); }
+.modal__video { aspect-ratio: 16 / 9; overflow: hidden; background: var(--black); border-radius: 10px; }
+.modal__video iframe { display: block; width: 100%; height: 100%; border: 0; }
+.modal__overview { max-width: 46em; margin: 0; font-size: 16px; line-height: 1.85; color: var(--gray-300); }
+/* 주요 작업: [번호 · 제목 · 성과 수치 · 설명 | 이미지] */
+.modal__items { display: grid; gap: 36px; }
+.modal__item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 28px; align-items: start; }
+.modal__no { font-size: 13px; font-weight: 800; letter-spacing: .06em; color: var(--accent); }
+.modal__item h5 { margin: 4px 0 0; font-size: 19px; font-weight: 800; line-height: 1.4; }
+.modal__metric { display: inline-block; margin: 10px 0 0; padding: 4px 10px; font-size: 13px; font-weight: 600; color: var(--gray-100); background: rgba(96, 165, 250, .1); border-radius: 6px; }
+.modal__item p:not(.modal__metric) { margin: 12px 0 0; font-size: 15px; line-height: 1.8; color: var(--gray-300); }
+.modal__fig { margin: 0; }
+.modal__fig img { display: block; width: auto; max-width: 100%; height: auto; max-height: 420px; margin-inline: auto; background: var(--white); border-radius: 10px; } /* 세로로 긴 이미지는 420px까지만 */
+.modal__fig figcaption { margin-top: 8px; font-size: 13px; color: var(--gray-500); }
+.modal__fig small { display: block; font-size: 12px; }
+.doc__name { margin: 0 0 12px; font-size: 16px; font-weight: 600; }
+/* 959px 이하: 위쪽 2단 → 이미지 위 · 요약 아래, 왼쪽 제목 → 위로 */
+@media (max-width: 959px) {
+  .modal__head { grid-template-columns: minmax(0, 1fr); }
+  .modal__head .modal__media { min-height: 0; height: clamp(140px, 40vw, 240px); }
+  .modal__info { padding: 20px 20px 22px; }
+  .modal__stats { padding: 24px 20px 0; }
+  .modal__row { grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 28px 20px 0; padding-top: 22px; }
+  .modal__item { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+}
+@media (max-width: 599px) { .modal__info .btn { flex: 1; } }
 /* 기획서 미리보기: 앞 4쪽 (모바일 2 × 2), 누르면 크게 보기 */
 .doc__thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 .doc__page { position: relative; padding: 0; overflow: hidden; background: var(--white); border: 1px solid rgba(255, 255, 255, .1); border-radius: 8px; cursor: zoom-in; }
@@ -584,11 +618,10 @@ body:has(.modal[open]) { overflow: hidden; }
 .viewer::backdrop { background: transparent; }
 .viewer__bar { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px 12px 24px; background: var(--black); }
 .viewer__title { margin: 0; font-weight: 600; }
-.viewer__close { position: static; flex: none; }
+.viewer__close { position: static; flex: none; margin: 0; }
 .viewer__pages { display: grid; justify-items: center; gap: 16px; padding: 8px 16px 48px; }
 .viewer__pages img { width: 100%; max-width: 1400px; height: auto; background: var(--white); border-radius: 4px; scroll-margin-top: 72px; }
 @media (max-width: 599px) {
-  .modal__meta { grid-template-columns: max-content minmax(0, 1fr); }
   .modal__body { padding: 24px 20px 28px; }
   .modal__title { font-size: 24px; }
 }
