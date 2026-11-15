@@ -42,17 +42,74 @@ document.querySelectorAll('.awards').forEach((box) => {
 // 프로젝트 칸 · 포트폴리오 카드 (누르면 상세 팝업)
 const works = [...document.querySelectorAll('.work')];
 
-// 기획서 크게 보기: 전체 쪽을 위아래로 이어서, 누른 쪽부터 보여 줌
+// 크게 보기 (기획서 · 사진 공통, 2026-11-15 B): [이전] 큰 이미지 + 설명 [다음] / 아래 작은 이미지 목록, 위 막대 "이름 n / 전체"
+// 키보드 ← → · 휴대폰 밀기. 사진은 끝에서 처음으로, 기획서는 첫 쪽 · 마지막 쪽에서 멈춤
 const viewer = document.querySelector('.viewer');
 const viewerPages = viewer.querySelector('.viewer__pages');
 const pageNo = (n) => String(n).padStart(2, '0');
-const openViewer = (doc, n) => {
-  viewer.querySelector('.viewer__title').textContent = doc.dataset.title;
-  viewerPages.replaceChildren(...Array.from({ length: +doc.dataset.pages }, (_, i) => Object.assign(new Image(1600, 900), {
-    loading: 'lazy', src: `${doc.dataset.doc}/${pageNo(i + 1)}.jpg`, alt: `${doc.dataset.title} ${i + 1}쪽`,
-  })));
+const arrow = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+let gal = { items: [], no: 0, loop: true };
+const galShow = (n, smooth = true) => {
+  const { items, loop } = gal;
+  gal.no = loop ? (n + items.length) % items.length : Math.min(Math.max(n, 0), items.length - 1);
+  const it = items[gal.no];
+  viewer.querySelector('.gal__count').textContent = `${gal.no + 1} / ${items.length}`;
+  const img = viewerPages.querySelector('.gal__img');
+  img.src = it.full;
+  img.alt = it.alt;
+  const cap = viewerPages.querySelector('.gal figcaption');
+  cap.textContent = it.cap;
+  cap.hidden = !it.cap;
+  const [prev, next] = viewerPages.querySelectorAll('.gal__nav');
+  prev.disabled = !loop && gal.no === 0;
+  next.disabled = !loop && gal.no === items.length - 1;
+  const strip = viewerPages.querySelector('.gal__thumbs');
+  strip.querySelectorAll('button').forEach((b, k) => b.setAttribute('aria-current', k === gal.no));
+  const cur = strip.children[gal.no];
+  strip.scrollTo({ left: cur.offsetLeft - (strip.clientWidth - cur.offsetWidth) / 2, behavior: smooth ? 'smooth' : 'auto' }); // 목록이 길면(기획서) 지금 것을 가운데로
+  [gal.no + 1, gal.no - 1].forEach((k) => { const x = items[loop ? (k + items.length) % items.length : k]; if (x) new Image().src = x.full; }); // 옆 것 미리 불러오기
+};
+// items = [{ full: 큰 이미지, alt, cap: 설명(없으면 ''), name: 목록 버튼 이름, thumb: 목록에 넣을 작은 img }]
+const openGallery = (label, items, start, loop, stripClass, unit) => {
+  gal = { items, no: start, loop };
+  viewer.querySelector('.viewer__title').replaceChildren(label, Object.assign(document.createElement('span'), { className: 'gal__count' }));
+  const box = document.createElement('div');
+  box.className = 'gal';
+  box.innerHTML = `<button class="gal__nav" type="button" data-d="-1" aria-label="이전 ${unit}">${arrow('m15 18-6-6 6-6')}</button>`
+    + '<figure class="gal__fig"><img class="gal__img" alt=""><figcaption></figcaption></figure>'
+    + `<button class="gal__nav" type="button" data-d="1" aria-label="다음 ${unit}">${arrow('m9 18 6-6-6-6')}</button>`;
+  box.addEventListener('click', (e) => { const b = e.target.closest('.gal__nav'); if (b) galShow(gal.no + +b.dataset.d); });
+  let sx = null; // 휴대폰 밀기 (50px 이상)
+  box.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (sx !== null && Math.abs(dx) > 50) galShow(gal.no + (dx < 0 ? 1 : -1));
+    sx = null;
+  });
+  const strip = document.createElement('div');
+  strip.className = `gal__thumbs ${stripClass}`;
+  strip.append(...items.map((it, k) => {
+    const b = Object.assign(document.createElement('button'), { type: 'button' });
+    b.setAttribute('aria-label', `${it.name} 보기`);
+    b.append(it.thumb);
+    b.addEventListener('click', () => galShow(k));
+    return b;
+  }));
+  viewerPages.replaceChildren(box, strip);
   viewer.showModal();
-  viewerPages.children[n - 1].scrollIntoView();
+  galShow(start, false); // 열린 뒤에 해야 목록 위치를 잴 수 있음
+};
+viewer.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') galShow(gal.no - 1);
+  if (e.key === 'ArrowRight') galShow(gal.no + 1);
+});
+// 기획서: 한 쪽씩, 아래 목록 = 모든 쪽 작은 이미지(sNN.jpg, 화면에 보이는 것만 불러옴)
+const openViewer = (doc, n) => {
+  const t = doc.dataset.title;
+  openGallery(t, Array.from({ length: +doc.dataset.pages }, (_, i) => ({
+    full: `${doc.dataset.doc}/${pageNo(i + 1)}.jpg`, alt: `${t} ${i + 1}쪽`, cap: '', name: `${i + 1}쪽`,
+    thumb: Object.assign(new Image(320, 180), { loading: 'lazy', alt: '', src: `${doc.dataset.doc}/s${pageNo(i + 1)}.jpg` }),
+  })), n - 1, false, 'gal__thumbs--doc', '쪽');
 };
 viewer.querySelector('.viewer__close').addEventListener('click', () => viewer.close());
 viewer.addEventListener('click', (e) => { if (e.target === viewer || e.target === viewerPages) viewer.close(); }); // 쪽 바깥 어두운 곳
@@ -127,14 +184,17 @@ modalContent.addEventListener('click', (e) => {
   b.parentElement.replaceChildren(f);
   f.focus(); // 누른 버튼이 사라지므로 키보드 위치를 영상으로
 });
-// 전시 · 수상 사진 · 게임 스크린샷: 누르면 기획서 크게 보기 화면에 사진 1장 (원본 비율)
+// 전시 · 수상 사진 · 게임 스크린샷: 누르면 크게 보기에서 같은 칸 사진끼리 넘기기 (목록 = 팝업의 작은 사진 그대로)
 modalContent.addEventListener('click', (e) => {
   const b = e.target.closest('.photos__btn');
   if (!b) return;
-  const cap = b.dataset.title || b.nextElementSibling.textContent; // 설명 글이 없는 스크린샷은 data-title
-  viewer.querySelector('.viewer__title').textContent = cap;
-  viewerPages.replaceChildren(Object.assign(new Image(), { src: b.dataset.full, alt: cap, className: 'is-photo' }));
-  viewer.showModal();
+  const group = b.closest('.photos');
+  const btns = [...group.querySelectorAll('.photos__btn')];
+  const label = group.closest('.modal__row').querySelector('.modal__label').textContent;
+  openGallery(label, btns.map((x, k) => {
+    const cap = x.parentElement.querySelector('figcaption')?.textContent || '';
+    return { full: x.dataset.full, alt: cap || label, cap, name: `${k + 1}번째 사진`, thumb: x.querySelector('img').cloneNode() };
+  }), btns.indexOf(b), true, group.classList.contains('photos--shots') ? 'gal__thumbs--shots' : '', '사진');
 });
 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); // 바깥 어두운 곳
 // Esc 키. close 이벤트는 늦게 올 수 있어, 그사이 다른 카드를 열었으면 비우지 않음
