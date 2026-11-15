@@ -547,6 +547,16 @@ body:has(.modal[open]) { overflow: hidden; }
 .modal__head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(380px, 1fr); background: #0a0a0a; border-bottom: 1px solid rgba(255, 255, 255, .08); }
 .modal__head .modal__media { position: relative; min-height: 240px; aspect-ratio: auto; }
 .modal__head .modal__media img { position: absolute; inset: 0; }
+/* 위쪽 이미지의 ▶ (영상 있는 프로젝트): 누르면 그 자리에서 유튜브 재생, 칸은 16:9로 커짐 (main.js) */
+.modal__play { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 10px; width: 100%; padding: 0; font: inherit; color: var(--white); background: linear-gradient(rgba(0, 0, 0, .05), rgba(0, 0, 0, .4)); border: 0; cursor: pointer; }
+.modal__play-icon { display: grid; place-items: center; width: 72px; height: 72px; background: rgba(0, 0, 0, .55); border: 2px solid rgba(255, 255, 255, .9); border-radius: 50%; transition: transform .2s, background .2s, border-color .2s; }
+.modal__play-icon svg { width: 30px; height: 30px; margin-left: 4px; }
+.modal__play-label { padding: 4px 12px; font-size: 14px; font-weight: 600; background: rgba(0, 0, 0, .6); border-radius: 999px; }
+.modal__play:hover .modal__play-icon,
+.modal__play:focus-visible .modal__play-icon { transform: scale(1.08); background: var(--accent); border-color: var(--accent); }
+.modal__play:focus-visible { outline: 0; }
+.modal__head .modal__media.is-playing { min-height: 0; height: auto; aspect-ratio: 16 / 9; align-self: center; }
+.modal__media.is-playing iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .modal__info { padding: 24px 28px 26px; }
 .modal__top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-right: 44px; } /* 분류 · 요약 배지 (닫기 버튼 자리 비움) */
 .modal__badge { margin: 0; padding: 4px 10px; font-size: 13px; font-weight: 600; line-height: 1.35; color: var(--accent); background: rgba(96, 165, 250, .14); border: 1px solid rgba(96, 165, 250, .3); border-radius: 8px; }
@@ -576,12 +586,9 @@ body:has(.modal[open]) { overflow: hidden; }
 .donut span { display: grid; place-content: center; width: 74%; aspect-ratio: 1; font-size: 13px; line-height: 1.3; text-align: center; color: var(--gray-300); background: #181818; border-radius: 50%; }
 .donut b { font-size: 32px; font-weight: 800; color: var(--white); }
 .donut small { font-size: 16px; }
-/* 게임 영상 · 개요 · 주요 작업 · 기획서: 왼쪽 작은 제목 + 오른쪽 내용 */
+/* 개요 · 주요 작업 · 기획서: 왼쪽 작은 제목 + 오른쪽 내용 */
 .modal__row { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; margin: 36px 32px 0; padding-top: 28px; border-top: 1px solid rgba(255, 255, 255, .08); }
-.modal__head + .modal__row { margin-top: 28px; padding-top: 0; border-top: 0; } /* 위쪽 바로 아래(게임 영상)는 줄 없이 */
 .modal__label { margin: 0; font-size: 15px; font-weight: 600; color: var(--accent); }
-.modal__video { aspect-ratio: 16 / 9; overflow: hidden; background: var(--black); border-radius: 10px; }
-.modal__video iframe { display: block; width: 100%; height: 100%; border: 0; }
 .modal__overview { max-width: 46em; margin: 0; font-size: 16px; line-height: 1.85; color: var(--gray-300); }
 /* 주요 작업: [번호 · 제목 · 성과 수치 · 설명 | 이미지] */
 .modal__items { display: grid; gap: 36px; }
@@ -604,7 +611,11 @@ body:has(.modal[open]) { overflow: hidden; }
   .modal__row { grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 28px 20px 0; padding-top: 22px; }
   .modal__item { grid-template-columns: minmax(0, 1fr); gap: 14px; }
 }
-@media (max-width: 599px) { .modal__info .btn { flex: 1; } }
+@media (max-width: 599px) {
+  .modal__info .btn { flex: 1 1 auto; padding: 0 16px; white-space: nowrap; } /* 버튼 안 글은 한 줄, 모자라면 버튼째 다음 줄 */
+  .modal__play-icon { width: 56px; height: 56px; }
+  .modal__play-icon svg { width: 24px; height: 24px; }
+}
 /* 기획서 미리보기: 앞 4쪽 (모바일 2 × 2), 누르면 크게 보기 */
 .doc__thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 .doc__page { position: relative; padding: 0; overflow: hidden; background: var(--white); border: 1px solid rgba(255, 255, 255, .1); border-radius: 8px; cursor: zoom-in; }
@@ -702,5 +713,5 @@ body:has(.modal[open]) { overflow: hidden; }
   html { scroll-behavior: auto; }
   .hero__slide { transform: none !important; }
   .scroll-hint__mouse::before { animation: none; }
-  .tile__in > img, .doc-card__stack img { transition: none; }
+  .tile__in > img, .doc-card__stack img, .modal__play-icon { transition: none; }
 }

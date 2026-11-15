@@ -94,6 +94,20 @@ works.forEach((w) => w.querySelector('.work__more').addEventListener('click', ()
   modal.scrollTop = 0;
 }));
 modal.querySelector('.modal__close').addEventListener('click', closeModal);
+// 위쪽 이미지의 ▶: 그 자리에서 유튜브 영상으로 바꿔 바로 재생
+modalContent.addEventListener('click', (e) => {
+  const b = e.target.closest('.modal__play');
+  if (!b) return;
+  const f = Object.assign(document.createElement('iframe'), {
+    src: `${b.dataset.src}${b.dataset.src.includes('?') ? '&' : '?'}autoplay=1`,
+    title: b.dataset.title,
+    allow: 'autoplay; encrypted-media; picture-in-picture; fullscreen',
+    allowFullscreen: true,
+  });
+  b.parentElement.classList.add('is-playing');
+  b.parentElement.replaceChildren(f);
+  f.focus(); // 누른 버튼이 사라지므로 키보드 위치를 영상으로
+});
 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); // 바깥 어두운 곳
 // Esc 키. close 이벤트는 늦게 올 수 있어, 그사이 다른 카드를 열었으면 비우지 않음
 modal.addEventListener('close', () => { if (!modal.open) modalContent.replaceChildren(); });
