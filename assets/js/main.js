@@ -75,7 +75,11 @@ const fillDoc = (doc) => {
 const modal = document.querySelector('.modal');
 const modalContent = modal.querySelector('.modal__content');
 const closeModal = () => { modalContent.replaceChildren(); modal.close(); };
-works.forEach((w) => w.querySelector('.work__more').addEventListener('click', () => {
+// 프로젝트 팝업의 다른 프로젝트 목록: 팝업 위쪽 대표 이미지(프로젝트 칸 순서). PC = 팝업 왼쪽 세로, 1023px 이하 = 팝업 맨 위 가로 한 줄
+const projNav = Object.assign(document.createElement('nav'), { className: 'modal__nav' });
+projNav.setAttribute('aria-label', '다른 프로젝트');
+modalContent.before(projNav);
+const openWork = (w) => {
   const detail = w.querySelector('template').content.cloneNode(true);
   const title = w.querySelector('.work__title').cloneNode(true);
   title.className = 'modal__title';
@@ -90,9 +94,24 @@ works.forEach((w) => w.querySelector('.work__more').addEventListener('click', ()
   if (badge) top.append(Object.assign(badge.cloneNode(true), { className: 'modal__badge' }));
   detail.querySelector('.modal__info, .modal__body').prepend(top, title); // 프로젝트 = 위쪽 요약 칸, 기획서 = 본문
   modalContent.replaceChildren(detail);
-  modal.showModal();
+  projNav.querySelectorAll('button').forEach((b) => b.setAttribute('aria-current', b.dataset.id === w.id));
+  if (!modal.open) modal.showModal(); // 목록에서 바꿀 때는 열린 그대로 내용만
   modal.scrollTop = 0;
-}));
+  const cur = projNav.querySelector('[aria-current="true"]');
+  if (cur) projNav.scrollLeft = cur.offsetLeft - 12; // 가로 한 줄일 때 지금 프로젝트가 보이게
+};
+works.forEach((w) => w.querySelector('.work__more').addEventListener('click', () => openWork(w)));
+document.querySelectorAll('.bento .work').forEach((w) => {
+  const src = w.querySelector('template').content.querySelector('.modal__media img');
+  const b = Object.assign(document.createElement('button'), { type: 'button' });
+  b.dataset.id = w.id; // data-work는 이력서 버튼용이라 쓰지 않음
+  b.setAttribute('aria-label', `${w.querySelector('.work__title').textContent} 보기`);
+  const img = Object.assign(new Image(), { loading: 'lazy', alt: '', src: src.getAttribute('src') });
+  img.style.objectPosition = src.style.objectPosition;
+  b.append(img);
+  b.addEventListener('click', () => openWork(w));
+  projNav.append(b);
+});
 modal.querySelector('.modal__close').addEventListener('click', closeModal);
 // 위쪽 이미지의 ▶: 그 자리에서 유튜브 영상으로 바꿔 바로 재생
 modalContent.addEventListener('click', (e) => {

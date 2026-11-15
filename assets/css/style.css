@@ -544,6 +544,30 @@ body:has(.modal[open]) { overflow: hidden; }
 .modal__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 /* 프로젝트 팝업 (2026-11-15 확정 목업): 1200px, 위쪽 2단 = [대표 이미지 | 요약]. 이미지는 요약 높이에 맞춰 잘림 */
 .modal:has(.modal__head) { width: min(1200px, calc(100% - 32px)); padding-bottom: 48px; }
+/* 다른 프로젝트 목록 (main.js): 지금 프로젝트 = 파란 테두리, 나머지 반투명 */
+.modal__nav { display: none; }
+.modal__nav button { display: block; padding: 0; aspect-ratio: 16 / 9; overflow: hidden; background: var(--black); border: 2px solid transparent; border-radius: 10px; cursor: pointer; opacity: .5; transition: opacity .2s, border-color .2s, box-shadow .2s; }
+.modal__nav button:hover,
+.modal__nav button:focus-visible { opacity: 1; }
+.modal__nav button:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+.modal__nav button[aria-current="true"] { opacity: 1; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 24px rgba(96, 165, 250, .35); }
+.modal__nav img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* PC: 목록 칸(--t, 남는 폭 · 화면 높이에 맞춰 120~280px) + 24px + 팝업(--p, 최대 1200px)을 한 묶음으로 가운데. 목록은 화면에 고정 */
+@media (min-width: 1024px) {
+  .modal:has(.modal__head) {
+    --t: min(clamp(120px, calc(100% - 1272px), 280px), calc((100svh - 96px) / 5 * 16 / 9));
+    --p: min(1200px, calc(100% - var(--t) - 56px));
+    width: var(--p);
+    margin-left: calc((100% - var(--t) - 24px - var(--p)) / 2 + var(--t) + 24px);
+    margin-right: auto;
+  }
+  .modal:has(.modal__head) .modal__nav { position: fixed; top: 50%; left: calc((100% - var(--t) - 24px - var(--p)) / 2); display: grid; gap: 12px; width: var(--t); transform: translateY(-50%); }
+}
+/* 1023px 이하: 팝업 맨 위 가로 한 줄(넘치면 옆으로 밀기), 스크롤하면 위로 지나감. 줄은 닫기 버튼 앞에서 끝남 */
+@media (max-width: 1023px) {
+  .modal:has(.modal__head) .modal__nav { position: relative; display: flex; gap: 8px; margin-right: 60px; padding: 12px; overflow-x: auto; scrollbar-width: none; }
+  .modal__nav button { flex: none; width: 96px; }
+}
 .modal__head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(380px, 1fr); background: #0a0a0a; border-bottom: 1px solid rgba(255, 255, 255, .08); }
 .modal__head .modal__media { position: relative; min-height: 240px; aspect-ratio: auto; }
 .modal__head .modal__media img { position: absolute; inset: 0; }
@@ -713,5 +737,5 @@ body:has(.modal[open]) { overflow: hidden; }
   html { scroll-behavior: auto; }
   .hero__slide { transform: none !important; }
   .scroll-hint__mouse::before { animation: none; }
-  .tile__in > img, .doc-card__stack img, .modal__play-icon { transition: none; }
+  .tile__in > img, .doc-card__stack img, .modal__play-icon, .modal__nav button { transition: none; }
 }
