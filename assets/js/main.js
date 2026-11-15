@@ -127,11 +127,11 @@ modalContent.addEventListener('click', (e) => {
   b.parentElement.replaceChildren(f);
   f.focus(); // 누른 버튼이 사라지므로 키보드 위치를 영상으로
 });
-// 전시 · 수상 사진: 누르면 기획서 크게 보기 화면에 사진 1장 (원본 비율)
+// 전시 · 수상 사진 · 게임 스크린샷: 누르면 기획서 크게 보기 화면에 사진 1장 (원본 비율)
 modalContent.addEventListener('click', (e) => {
   const b = e.target.closest('.photos__btn');
   if (!b) return;
-  const cap = b.nextElementSibling.textContent;
+  const cap = b.dataset.title || b.nextElementSibling.textContent; // 설명 글이 없는 스크린샷은 data-title
   viewer.querySelector('.viewer__title').textContent = cap;
   viewerPages.replaceChildren(Object.assign(new Image(), { src: b.dataset.full, alt: cap, className: 'is-photo' }));
   viewer.showModal();

@@ -661,6 +661,10 @@ body:has(.modal[open]) { overflow: hidden; }
 .photos__btn:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
 .photos__item figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; text-align: center; color: var(--gray-300); }
 @media (max-width: 599px) { .photos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px; } }
+/* 게임 스크린샷 (지니버거): 3장 한 줄, 게임 화면 비율 그대로(안 잘림). 휴대폰은 한 장씩 크게 */
+.photos--shots { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.photos--shots img { aspect-ratio: 1280 / 598; }
+@media (max-width: 599px) { .photos--shots { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
 
 /* 기획서 크게 보기 (화면 전체) */
 .viewer { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; color: var(--white); background: var(--black); border: 0; overflow: auto; }
