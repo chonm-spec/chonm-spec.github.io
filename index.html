@@ -23,8 +23,8 @@
   <link rel="preload" href="assets/fonts/Freesentation-6SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Freesentation-8ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
   <!-- ?v= : CSS·JS를 고칠 때마다 숫자를 1씩 올릴 것 (방문자 브라우저에 저장된 옛 파일 대신 새 파일을 받게 함) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=34">
-  <script src="assets/js/main.js?v=16" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=35">
+  <script src="assets/js/main.js?v=17" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -121,12 +121,13 @@
 
           <section class="resume__block">
             <h3>프로젝트 <small>(담당 직군 – 게임 기획)</small></h3>
+            <!-- 프로젝트 이름을 누르면 아래 프로젝트 칸과 같은 상세 팝업 (data-work = 칸 id, main.js). 담당 = 프로젝트 칸의 담당과 같게 -->
             <ul class="rows rows--3">
-              <li><b>2025</b><span>(MOBILE) 펩 히어로즈</span><span>퀘스트 및 레벨 디자인</span></li>
-              <li><b>2024</b><span>(MOBILE) LG 산학 - 클럽 파이터즈</span><span>기획 전반</span></li>
-              <li><b>2023</b><span>(PC) 타부티</span><span>콘텐츠 / 시스템 / 레벨 디자인</span></li>
-              <li><b>2022</b><span>(MOBILE) KT 산학 - 지니버거</span><span>시스템 및 레벨 디자인</span></li>
-              <li><b></b><span>(BOARD) 누가 닭다리 다 먹었어!</span><span>기획 및 세일즈 전반</span></li>
+              <li><b>2025</b><button class="rows__link" type="button" data-work="work-pep" aria-haspopup="dialog">(MOBILE) 펩 히어로즈 <span class="rows__go" aria-hidden="true">↗</span></button><span>퀘스트 / 레벨 디자인</span></li>
+              <li><b>2024</b><button class="rows__link" type="button" data-work="work-club" aria-haspopup="dialog">(MOBILE) LG 산학 - 클럽 파이터즈 <span class="rows__go" aria-hidden="true">↗</span></button><span>컨셉 / 콘텐츠 / 시스템 디자인</span></li>
+              <li><b>2023</b><button class="rows__link" type="button" data-work="work-tavuti" aria-haspopup="dialog">(PC) 타부티 <span class="rows__go" aria-hidden="true">↗</span></button><span>콘텐츠 / 시스템 / 레벨 디자인</span></li>
+              <li><b>2022</b><button class="rows__link" type="button" data-work="work-genie" aria-haspopup="dialog">(MOBILE) KT 산학 - 지니버거 <span class="rows__go" aria-hidden="true">↗</span></button><span>시스템 / 레벨 디자인</span></li>
+              <li><b></b><button class="rows__link" type="button" data-work="work-chicken" aria-haspopup="dialog">(BOARD) 누가 닭다리 다 먹었어! <span class="rows__go" aria-hidden="true">↗</span></button><span>기획 / 세일즈 전반</span></li>
             </ul>
           </section>
 
@@ -200,7 +201,7 @@
         <h2 class="sec-head__title" id="projects-title">프로젝트</h2>
       </div>
       <div class="bento">
-        <article class="work tile tile--big">
+        <article id="work-tavuti" class="work tile tile--big">
           <div class="tile__in">
             <img src="assets/works/p-tavuti-cover.jpg" alt="" width="757" height="298" loading="lazy" style="object-position: 0% 20%">
             <div class="tile__text">
@@ -276,7 +277,7 @@
             </div>
           </template>
         </article>
-        <article class="work tile tile--big">
+        <article id="work-pep" class="work tile tile--big">
           <div class="tile__in">
             <img src="assets/works/p-pep-key.jpg" alt="" width="875" height="492" loading="lazy" style="object-position: 20% 15%">
             <div class="tile__text">
@@ -339,7 +340,7 @@
             </div>
           </template>
         </article>
-        <article class="work tile">
+        <article id="work-club" class="work tile">
           <div class="tile__in">
             <img src="assets/works/p-club-key.jpg" alt="" width="1440" height="810" loading="lazy" style="object-position: 70% 30%">
             <div class="tile__text">
@@ -383,7 +384,7 @@
             </div>
           </template>
         </article>
-        <article class="work tile">
+        <article id="work-genie" class="work tile">
           <div class="tile__in">
             <img src="assets/works/p-genie.jpg" alt="" width="457" height="257" loading="lazy" style="object-position: 50% 5%">
             <div class="tile__text">
@@ -430,7 +431,7 @@
             </div>
           </template>
         </article>
-        <article class="work tile">
+        <article id="work-chicken" class="work tile">
           <div class="tile__in">
             <img src="assets/works/p-chicken-key.jpg" alt="" width="1240" height="930" loading="lazy" style="object-position: 50% 45%">
             <div class="tile__text">

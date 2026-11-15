@@ -93,6 +93,10 @@ modal.querySelector('.modal__close').addEventListener('click', closeModal);
 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); // 바깥 어두운 곳
 // Esc 키. close 이벤트는 늦게 올 수 있어, 그사이 다른 카드를 열었으면 비우지 않음
 modal.addEventListener('close', () => { if (!modal.open) modalContent.replaceChildren(); });
+// 이력서의 프로젝트 이름: 누르면 프로젝트 칸과 같은 상세 팝업 (data-work = 칸 id)
+document.querySelectorAll('[data-work]').forEach((b) => b.addEventListener('click', () => {
+  document.getElementById(b.dataset.work).querySelector('.work__more').click();
+}));
 
 // 기획서 · 이력서 PDF 다운로드: download 속성을 무시하고 PDF를 미리 보기로 여는 브라우저가 있어,
 // 파일을 받아 "내려받기 전용" 형식으로 바꾼 뒤 저장. 실패하면 원래 링크로 이동
