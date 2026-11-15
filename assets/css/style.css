@@ -543,7 +543,7 @@ body:has(.modal[open]) { overflow: hidden; }
 .modal__sec ul { padding-left: 1.2em; }
 .modal__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 /* 프로젝트 팝업 (2026-11-15 확정 목업): 1200px, 위쪽 2단 = [대표 이미지 | 요약]. 이미지는 요약 높이에 맞춰 잘림 */
-.modal:has(.modal__head) { width: min(1200px, calc(100% - 32px)); padding-bottom: 48px; }
+.modal:has(.modal__head) { width: min(1200px, calc(100% - 32px)); height: calc(100svh - 48px); padding-bottom: 48px; } /* 높이 고정: 내용이 짧아도 위쪽 24px에서 시작, 프로젝트를 바꿔도 상자 그대로 */
 /* 다른 프로젝트 목록 (main.js): 지금 프로젝트 = 파란 테두리, 나머지 반투명 */
 .modal__nav { display: none; }
 .modal__nav button { display: block; padding: 0; aspect-ratio: 16 / 9; overflow: hidden; background: var(--black); border: 2px solid transparent; border-radius: 10px; cursor: pointer; opacity: .5; transition: opacity .2s, border-color .2s, box-shadow .2s; }
@@ -561,7 +561,7 @@ body:has(.modal[open]) { overflow: hidden; }
     margin-left: calc((100% - var(--t) - 24px - var(--p)) / 2 + var(--t) + 24px);
     margin-right: auto;
   }
-  .modal:has(.modal__head) .modal__nav { position: fixed; top: 50%; left: calc((100% - var(--t) - 24px - var(--p)) / 2); display: grid; gap: 12px; width: var(--t); transform: translateY(-50%); }
+  .modal:has(.modal__head) .modal__nav { position: fixed; top: 24px; left: calc((100% - var(--t) - 24px - var(--p)) / 2); display: grid; gap: 12px; width: var(--t); } /* 맨 위를 팝업 위쪽 선에 맞춤 */
 }
 /* 1023px 이하: 팝업 맨 위 가로 한 줄(넘치면 옆으로 밀기), 스크롤하면 위로 지나감. 줄은 닫기 버튼 앞에서 끝남 */
 @media (max-width: 1023px) {
