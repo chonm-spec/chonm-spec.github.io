@@ -631,6 +631,7 @@ body:has(.modal[open]) { overflow: hidden; }
 .modal__fig img { display: block; width: auto; max-width: 100%; height: auto; max-height: 420px; margin-inline: auto; background: var(--white); border-radius: 10px; } /* 세로로 긴 이미지는 420px까지만 */
 .modal__fig figcaption { margin-top: 8px; font-size: 13px; text-align: center; color: var(--gray-500); } /* 설명은 이미지 아래 가운데 */
 .modal__fig small { display: block; font-size: 12px; }
+.modal__note { margin: -12px 0 0; font-size: 12px; text-align: right; color: var(--gray-500); } /* 개발 히스토리 맨 아래 안내 한 줄 */
 .doc__name { margin: 0 0 12px; font-size: 16px; font-weight: 600; }
 /* 959px 이하: 위쪽 2단 → 이미지 위 · 요약 아래, 왼쪽 제목 → 위로 */
 @media (max-width: 959px) {
