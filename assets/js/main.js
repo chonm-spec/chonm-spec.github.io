@@ -70,7 +70,7 @@ const galShow = (n, smooth = true) => {
   [gal.no + 1, gal.no - 1].forEach((k) => { const x = items[loop ? (k + items.length) % items.length : k]; if (x) new Image().src = x.full; }); // 옆 것 미리 불러오기
 };
 // items = [{ full: 큰 이미지, alt, cap: 설명(없으면 ''), name: 목록 버튼 이름, thumb: 목록에 넣을 작은 img }]
-const openGallery = (label, items, start, loop, stripClass, unit) => {
+const openGallery = (label, items, start, loop, stripClass, unit, ratio = '') => {
   gal = { items, no: start, loop };
   viewer.querySelector('.viewer__title').replaceChildren(label, Object.assign(document.createElement('span'), { className: 'gal__count' }));
   const box = document.createElement('div');
@@ -88,6 +88,7 @@ const openGallery = (label, items, start, loop, stripClass, unit) => {
   });
   const strip = document.createElement('div');
   strip.className = `gal__thumbs ${stripClass}`;
+  strip.style.cssText = ratio; // 사진 칸의 --ratio (게임 화면 비율)를 목록에도
   strip.append(...items.map((it, k) => {
     const b = Object.assign(document.createElement('button'), { type: 'button' });
     b.setAttribute('aria-label', `${it.name} 보기`);
@@ -194,7 +195,7 @@ modalContent.addEventListener('click', (e) => {
   openGallery(label, btns.map((x, k) => {
     const cap = x.parentElement.querySelector('figcaption')?.textContent || '';
     return { full: x.dataset.full, alt: cap || label, cap, name: `${k + 1}번째 사진`, thumb: x.querySelector('img').cloneNode() };
-  }), btns.indexOf(b), true, ['shots', 'tall'].map((k) => (group.classList.contains(`photos--${k}`) ? `gal__thumbs--${k}` : '')).join(''), '사진');
+  }), btns.indexOf(b), true, ['shots', 'tall'].map((k) => (group.classList.contains(`photos--${k}`) ? `gal__thumbs--${k}` : '')).join(''), '사진', group.style.cssText);
 });
 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); // 바깥 어두운 곳
 // Esc 키. close 이벤트는 늦게 올 수 있어, 그사이 다른 카드를 열었으면 비우지 않음
