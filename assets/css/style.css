@@ -665,6 +665,8 @@ body:has(.modal[open]) { overflow: hidden; }
 .photos--shots { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .photos--shots img { aspect-ratio: 1280 / 598; }
 @media (max-width: 599px) { .photos--shots { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
+/* 세로 스크린샷 (펩 히어로즈): 기본 칸(PC 4장 한 줄 · 휴대폰 2장씩) 그대로, 9 : 16 비율 그대로(안 잘림) */
+.photos--tall img { aspect-ratio: 640 / 1138; }
 
 /* 크게 보기 (화면 전체, 기획서 · 사진 공통) */
 .viewer { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; color: var(--white); background: var(--black); border: 0; overflow: auto; }
@@ -689,6 +691,7 @@ body:has(.modal[open]) { overflow: hidden; }
 .gal__thumbs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .gal__thumbs button { width: 96px; aspect-ratio: 4 / 3; padding: 0; overflow: hidden; background: var(--black); border: 2px solid transparent; border-radius: 6px; cursor: pointer; }
 .gal__thumbs--shots button { width: 128px; aspect-ratio: 1280 / 598; }
+.gal__thumbs--tall button { width: 48px; aspect-ratio: 640 / 1138; }
 .gal__thumbs--doc { position: relative; flex-wrap: nowrap; justify-content: flex-start; width: 100%; max-width: 1200px; padding: 4px; overflow-x: auto; scrollbar-width: thin; } /* 기획서: 모든 쪽 한 줄, 옆으로 밀어 보기 */
 .gal__thumbs--doc > :first-child { margin-left: auto; } /* 쪽이 적으면 가운데 */
 .gal__thumbs--doc > :last-child { margin-right: auto; }
@@ -706,6 +709,7 @@ body:has(.modal[open]) { overflow: hidden; }
   .gal__nav svg { width: 22px; height: 22px; }
   .gal__thumbs button { width: 64px; }
   .gal__thumbs--shots button { width: 92px; }
+  .gal__thumbs--tall button { width: 40px; }
   .gal__thumbs--doc button { width: 72px; }
 }
 @media (max-width: 599px) {

@@ -194,7 +194,7 @@ modalContent.addEventListener('click', (e) => {
   openGallery(label, btns.map((x, k) => {
     const cap = x.parentElement.querySelector('figcaption')?.textContent || '';
     return { full: x.dataset.full, alt: cap || label, cap, name: `${k + 1}번째 사진`, thumb: x.querySelector('img').cloneNode() };
-  }), btns.indexOf(b), true, group.classList.contains('photos--shots') ? 'gal__thumbs--shots' : '', '사진');
+  }), btns.indexOf(b), true, ['shots', 'tall'].map((k) => (group.classList.contains(`photos--${k}`) ? `gal__thumbs--${k}` : '')).join(''), '사진');
 });
 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); // 바깥 어두운 곳
 // Esc 키. close 이벤트는 늦게 올 수 있어, 그사이 다른 카드를 열었으면 비우지 않음
