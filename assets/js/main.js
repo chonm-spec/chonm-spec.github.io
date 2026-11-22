@@ -229,16 +229,6 @@ document.addEventListener('click', async (e) => {
   a.lastChild.textContent = label;
 });
 
-// 플레이경험: + more를 누르면 숨겨 둔 게임 아이콘 표시, 다시 누르면 접기
-const playMore = document.querySelector('.play__more');
-const playExtras = [...document.querySelectorAll('.play__extra')];
-playMore.addEventListener('click', () => {
-  const open = playMore.getAttribute('aria-expanded') !== 'true';
-  playMore.setAttribute('aria-expanded', open);
-  playMore.textContent = open ? '접기' : '+ more';
-  playExtras.forEach((li) => { li.hidden = !open; });
-});
-
 // 플레이경험 게임 정보 팝업 (data-game이 있는 아이콘만): 마우스 올리면 표시 · 빼면 닫힘 / 터치하면 표시 · 3초 뒤 닫힘 / Tab 포커스 시 표시
 const playBox = document.querySelector('.play__games');
 const playTip = playBox.querySelector('.play__tip');
