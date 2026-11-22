@@ -665,7 +665,7 @@ body:has(.modal[open]) { overflow: hidden; }
 .photos__item figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; text-align: center; color: var(--gray-300); }
 @media (max-width: 599px) { .photos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px; } }
 /* 게임 스크린샷 (지니버거 · 타부티): 3장 한 줄, 게임 화면 비율 그대로. 휴대폰은 한 장씩 크게. 비율은 칸의 --ratio (기본 = 지니버거 1280 × 598, 타부티 16 : 9) */
-.photos--shots { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.photos--shots { grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); } /* 기본 3장, 칸의 --cols로 바꿈 (클럽 파이터즈 4) */
 .photos--shots img { aspect-ratio: var(--ratio, 1280 / 598); }
 @media (max-width: 599px) { .photos--shots { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
 /* 세로 스크린샷 (펩 히어로즈): 기본 칸(PC 4장 한 줄 · 휴대폰 2장씩) 그대로, 9 : 16 비율 그대로(안 잘림) */
