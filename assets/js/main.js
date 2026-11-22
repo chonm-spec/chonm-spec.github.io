@@ -247,8 +247,9 @@ const tipCell = (label, value, wide) => `<div class="play__tip-box${wide ? ' pla
 const hideTip = () => { playTip.hidden = true; clearTimeout(playTimer); };
 const showTip = (li, autoClose) => {
   const { game, levelName, level, time, note } = li.dataset;
+  const badge = li.dataset.badge || ('max' in li.dataset ? 'MAX' : ''); // 레벨 옆 배지: 만렙 MAX 또는 직업 등
   playTip.innerHTML = `<p class="play__tip-name">${game}</p><div class="play__tip-boxes">` +
-    tipCell(levelName, level + ('max' in li.dataset ? '<span class="play__tip-max">MAX</span>' : '')) + tipCell('플레이 타임', time) + (note ? tipCell('특이사항', note, true) : '') + '</div>';
+    tipCell(levelName, level + (badge ? `<span class="play__tip-max">${badge}</span>` : '')) + tipCell('플레이 타임', time) + (note ? tipCell('특이사항', note, true) : '') + '</div>';
   playTip.hidden = false;
   // 아이콘 가운데 위에 놓되, 칸 양끝을 넘지 않게
   const b = playBox.getBoundingClientRect(), r = li.getBoundingClientRect();
